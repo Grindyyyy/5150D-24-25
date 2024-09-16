@@ -1,6 +1,12 @@
 #include "main.h"
 #include "dlib/dlib.hpp"
+#include "pros/misc.h"
+#include "pros/motors.h"
+#include "pros/motors.hpp"
 #include "robodash/api.h"
+#include <initializer_list>
+#include <memory>
+#include <utility>
 
 /*
 TODO:
@@ -31,12 +37,16 @@ rd::Selector selector({
 // use this to actually print stuff to the console
 rd::Console console;
 
+// initialize
+
+pros::Controller master(pros::E_CONTROLLER_MASTER);
+
 // dLib
 struct Robot {
     dlib::Chassis chassis = dlib::Chassis(
-		nullptr,
-    	nullptr,
-    	1,
+	    {1,2,3},
+        {4,5,6},
+    	3.25,
     	1
     );
 
@@ -55,6 +65,10 @@ struct Robot {
         1
     );
 
+    dlib::Intake intake = dlib::Intake(
+        7
+    );
+
     dlib::Chassis& get_chassis() {
         return chassis;
     }
@@ -70,6 +84,10 @@ struct Robot {
     dlib::Odom& get_odom() {
         return odom;
     }
+
+    dlib::Intake& get_intake() {
+        return intake;
+    }
 };
 
 void initialize() {
@@ -84,6 +102,10 @@ void competition_initialize() {
 
 void autonomous() {
     selector.run_auton();
+    // make new robot
+    Robot robot = Robot();
+
+    dlib::intake_fwd(robot, 127);
 }
 
 void opcontrol() {

@@ -1,5 +1,6 @@
 #include "api.h"
 #include "dlib/chassis.hpp"
+#include "dlib/intake.hpp"
 #include "dlib/pid.hpp"
 #include "dlib/odom.hpp"
 #include <concepts>
@@ -164,6 +165,16 @@ void turn_degrees(Robot& robot, double angle, Options options) {
     }
 
     brake(robot);
+}
+
+template<typename Robot>
+void intake_fwd(Robot& robot, int8_t volts){
+    robot.get_intake().intake->move(volts);
+}
+
+template<typename Robot>
+void intake_bwd(Robot& robot, int8_t volts){
+    robot.get_intake().intake->move(-volts);
 }
 
 }
