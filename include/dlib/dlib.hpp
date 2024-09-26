@@ -7,12 +7,10 @@
 #include "dlib/indexer.hpp"
 #include "dlib/imu.hpp"
 #include "pros/motors.h"
+#include "dlib/sensor.hpp"
 #include <concepts>
 
 namespace dlib {
-
-bool odom_started = false;
-std::unique_ptr<pros::Task> odom_updater;
 
 template<typename Robot>
 void set_mode_brake(Robot& robot){
@@ -41,6 +39,26 @@ void update_odom(Robot& robot){
 }
 
 template<typename Robot>
+void intake_filter_task(Robot& robot){
+    while(true){
+        if(robot.get_intake().is_red_alliance){
+                if(intake_get_blue(robot) > intake_get_red(robot)*1.3){
+                    intake_move(robot,-127);
+                    pros::delay(600);
+                    intake_move(robot,127);
+                }
+            }
+        else if(robot.get_intake().is_blue_alliance){
+            if(intake_get_red(robot) > intake_get_blue(robot)*1.5){
+                intake_move(robot,-127);
+                pros::delay(600);
+                intake_move(robot,127);
+            }
+        }
+    }
+}
+
+template<typename Robot>
 void calibrate(Robot& robot){
     robot.get_chassis().left.set_gearing(pros::E_MOTOR_GEAR_BLUE);
     robot.get_chassis().right.set_gearing(pros::E_MOTOR_GEAR_BLUE);
@@ -55,12 +73,20 @@ void calibrate(Robot& robot){
 }
 
 template<typename Robot>
-void start_odom(Robot& robot) {
+void start_odom_update_loop(Robot& robot) {
     // Capture the current class instance and call update_odom in a seperate task
 
-    if (!odom_started) {
-        odom_updater = std::make_unique<pros::Task>([&] { update_odom(robot); });
-        odom_started = true;
+    if (!robot.get_odom().odom_started) {
+        robot.get_odom().odom_updater = std::make_unique<pros::Task>([&] { update_odom(robot); });
+        robot.get_odom().odom_started = true;
+    }
+}
+
+template<typename Robot>
+void start_intake_update_loop(Robot& robot) {
+    if(!robot.get_intake().intake_task_started) {
+        robot.get_intake().intake_updater = std::make_unique<pros::Task>([&] { update_odom(robot); });
+        robot.get_intake().intake_task_started = true;
     }
 }
 
@@ -312,8 +338,56 @@ void move_to(Robot& robot, double x, double y, bool reverse) {
 }
 
 template<typename Robot>
+double get_torque_intake(Robot& robot){
+    return robot.get_intake().intake.get_torque();
+}
+
+template<typename Robot>
 void intake_move(Robot& robot, int volts){
     robot.get_intake().intake.move(volts);
+}
+
+template<typename Robot>
+void intake_move_torque(Robot& robot, int volts){
+    if(robot.get_intake.intake.get_torque()){
+        robot.get_intake().intake.move(volts);
+    }
+}
+
+template<typename Robot>
+pros::c::optical_rgb_s_t get_rgb_values(Robot& robot){
+    return(robot.get_sensor().ring_sensor.get_rgb());
+}
+
+template<typename Robot>
+double intake_get_red(Robot& robot){
+    robot.get_sensor().rgb_value = get_rgb_values(robot);
+    return(robot.get_sensor().rgb_value.red);
+}
+
+template<typename Robot>
+double intake_get_green(Robot& robot){
+    robot.get_sensor().rgb_value = get_rgb_values(robot);
+    return(robot.get_sensor().rgb_value.green);
+}
+
+template<typename Robot>
+double intake_get_blue(Robot& robot){
+    robot.get_sensor().rgb_value = get_rgb_values(robot);
+    return(robot.get_sensor().rgb_value.blue);
+}
+
+template<typename Robot>
+bool get_red_alliance(Robot& robot){
+    robot.get_intake().is_red_alliance = true;
+    robot.get_intake().is_blue_alliance = false;
+    return(robot.get_intake().is_red_alliance);
+}
+template<typename Robot>
+bool get_blue_alliance(Robot& robot){
+    robot.get_intake().is_blue_alliance = true;
+    robot.get_intake().is_red_alliance = false;
+    return(robot.get_intake().is_blue_alliance);
 }
 
 template<typename Robot>
@@ -331,4 +405,8 @@ void indexer(Robot& robot, bool state){
     robot.get_indexer().piston_1.set_value(state);
 }
 
+template<typename Robot>
+void activate_led(Robot& robot, int power){
+    robot.get_sensor().ring_sensor.set_led_pwm(power);
+}
 }

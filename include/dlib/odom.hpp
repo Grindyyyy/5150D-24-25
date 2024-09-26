@@ -18,6 +18,7 @@ class Odom {
         double previous_forward = 0;
         double previous_theta = 0;
         Position position{};
+        
     public:
         Odom(
             double wheel_diameter,
@@ -31,6 +32,8 @@ class Odom {
 
         double get_x();
         double get_y();
+        std::unique_ptr<pros::Task> odom_updater;
+        bool odom_started = false;
 };
 
 }
