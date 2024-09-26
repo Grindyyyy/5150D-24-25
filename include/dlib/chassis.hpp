@@ -1,4 +1,5 @@
 #include "api.h"
+#include "pros/imu.hpp"
 #include <initializer_list>
 
 namespace dlib {

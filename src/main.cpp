@@ -3,7 +3,9 @@
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "pros/motors.hpp"
+#include "pros/optical.h"
 #include "robodash/api.h"
+#include "robodash/views/selector.hpp"
 #include <initializer_list>
 #include <memory>
 #include <utility>
@@ -19,18 +21,39 @@ Look through dLib, make sure it all makes sense roughly
 */
 
 // example UI stuff, adjust for the autos that we're actually gonna use
-void red_awp(){}
-void red_6_ring(){}
-void blue_awp(){}
-void blue_6_ring(){}
+
+bool toggle_mogo = false;
+bool toggle_mode = false;
+
+bool is_red_alliance;
+bool is_blue_alliance;
+
+void red_awp(){
+    is_red_alliance = true;
+}
+void red_6_ring(){
+    is_red_alliance = true;
+}
+void blue_awp(){
+    is_blue_alliance = true;
+}
+void blue_6_ring(){
+    is_blue_alliance = true;
+}
 void skills(){}
 
 // robo dash works modularly, so you can add more autos into this constructor
-rd::Selector selector({
+rd::Selector Red_Selector({
     {"Red AWP", &red_awp},
     {"Red 6 Ring", &red_6_ring},
+});
+
+rd::Selector Blue_Selector({
     {"Blue AWP", &blue_awp},
     {"Blue 6 Ring", &blue_6_ring},
+});
+
+rd::Selector Skills_SXselector({
     {"Skills", &skills},
 });
 
@@ -41,13 +64,21 @@ rd::Console console;
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 
+pros::Optical optical(14);
+
+pros::c::optical_rgb_s_t rgb_value;
+
 // dLib
 struct Robot {
     dlib::Chassis chassis = dlib::Chassis(
-	    {1,2,3},
-        {4,5,6},
+	    {18,19,17},
+        {-14,-16,-11},
     	3.25,
     	1
+    );
+
+    dlib::IMU imu = dlib::IMU(
+        15
     );
 
     dlib::PID drive_pid = dlib::PID(
@@ -66,11 +97,25 @@ struct Robot {
     );
 
     dlib::Intake intake = dlib::Intake(
-        7
+        8
+    );
+
+    dlib::Mogo mogo = dlib::Mogo(
+        'H',
+        toggle_mogo
+    );
+
+    dlib::Indexer indexer = dlib::Indexer(
+        'G',
+        true
     );
 
     dlib::Chassis& get_chassis() {
         return chassis;
+    }
+    
+    dlib::IMU& get_imu(){
+        return imu;
     }
 
     dlib::PID& get_drive_pid() {
@@ -88,32 +133,119 @@ struct Robot {
     dlib::Intake& get_intake() {
         return intake;
     }
+
+    dlib::Mogo& get_mogo() {
+        return mogo;
+    }
+
+    dlib::Indexer& get_indexer(){
+        return indexer;
+    }
 };
 
-void initialize() {
-	
-}
+// instantiate Robot object
+Robot robot = Robot();
+
+void initialize() {}
 
 void disabled() {}
 
 void competition_initialize() {
-    selector.focus();
+    // focus on selector screen
+    Red_Selector.focus();
 }
-
+ 
 void autonomous() {
-    selector.run_auton();
-    // make new robot
-    Robot robot = Robot();
-
-    dlib::intake_fwd(robot, 127);
+    Red_Selector.run_auton();
 }
 
 void opcontrol() {
-    for (int i = 0; i < 100; i++) {
-		console.printf("Hello %d\n", i);
-		pros::delay(200);
-	}
+    dlib::set_mode_brake(robot);
+    optical.set_led_pwm(100);
+    is_red_alliance = true;
     while(true){
-        pros::delay(20);   
+        rgb_value = optical.get_rgb();
+        console.clear();
+        console.printf("Red Value: %lf \n", rgb_value.red);
+        console.printf("Green Value: %lf \n", rgb_value.green);
+        console.printf("Blue Value: %lf \n", rgb_value.blue);
+  
+        // arcade
+        double power = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        double turn = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        dlib::arcade(robot,power,turn);
+        
+
+        // intake binds
+        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+            if(is_red_alliance){
+                if(rgb_value.blue > rgb_value.red*1.3){
+                    console.printf("Blue Ring Detected, Flinging");
+                    dlib::intake_stop(robot);
+                }
+                else if(rgb_value.red > rgb_value.blue*1.5){
+                    console.printf("Red Ring Detected");
+                }
+                else{
+                    dlib::intake_move(robot,127);
+                }
+            }
+            else if(is_blue_alliance){
+                if(rgb_value.red > rgb_value.blue*1.5){
+                    console.printf("Red Ring Detected, Flinging");
+                    dlib::intake_stop(robot);
+                }
+                else if(rgb_value.blue > rgb_value.red*1.3){
+                    console.printf("Blue Ring Detected");
+                }
+                else{
+                    dlib::intake_move(robot,127);
+                }
+            }
+        }
+        else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+            dlib::intake_move(robot,-127);
+        }
+        else{
+            dlib::intake_stop(robot);
+        }
+
+        // mogo binds
+        
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
+            toggle_mogo = !toggle_mogo;
+        }
+
+        if(toggle_mogo == true){
+            dlib::mogo(robot, true);
+        }
+        if(toggle_mogo == false){
+            dlib::mogo(robot,false);
+        }
+        
+        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+            dlib::indexer(robot,true);
+        }
+        else{
+            dlib::indexer(robot,false);
+        }
+
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)){
+            toggle_mode = !toggle_mode;
+        }
+
+        if(toggle_mode == true){
+            dlib::set_mode_coast(robot);
+        }
+        if(toggle_mode == false){
+            dlib::set_mode_brake(robot);
+        }
+        
+        
+        
+
+        // arm binds
+        // Empty!
+        pros::delay(20);
     }
 }
