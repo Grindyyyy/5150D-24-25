@@ -13,24 +13,14 @@
 /*
 TODO:
 
-**INTAKE FILTRATION MECH TASK
-**ODOM TASK VERIFICATION
+**INTAKE FILTRATION MECH TASK // Done kinda
+**ODOM TASK VERIFICATION // Displays ? Maybe done
 
 Find a way to change background colors of the UI (THIS IS DEFINITELY POSSIBLE)
 ^ Try looking through robodash/lvgl stuff
 */
 
 // example UI stuff, adjust for the autos that we're actually gonna use
-
-bool toggle_mogo = false;
-bool toggle_mode = false;
-
-// use this to actually print stuff to the console
-rd::Console console;
-
-// initialize
-
-pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 // dLib
 //Initializing values using dLib
@@ -67,7 +57,7 @@ struct Robot {
 
     dlib::Mogo mogo = dlib::Mogo(
         'H',
-        toggle_mogo
+        false
     );
 
     dlib::Indexer indexer = dlib::Indexer(
@@ -75,8 +65,14 @@ struct Robot {
         true
     );
 
+    dlib::Lift lift = dlib::Lift(
+        20,
+        6
+    );
+
     dlib::Sensor sensor = dlib::Sensor(
-        3
+        3,
+        4
     );
 
     dlib::Chassis& get_chassis() {
@@ -110,14 +106,25 @@ struct Robot {
     dlib::Indexer& get_indexer(){
         return indexer;
     }
+
+    dlib::Lift& get_lift(){
+        return lift;
+    }
     
     dlib::Sensor& get_sensor(){
         return sensor;
     }
+
 };
 
 // instantiate Robot object
 Robot robot = Robot();
+
+// use this to actually print stuff to the console
+rd::Console console;
+
+// controller
+pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 //declaring autons for both sides
 void red_awp(){
@@ -161,14 +168,24 @@ void opcontrol() {
     selector.focus();
     dlib::set_mode_brake(robot);
     robot.get_intake().is_red_alliance = true;
-    dlib::activate_led(robot, 100);
+    // Activate Color Sensor
+    dlib::intake_activate_led(robot, 100);
+    // Begin tasks
+    dlib::start_intake_update_loop(robot);
+    dlib::start_odom_update_loop(robot);
+    // Initialize position struct
+    dlib::Position position = dlib::get_position(robot, false);
     while(true){
-        dlib::get_rgb_values(robot);
+        position = dlib::get_position(robot, false);
+        dlib::intake_get_rgb_values(robot);
         console.clear();
         console.printf("Red Value: %lf \n", dlib::intake_get_red(robot));
         console.printf("Green Value: %lf \n", dlib::intake_get_green(robot));
         console.printf("Blue Value: %lf \n", dlib::intake_get_blue(robot));
         console.printf("Motor Torque: %d \n", dlib::get_torque_intake(robot));
+        console.printf("X: %d \n", position.x);
+        console.printf("Y: %d \n", position.y);
+        console.printf("Theta: %d \n", position.theta);
         if(dlib::intake_get_blue(robot) > dlib::intake_get_red(robot)*1.3){
                     console.printf("Blue Ring Detected, Flinging");
         }
@@ -182,38 +199,16 @@ void opcontrol() {
         // intake binds
         //Color senser if statements
         if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-            if(robot.get_intake().is_red_alliance){
-                if(dlib::intake_get_blue(robot) > dlib::intake_get_red(robot)*1.3){
-                    console.printf("Blue Ring Detected, Flinging");
-                    dlib::intake_move(robot,-127);
-                    pros::delay(200);
-                    dlib::intake_move(robot,127);
-                }
-                else if(dlib::intake_get_red(robot) > dlib::intake_get_blue(robot)*1.5){
-                    console.printf("Red Ring Detected");
-                    dlib::intake_move(robot,127);
-                }
-                else{
-                    dlib::intake_move(robot,127);
-                }
+            if(!dlib::get_ring_detected(robot)){
+                dlib::intake_move(robot,127);
             }
-            else if(robot.get_intake().is_blue_alliance){
-                if(dlib::intake_get_red(robot) > dlib::intake_get_blue(robot)*1.5){
-                    console.printf("Red Ring Detected, Flinging");
-                    dlib::intake_stop(robot);
-                }
-                else if(dlib::intake_get_blue(robot) > dlib::intake_get_red(robot)*1.3){
-                    console.printf("Blue Ring Detected");
-                    dlib::intake_move(robot,127);
-                }
-                else{
-                    dlib::intake_move(robot,127);
-                }
-            }
+            
         }
             
         else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-            dlib::intake_move(robot,-127);
+            if(!dlib::get_ring_detected(robot)){
+                dlib::intake_move(robot,-127);
+            }
         }
         else{
             dlib::intake_stop(robot);
@@ -222,13 +217,13 @@ void opcontrol() {
         // mogo binds
         // Uses pnuematics to grab mogo
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
-            toggle_mogo = !toggle_mogo;
+            dlib::toggle_mogo(robot);
         }
 
-        if(toggle_mogo == true){
+        if(dlib::get_mogo_mode(robot) == true){
             dlib::mogo(robot, true);
         }
-        if(toggle_mogo == false){
+        if(dlib::get_mogo_mode(robot) == false){
             dlib::mogo(robot,false);
         }
         //Uses pnuematics to change height of intake
@@ -240,18 +235,15 @@ void opcontrol() {
         }
 
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)){
-            toggle_mode = !toggle_mode;
+            dlib::toggle_indexer(robot);
         }
         //alternates between coast and brake deceleration
-        if(toggle_mode == true){
+        if(dlib::get_indexer_mode(robot) == true){
             dlib::set_mode_coast(robot);
         }
-        if(toggle_mode == false){
+        if(dlib::get_indexer_mode(robot) == false){
             dlib::set_mode_brake(robot);
         }
-        
-        
-        
 
         // arm binds
         // Empty!
