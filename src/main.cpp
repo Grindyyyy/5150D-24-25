@@ -120,9 +120,6 @@ struct Robot {
 // instantiate Robot object
 Robot robot = Robot();
 
-// use this to actually print stuff to the console
-rd::Console console;
-
 // controller
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 
@@ -143,29 +140,32 @@ void skills(){}
 
 // robo dash works modularly, so you can add more autos into this constructor
 // Creating ui using robo dash
-rd::Selector selector({
+/*rd::Selector selector({
     {"Red AWP", &red_awp},
     {"Red 6 Ring", &red_6_ring},
     {"Blue AWP", &blue_awp},
     {"Blue 6 Ring", &blue_6_ring},
     {"Skills", &skills},
 });
-
+*/
 void initialize() {}
 
 void disabled() {}
 
 void competition_initialize() {
     // focus on selector screen
-    selector.focus();
 }
  
+
+
+
 void autonomous() {
-    selector.run_auton();
 }
+
+rd::Console console;
+
 //Getting RGB values for color sensor
 void opcontrol() {
-    selector.focus();
     dlib::set_mode_brake(robot);
     robot.get_intake().is_red_alliance = true;
     // Activate Color Sensor
@@ -174,21 +174,14 @@ void opcontrol() {
     dlib::start_intake_update_loop(robot);
     dlib::start_odom_update_loop(robot);
     // Initialize position struct
-    dlib::Position position = dlib::get_position(robot, false);
     while(true){
-        position = dlib::get_position(robot, false);
         dlib::intake_get_rgb_values(robot);
         console.clear();
-        console.printf("Red Value: %lf \n", dlib::intake_get_red(robot));
+        console.printf("Red Value: %lf \n",  dlib::intake_get_red(robot));
         console.printf("Green Value: %lf \n", dlib::intake_get_green(robot));
         console.printf("Blue Value: %lf \n", dlib::intake_get_blue(robot));
         console.printf("Motor Torque: %d \n", dlib::get_torque_intake(robot));
-        console.printf("X: %d \n", position.x);
-        console.printf("Y: %d \n", position.y);
-        console.printf("Theta: %d \n", position.theta);
-        if(dlib::intake_get_blue(robot) > dlib::intake_get_red(robot)*1.3){
-                    console.printf("Blue Ring Detected, Flinging");
-        }
+        console.printf("Intake Position: %d \n", dlib::get_intake_position(robot));
         // arcade
         // Type of driving format the controller uses
         double power = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -210,7 +203,7 @@ void opcontrol() {
                 dlib::intake_move(robot,-127);
             }
         }
-        else{
+        else if(!dlib::get_ring_detected(robot)){
             dlib::intake_stop(robot);
         }
 

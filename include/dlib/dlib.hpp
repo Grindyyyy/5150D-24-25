@@ -358,10 +358,11 @@ template<typename Robot>
 void intake_filter_task(Robot& robot){
     while(true){
             if(robot.get_intake().is_red_alliance){
-                    if(intake_get_blue(robot) > intake_get_red(robot)*1.3){
+                    if(intake_get_blue(robot) > intake_get_red(robot)*1.2){
                         robot.get_intake().ring_detected = true;
-                        robot.get_intake().intake.move(-127);
-                        pros::delay(600);
+                        pros::delay(170);
+                        robot.get_intake().intake.move(127);
+                        pros::delay(300);
                     }
                     else{
                         robot.get_intake().ring_detected = false;
@@ -370,8 +371,50 @@ void intake_filter_task(Robot& robot){
             else if(robot.get_intake().is_blue_alliance){
                 if(intake_get_red(robot) > intake_get_blue(robot)*1.5){
                     robot.get_intake().ring_detected = true;
-                    robot.get_intake().intake.move(-127);
-                    pros::delay(600);
+                    pros::delay(170);
+                    robot.get_intake().intake.move(127);
+                    pros::delay(300);
+                }
+                else{
+                    robot.get_intake().ring_detected = false;
+                }
+            }
+                
+    }
+}
+
+template<typename Robot>
+double get_intake_position(Robot& robot){
+    return(robot.get_intake().intake.get_position());
+}
+
+template<typename Robot>
+void experimental_intake_task(Robot& robot){
+    while(true){
+            if(robot.get_intake().is_red_alliance){
+                    if(intake_get_blue(robot) > intake_get_red(robot)*1.2 && robot.get_intake().ring_flung != false){
+                        robot.get_intake().ring_detected = true;
+                        robot.get_intake().ring_flung = false;
+                        robot.get_intake().initial_position = robot.get_intake().intake.get_position();
+                    }
+                    else if(intake_get_blue(robot) > intake_get_red(robot)*1.2){
+                        robot.get_intake().current_position = robot.get_intake().intake.get_position();
+                        if(robot.get_intake().current_position - robot.get_intake().initial_position > 125){
+                            robot.get_intake().intake.move(127);
+                            pros::delay(200);
+                            robot.get_intake().ring_flung = true;
+                        }
+                    }
+                    else{
+                        robot.get_intake().ring_detected = false;
+                    }
+                }
+            else if(robot.get_intake().is_blue_alliance){
+                if(intake_get_red(robot) > intake_get_blue(robot)*1.5){
+                    robot.get_intake().ring_detected = true;
+                    pros::delay(170);
+                    robot.get_intake().intake.move(127);
+                    pros::delay(300);
                 }
                 else{
                     robot.get_intake().ring_detected = false;
@@ -384,7 +427,7 @@ void intake_filter_task(Robot& robot){
 template<typename Robot>
 void start_intake_update_loop(Robot& robot) {
     if(!robot.get_intake().intake_task_started) {
-        robot.get_intake().intake_updater = std::make_unique<pros::Task>([&] { intake_filter_task(robot); });
+        robot.get_intake().intake_updater = std::make_unique<pros::Task>([&] { experimental_intake_task(robot); });
         robot.get_intake().intake_task_started = true;
     }
 }
