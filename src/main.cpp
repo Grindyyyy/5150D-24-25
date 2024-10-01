@@ -1,5 +1,6 @@
 #include "main.h"
 #include "dlib/dlib.hpp"
+#include "pros/imu.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "pros/motors.hpp"
@@ -8,6 +9,7 @@
 #include "robodash/views/selector.hpp"
 #include <initializer_list>
 #include <memory>
+#include <string>
 #include <utility>
 
 /*
@@ -120,6 +122,9 @@ struct Robot {
 // instantiate Robot object
 Robot robot = Robot();
 
+// use this to actually print stuff to the console
+rd::Console console;
+
 // controller
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 
@@ -140,32 +145,32 @@ void skills(){}
 
 // robo dash works modularly, so you can add more autos into this constructor
 // Creating ui using robo dash
-/*rd::Selector selector({
+rd::Selector selector({
     {"Red AWP", &red_awp},
     {"Red 6 Ring", &red_6_ring},
     {"Blue AWP", &blue_awp},
     {"Blue 6 Ring", &blue_6_ring},
     {"Skills", &skills},
 });
-*/
-void initialize() {}
+
+void initialize() {
+    robot.get_imu().imu.reset(true);
+}
 
 void disabled() {}
 
 void competition_initialize() {
     // focus on selector screen
+    selector.focus();
 }
  
-
-
-
 void autonomous() {
+    selector.run_auton();
 }
-
-rd::Console console;
-
 //Getting RGB values for color sensor
 void opcontrol() {
+    
+    selector.focus();
     dlib::set_mode_brake(robot);
     robot.get_intake().is_red_alliance = true;
     // Activate Color Sensor
@@ -174,14 +179,44 @@ void opcontrol() {
     dlib::start_intake_update_loop(robot);
     dlib::start_odom_update_loop(robot);
     // Initialize position struct
+    dlib::Position position = dlib::get_position(robot, false);
     while(true){
+        // get a new coordinate position
+        position = dlib::get_position(robot, false);
+        // get current optical sensor values
         dlib::intake_get_rgb_values(robot);
+
+        // ------------------------------------------------- //
+        // Binds
+        // ------------------------------------------------- //
+
+        // clear console at the start of each while loop
         console.clear();
-        console.printf("Red Value: %lf \n",  dlib::intake_get_red(robot));
+
+        // ring sensor rgb (for testing purposes)
+        console.printf("Red Value: %lf \n", dlib::intake_get_red(robot));
         console.printf("Green Value: %lf \n", dlib::intake_get_green(robot));
         console.printf("Blue Value: %lf \n", dlib::intake_get_blue(robot));
-        console.printf("Motor Torque: %d \n", dlib::get_torque_intake(robot));
-        console.printf("Intake Position: %d \n", dlib::get_intake_position(robot));
+
+        // odometry
+        console.print("X: ");
+        console.println(std::to_string(position.x));
+        console.print("Y: ");
+        console.println(std::to_string(position.y));
+        console.print("Theta: ");
+        console.println(std::to_string(position.theta));
+
+        // intake 
+        console.print("Intake Torque: ");
+        console.println(std::to_string(dlib::get_torque_intake(robot)));
+        console.print("Intake Position: ");
+        console.printf(std::to_string(dlib::get_intake_position(robot)));
+
+
+        // ------------------------------------------------- //
+        // Binds
+        // ------------------------------------------------- //
+
         // arcade
         // Type of driving format the controller uses
         double power = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -192,19 +227,23 @@ void opcontrol() {
         // intake binds
         //Color senser if statements
         if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-            if(!dlib::get_ring_detected(robot)){
+            if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
                 dlib::intake_move(robot,127);
             }
             
         }
             
         else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-            if(!dlib::get_ring_detected(robot)){
+            if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
                 dlib::intake_move(robot,-127);
             }
         }
-        else if(!dlib::get_ring_detected(robot)){
+        else if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
             dlib::intake_stop(robot);
+        }
+
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
+            robot.get_intake().lift_reverse = !robot.get_intake().lift_reverse;
         }
 
         // mogo binds
@@ -240,6 +279,8 @@ void opcontrol() {
 
         // arm binds
         // Empty!
+        
+        // delay to prevent brain damage
         pros::delay(20);
     }
 }

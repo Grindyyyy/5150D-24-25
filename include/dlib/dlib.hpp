@@ -140,7 +140,6 @@ void update_odom(Robot& robot){
 template<typename Robot>
 void start_odom_update_loop(Robot& robot) {
     // Capture the current class instance and call update_odom in a seperate task
-
     if (!robot.get_odom().odom_started) {
         robot.get_odom().odom_updater = std::make_unique<pros::Task>([&] { update_odom(robot); });
         robot.get_odom().odom_started = true;
@@ -357,15 +356,23 @@ void intake_activate_led(Robot& robot, int power){
 template<typename Robot>
 void intake_filter_task(Robot& robot){
     while(true){
+        robot.get_intake().intake_mutex.lock();  
             if(robot.get_intake().is_red_alliance){
                     if(intake_get_blue(robot) > intake_get_red(robot)*1.2){
                         robot.get_intake().ring_detected = true;
-                        pros::delay(170);
+                        pros::delay(210);
+                        robot.get_intake().intake.move(127);
+                        pros::delay(300);
+                    }
+                    else if(intake_get_red(robot) > intake_get_blue(robot) * 1.5 && robot.get_intake().lift_reverse == true){
+                        robot.get_intake().lift_ring_detected = true;
+                        pros::delay(90);
                         robot.get_intake().intake.move(127);
                         pros::delay(300);
                     }
                     else{
                         robot.get_intake().ring_detected = false;
+                        robot.get_intake().lift_ring_detected = false;
                     }
                 }
             else if(robot.get_intake().is_blue_alliance){
@@ -379,7 +386,8 @@ void intake_filter_task(Robot& robot){
                     robot.get_intake().ring_detected = false;
                 }
             }
-                
+        pros::delay(10);   
+        robot.get_intake().intake_mutex.unlock();  
     }
 }
 
@@ -391,6 +399,7 @@ double get_intake_position(Robot& robot){
 template<typename Robot>
 void experimental_intake_task(Robot& robot){
     while(true){
+        robot.get_intake().intake_mutex.lock();
             if(robot.get_intake().is_red_alliance){
                     if(intake_get_blue(robot) > intake_get_red(robot)*1.2 && robot.get_intake().ring_flung != false){
                         robot.get_intake().ring_detected = true;
@@ -420,14 +429,15 @@ void experimental_intake_task(Robot& robot){
                     robot.get_intake().ring_detected = false;
                 }
             }
-                
+        pros::delay(10); 
+        robot.get_intake().intake_mutex.unlock();  
     }
 }
 
 template<typename Robot>
 void start_intake_update_loop(Robot& robot) {
     if(!robot.get_intake().intake_task_started) {
-        robot.get_intake().intake_updater = std::make_unique<pros::Task>([&] { experimental_intake_task(robot); });
+        robot.get_intake().intake_updater = std::make_unique<pros::Task>([&] { intake_filter_task(robot); });
         robot.get_intake().intake_task_started = true;
     }
 }
