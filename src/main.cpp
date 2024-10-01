@@ -12,17 +12,21 @@
 #include <string>
 #include <utility>
 
+// thonk award
+
 /*
 TODO:
 
-**INTAKE FILTRATION MECH TASK // Done kinda
-**ODOM TASK VERIFICATION // Displays ? Maybe done
+** CREATE AUTONS FOR MATCH
+* intake torque macro
+* make macros based off of position for accuracy
+* lift mech methods
+* Create autons for skills (not super important)
+* reformat
 
-Find a way to change background colors of the UI (THIS IS DEFINITELY POSSIBLE)
+(backburner) Find a way to change background colors of the UI (THIS IS DEFINITELY POSSIBLE)
 ^ Try looking through robodash/lvgl stuff
 */
-
-// example UI stuff, adjust for the autos that we're actually gonna use
 
 // dLib
 //Initializing values using dLib
@@ -122,6 +126,9 @@ struct Robot {
 // instantiate Robot object
 Robot robot = Robot();
 
+// Initialize position struct
+dlib::Position position = dlib::get_position(robot, false);
+
 // use this to actually print stuff to the console
 rd::Console console;
 
@@ -154,9 +161,29 @@ rd::Selector selector({
 });
 
 void initialize() {
+    // Reset IMU + Tare motors
     robot.get_imu().imu.reset(true);
+    dlib::tare_position(robot);
+
+    // Start the UI focusing on auto selector for easy access
+    selector.focus();
+
+    // Set drive mode to brake
+    // Better than coast for autos in my opinion
+    dlib::set_mode_brake(robot);
+    
+    // Activate Color Sensor
+    dlib::intake_activate_led(robot, 100);
+    robot.get_intake().is_red_alliance = true;
+
+    // Begin tasks
+    dlib::start_intake_update_loop(robot);
+    dlib::start_odom_update_loop(robot);
+    
 }
 
+// Run while robot is disabled on the field.
+// Usually leave this blank
 void disabled() {}
 
 void competition_initialize() {
@@ -165,21 +192,11 @@ void competition_initialize() {
 }
  
 void autonomous() {
+    // run chosen auto
     selector.run_auton();
 }
 //Getting RGB values for color sensor
 void opcontrol() {
-    
-    selector.focus();
-    dlib::set_mode_brake(robot);
-    robot.get_intake().is_red_alliance = true;
-    // Activate Color Sensor
-    dlib::intake_activate_led(robot, 100);
-    // Begin tasks
-    dlib::start_intake_update_loop(robot);
-    dlib::start_odom_update_loop(robot);
-    // Initialize position struct
-    dlib::Position position = dlib::get_position(robot, false);
     while(true){
         // get a new coordinate position
         position = dlib::get_position(robot, false);
