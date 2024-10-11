@@ -1,6 +1,7 @@
 #pragma once
 #include "api.h"
 #include "pros/motors.hpp"
+#include "pros/rtos.hpp"
 
 namespace dlib {
 
@@ -11,19 +12,14 @@ struct Position {
 };
 
 class Odom {
-    private:
-        double wheel_diameter;
-        double gear_ratio;
- 
+    private: 
         double previous_forward = 0;
         double previous_theta = 0;
         Position position{};
-        
+        pros::Mutex mutex{};
+
     public:
-        Odom(
-            double wheel_diameter,
-            double gear_ratio
-        );
+        Odom();
 
         void update(double current_forward, double current_theta);
 

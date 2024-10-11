@@ -1,20 +1,18 @@
 #include "api.h"
 #include "dlib/odom.hpp"
 #include "dlib/chassis.hpp"
+#include <mutex>
 
 namespace dlib {
 
 // Initializer class
-Odom::Odom(
-        double wheel_diameter,
-        double gear_ratio
-    ) :  
-        wheel_diameter(wheel_diameter), 
-        gear_ratio(gear_ratio) {
+Odom::Odom() {
 };
 
 // Update global x, y, and theta
 void Odom::update(double current_forward, double current_theta) {
+    std::lock_guard<pros::Mutex> guard(mutex);
+    
     double delta_forward = current_forward - previous_forward;
     double delta_theta = current_theta - previous_theta;
 

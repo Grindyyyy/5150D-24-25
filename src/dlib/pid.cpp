@@ -6,11 +6,11 @@ namespace dlib {
 
 // Construct a PID controller
 PID::PID(
-    Gains gains_settings, 
+    PIDGains gains_settings, 
     uint32_t interval_setting) {
     double interval_in_sec = interval_setting / 1000.0;
     
-    Gains real_gains({
+    PIDGains real_gains({
         gains_settings.kp, 
         gains_settings.ki * interval_in_sec, 
         gains_settings.kd / interval_in_sec
@@ -60,12 +60,12 @@ double PID::update(double error) {
 }
 
 // Get the gains
-Gains PID::get_gains() {
+PIDGains PID::get_gains() {
     return gains;
 }
 
 // Set the gains
-void PID::set_gains(Gains new_gains) {
+void PID::set_gains(PIDGains new_gains) {
     gains = new_gains;
 }
 

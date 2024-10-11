@@ -13,6 +13,7 @@ struct Intake {
     double initial_position;
     double current_position;
     bool lift_reverse = false;
+    bool is_stuck = false;
     pros::Mutex intake_mutex;
     std::unique_ptr<pros::Task> intake_updater;
     Intake(std::int8_t intake_port)

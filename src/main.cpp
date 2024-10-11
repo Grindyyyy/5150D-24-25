@@ -1,5 +1,6 @@
 #include "main.h"
 #include "dlib/dlib.hpp"
+#include "dlib/pid.hpp"
 #include "pros/imu.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
@@ -18,11 +19,9 @@
 TODO:
 
 ** CREATE AUTONS FOR MATCH
-* intake torque macro
-* make macros based off of position for accuracy
-* lift mech methods
-* Create autons for skills (not super important)
-* reformat
+* put bot on tile
+* 
+* particle filter auto pid
 
 (backburner) Find a way to change background colors of the UI (THIS IS DEFINITELY POSSIBLE)
 ^ Try looking through robodash/lvgl stuff
@@ -35,7 +34,7 @@ struct Robot {
 	    {18,19,17},
         {-14,-16,-11},
     	3.25,
-    	1
+    	450
     );
 
     dlib::IMU imu = dlib::IMU(
@@ -43,22 +42,23 @@ struct Robot {
     );
 
     dlib::PID drive_pid = dlib::PID(
-        {},
-        1
+        {12.25, 0, 1},
+        10
     );
 
     dlib::PID turn_pid = dlib::PID(
-        {},
-        1
+        {15.5,0,2.3},
+        10
     );
 
-    dlib::Odom odom = dlib::Odom(
-        1,
-        1
+    dlib::FeedForward feed_forward = dlib::FeedForward(
+        {0,900,0}
     );
+
+    dlib::Odom odom = dlib::Odom();
 
     dlib::Intake intake = dlib::Intake(
-        8
+        -8
     );
 
     dlib::Mogo mogo = dlib::Mogo(
@@ -72,8 +72,8 @@ struct Robot {
     );
 
     dlib::Lift lift = dlib::Lift(
-        20,
-        6
+        -1,
+        10
     );
 
     dlib::Sensor sensor = dlib::Sensor(
@@ -95,6 +95,10 @@ struct Robot {
 
     dlib::PID& get_turn_pid() {
         return turn_pid;
+    }
+
+    dlib::FeedForward& get_feedforward() {
+        return feed_forward;
     }
 
     dlib::Odom& get_odom() {
@@ -130,7 +134,7 @@ Robot robot = Robot();
 dlib::Position position = dlib::get_position(robot, false);
 
 // use this to actually print stuff to the console
-rd::Console console;
+rd::Console console;    
 
 // controller
 pros::Controller master(pros::E_CONTROLLER_MASTER);
@@ -138,9 +142,32 @@ pros::Controller master(pros::E_CONTROLLER_MASTER);
 //declaring autons for both sides
 void red_awp(){
     robot.get_intake().is_red_alliance = true;
+    console.focus();
+    dlib::move_inches(robot, 12, console, dlib::Options{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 99999,
+    });
+    dlib::move_inches(robot, 24, console, dlib::Options{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 99999,
+    });
+    dlib::move_inches(robot, 48, console, dlib::Options{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 99999,
+    });
 }
+
 void red_6_ring(){
+    console.focus();
     robot.get_intake().is_red_alliance = true;
+    dlib::turn_degrees(robot, 90, console, dlib::Options{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 99999
+    });
 }
 void blue_awp(){
     robot.get_intake().is_blue_alliance = true;
@@ -161,25 +188,21 @@ rd::Selector selector({
 });
 
 void initialize() {
-    // Reset IMU + Tare motors
-    robot.get_imu().imu.reset(true);
-    dlib::tare_position(robot);
+    // Calibrate chassis + intake
+    dlib::calibrate(robot);
+    dlib::intake_calibrate(robot);
 
     // Start the UI focusing on auto selector for easy access
     selector.focus();
-
-    // Set drive mode to brake
-    // Better than coast for autos in my opinion
-    dlib::set_mode_brake(robot);
     
     // Activate Color Sensor
-    dlib::intake_activate_led(robot, 100);
+    dlib::intake_activate_led(robot, 20);
     robot.get_intake().is_red_alliance = true;
 
     // Begin tasks
     dlib::start_intake_update_loop(robot);
     dlib::start_odom_update_loop(robot);
-    
+    dlib::start_lift_update_loop(robot);
 }
 
 // Run while robot is disabled on the field.
@@ -195,8 +218,13 @@ void autonomous() {
     // run chosen auto
     selector.run_auton();
 }
+
+double volts = 0; 
 //Getting RGB values for color sensor
 void opcontrol() {
+    // Set drive mode to brake
+    // Better than coast for autos in my opinion
+    dlib::set_mode_brake(robot);
     while(true){
         // get a new coordinate position
         position = dlib::get_position(robot, false);
@@ -211,23 +239,32 @@ void opcontrol() {
         console.clear();
 
         // ring sensor rgb (for testing purposes)
+        // returns rgba values (not 0-255)
         console.printf("Red Value: %lf \n", dlib::intake_get_red(robot));
         console.printf("Green Value: %lf \n", dlib::intake_get_green(robot));
         console.printf("Blue Value: %lf \n", dlib::intake_get_blue(robot));
 
         // odometry
+        // position: inches
+        // theta: degrees
         console.print("X: ");
         console.println(std::to_string(position.x));
         console.print("Y: ");
         console.println(std::to_string(position.y));
         console.print("Theta: ");
         console.println(std::to_string(position.theta));
+        
 
         // intake 
+        // torque (in newton-meters)
+        // position (rotations)
         console.print("Intake Torque: ");
         console.println(std::to_string(dlib::get_torque_intake(robot)));
         console.print("Intake Position: ");
-        console.printf(std::to_string(dlib::get_intake_position(robot)));
+        console.println(std::to_string(dlib::get_intake_position(robot)));
+
+        console.print("Rot Theta: ");
+        console.println(std::to_string(robot.get_lift().lift_rot.get_angle()));
 
 
         // ------------------------------------------------- //
@@ -236,28 +273,28 @@ void opcontrol() {
 
         // arcade
         // Type of driving format the controller uses
+        
         double power = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         double turn = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         dlib::arcade(robot,power,turn);
         
-
+        
+        
         // intake binds
         //Color senser if statements
-        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
             if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
                 dlib::intake_move(robot,127);
             }
-            
         }
-            
-        else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+        else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
             if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
                 dlib::intake_move(robot,-127);
             }
         }
         else if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
-            dlib::intake_stop(robot);
-        }
+            dlib::intake_stop(robot);}
+        
 
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
             robot.get_intake().lift_reverse = !robot.get_intake().lift_reverse;
@@ -265,7 +302,7 @@ void opcontrol() {
 
         // mogo binds
         // Uses pnuematics to grab mogo
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)){
             dlib::toggle_mogo(robot);
         }
 
@@ -275,17 +312,15 @@ void opcontrol() {
         if(dlib::get_mogo_mode(robot) == false){
             dlib::mogo(robot,false);
         }
+
         //Uses pnuematics to change height of intake
-        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
             dlib::indexer(robot,true);
         }
         else{
             dlib::indexer(robot,false);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)){
-            dlib::toggle_indexer(robot);
-        }
         //alternates between coast and brake deceleration
         if(dlib::get_indexer_mode(robot) == true){
             dlib::set_mode_coast(robot);
@@ -296,6 +331,12 @@ void opcontrol() {
 
         // arm binds
         // Empty!
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
+            robot.get_lift().task_toggle = true;
+        }
+        else if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+            robot.get_lift().task_toggle = false;
+        }
         
         // delay to prevent brain damage
         pros::delay(20);

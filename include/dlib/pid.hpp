@@ -3,7 +3,7 @@
 
 namespace dlib {
 
-struct Gains {
+struct PIDGains {
     double kp = 0;
     double ki = 0;
     double kd = 0;
@@ -11,7 +11,7 @@ struct Gains {
 
 class PID {
     private:
-        Gains gains;
+        PIDGains gains;
         double setpoint;
         uint32_t interval;
 
@@ -24,13 +24,13 @@ class PID {
         double last_output = 0;
 
     public:
-        PID(Gains gains_settings, uint32_t interval_setting);
+        PID(PIDGains gains_settings, uint32_t interval_setting);
 
         double update(double error);
         void reset();
 
-        Gains get_gains();
-        void set_gains(Gains new_gains);
+        PIDGains get_gains();
+        void set_gains(PIDGains new_gains);
 
         uint32_t get_interval();
 

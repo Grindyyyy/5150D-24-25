@@ -6,10 +6,16 @@
 #include "dlib/mogo.hpp"
 #include "dlib/indexer.hpp"
 #include "dlib/imu.hpp"
+#include "feedforward.hpp"
+#include "pros/abstract_motor.hpp"
 #include "pros/motors.h"
 #include "dlib/sensor.hpp"
 #include "dlib/lift.hpp"
+#include "pros/motors.hpp"
+#include "robodash/views/console.hpp"
 #include <concepts>
+#include <string>
+#include <vector>
 
 namespace dlib {
 
@@ -37,14 +43,14 @@ void set_mode_hold(Robot& robot){
 
 template<typename Robot>
 void calibrate(Robot& robot){
-    robot.get_chassis().left.set_gearing(pros::E_MOTOR_GEAR_BLUE);
-    robot.get_chassis().right.set_gearing(pros::E_MOTOR_GEAR_BLUE);
+    robot.get_chassis().left.set_gearing_all(pros::E_MOTOR_GEAR_BLUE);
+    robot.get_chassis().right.set_gearing_all(pros::E_MOTOR_GEAR_BLUE);
 
-    robot.get_chassis().left.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-    robot.get_chassis().right.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    robot.get_chassis().left.set_encoder_units_all(pros::E_MOTOR_ENCODER_ROTATIONS);
+    robot.get_chassis().right.set_encoder_units_all(pros::E_MOTOR_ENCODER_ROTATIONS);
 
-    robot.get_chassis().left.tare_position();
-    robot.get_chassis().right.tare_position();
+    robot.get_chassis().left.tare_position_all();
+    robot.get_chassis().right.tare_position_all();
 
     robot.get_imu().imu.reset(true);
 }
@@ -63,8 +69,8 @@ void brake_motors(Robot& robot)  {
 
 template<typename Robot>
 void move_voltage(Robot& robot, std::int32_t power) {
-    robot.get_chassis().left.move(power);
-    robot.get_chassis().right.move(power);
+    robot.get_chassis().left.move_voltage(power);
+    robot.get_chassis().right.move_voltage(power);
 }
 template<typename Robot>
 void move_voltage(Robot& robot, std::int32_t left_volts, std::int32_t right_volts) {
@@ -87,6 +93,7 @@ void arcade(Robot& robot, std::int8_t power, std::int8_t turn) {
 }
 
 // Constrain the angle to -180 to 180 for efficient turns
+
 inline double angle_within_180(double degrees){
     degrees = std::fmod(degrees, 360);
 
@@ -101,30 +108,61 @@ inline double angle_within_180(double degrees){
 template<typename Robot>
 double get_imu_heading(Robot& robot) {
     // Convert heading to counterclockwise
-    double ccw = std::fmod(360.0 - robot.get_imu().imu.get_heading(), 360.0);
+    double ccw = std::fmod(robot.get_imu().imu.get_heading(), 360.0);
     return angle_within_180(ccw);
+}
+
+inline double average(std::vector<double> values) {
+    double sum = 0;
+
+    for(auto value : values) {
+        sum += value;
+    }
+
+    return sum / values.size();
 }
 
 // Get the average inches the drivebase motors have moved
 template<typename Robot>
 double get_motor_inches(Robot& robot) {
-    double sum = 0;
+    auto diameter = robot.get_chassis().wheel_diameter;
+    auto rpm = robot.get_chassis().rpm;
 
+    std::vector<double> distances;
+
+    auto left_gearsets = robot.get_chassis().left.get_gearing_all();
     auto left_positions = robot.get_chassis().left.get_position_all();
-    auto right_positions = robot.get_chassis().right.get_position_all();
-
+    
     for(int i = 0; i < left_positions.size(); i++) {
-        sum += left_positions.at(i);
+        double in;
+
+        switch (left_gearsets[i]) {
+            case pros::MotorGears::red: in = 100; break;
+            case pros::MotorGears::green: in = 200; break;
+            case pros::MotorGears::blue: in = 600; break;
+            default: in = 200; break;
+        }
+
+        distances.push_back(left_positions[i] * (diameter * M_PI) * (rpm / in));
     }
+
+    auto right_gearsets = robot.get_chassis().left.get_gearing_all();
+    auto right_positions = robot.get_chassis().left.get_position_all();
 
     for(int i = 0; i < right_positions.size(); i++) {
-        sum += right_positions.at(i);
+        double in;
+
+        switch (right_gearsets[i]) {
+            case pros::MotorGears::red: in = 100; break;
+            case pros::MotorGears::green: in = 200; break;
+            case pros::MotorGears::blue: in = 600; break;
+            default: in = 200; break;
+        }
+
+        distances.push_back(right_positions[i] * (diameter * M_PI) * (rpm / in));
     }
 
-    double degrees = sum / (left_positions.size() + right_positions.size());
-    double rotations = degrees / 360.0;
-    double inches = rotations * robot.get_chassis().wheel_diameter * robot.get_chassis().gear_ratio * M_PI;
-    return inches;
+    return average(distances);
 };
 
 template<typename Robot>
@@ -149,7 +187,7 @@ void start_odom_update_loop(Robot& robot) {
 
 
 template<typename Robot>
-void move_inches(Robot& robot, double inches, Options options) {
+void move_inches(Robot& robot, double inches, rd::Console& console, Options options) {
     long interval = robot.get_drive_pid().get_interval();
 
     double starting_inches = get_motor_inches(robot);
@@ -162,6 +200,8 @@ void move_inches(Robot& robot, double inches, Options options) {
     uint32_t settle_start = 0;
     
     while (true) {
+        console.clear();
+        
         uint32_t current_time = pros::millis();
 
         if (current_time - starting_time > options.max_ms) {
@@ -186,6 +226,70 @@ void move_inches(Robot& robot, double inches, Options options) {
         double current_inches = get_motor_inches(robot);
         double output_voltage = robot.get_drive_pid().update(target_inches - current_inches);
 
+        console.print("PID error:");
+        console.println(std::to_string(target_inches - current_inches));
+
+        move_voltage(robot, output_voltage);
+
+        pros::delay(interval);
+    }
+
+    brake_motors(robot);
+}
+
+template<typename Robot>
+void move_inches_pid_feedforward(Robot& robot, double inches, rd::Console& console, Options options){
+    // TODO: Use motion profiles for feedforward target velocities
+    
+    long interval = robot.get_drive_pid().get_interval();
+
+    double starting_inches = get_motor_inches(robot);
+    double target_inches = starting_inches + inches;
+    robot.get_drive_pid().reset();
+
+    uint32_t starting_time = pros::millis();
+    
+    bool is_settling = false;
+    uint32_t settle_start = 0;
+    
+    while (true) {
+        console.clear();
+
+        uint32_t current_time = pros::millis();
+
+        if (current_time - starting_time > options.max_ms) {
+            break;
+        }
+
+        if (!is_settling && std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
+            is_settling = true;
+            settle_start = pros::millis();
+        }
+
+        if (is_settling) {
+            if (std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
+                if(current_time - settle_start > options.settle_ms) {
+                    break;
+                }
+            } else {
+                is_settling = false;
+            }
+        }
+
+        double current_inches = get_motor_inches(robot);
+
+        
+        double target_velocity = 0; // TODO!!
+        
+        console.print("PID error:");
+        console.println(std::to_string(target_inches - current_inches));
+
+        console.println("Feedforward voltage:");
+        console.println(std::to_string(robot.get_feedforward().calculate(target_velocity)));
+
+
+        double output_voltage = robot.get_drive_pid().update(target_inches - current_inches) + robot.get_feedforward().calculate(target_velocity);
+
         move_voltage(robot, output_voltage);
 
         pros::delay(interval);
@@ -196,20 +300,23 @@ void move_inches(Robot& robot, double inches, Options options) {
 
 // Turn to a given absolute angle using PID
 template<typename Robot>
-void turn_degrees(Robot& robot, double angle, Options options) {
-    long interval = robot.get_turn_pid().get_interval();
-    double target_angle = angle;
+void turn_degrees(Robot& robot, double angle, rd::Console& console, Options options) {
+   long interval = robot.get_turn_pid().get_interval();
+
+    double starting_angle = get_imu_heading(robot);
+    double target_angle = starting_angle + angle;
+    robot.get_turn_pid().reset();
 
     uint32_t starting_time = pros::millis();
     
     bool is_settling = false;
     uint32_t settle_start = 0;
-
+    
     while (true) {
+        console.clear();
+        
         uint32_t current_time = pros::millis();
-        uint32_t running_time = current_time - starting_time;
 
-        pros::lcd::print(6, "Time (ms): %lu", running_time);
         if (current_time - starting_time > options.max_ms) {
             break;
         }
@@ -218,7 +325,7 @@ void turn_degrees(Robot& robot, double angle, Options options) {
             is_settling = true;
             settle_start = pros::millis();
         }
-        
+
         if (is_settling) {
             if (std::abs(robot.get_turn_pid().get_error()) < options.error_threshold) {
                 if(current_time - settle_start > options.settle_ms) {
@@ -229,15 +336,18 @@ void turn_degrees(Robot& robot, double angle, Options options) {
             }
         }
 
-        double current_angle = get_imu_heading(robot);
-        double output_voltage = robot.get_turn_pid().update(std::remainder(target_angle - current_angle, 360));
+        double current_angle = robot.get_imu().imu.get_heading();
+        double output_voltage = robot.get_turn_pid().update(std::remainder(target_angle - current_angle,360));
+
+        console.print("PID error:");
+        console.println(std::to_string(std::remainder(target_angle - current_angle,360)));
 
         turn_voltage(robot, output_voltage);
 
         pros::delay(interval);
     }
 
-    brake(robot);
+    brake_motors(robot);
 }
 
 template<typename Robot>
@@ -352,21 +462,29 @@ void intake_activate_led(Robot& robot, int power){
 // Intake 
 // ------------------------------ //
 
+// intake calibrate
+template<typename Robot>
+void intake_calibrate(Robot& robot){
+    robot.get_intake().intake.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    
+    robot.get_intake().intake.tare_position();
+}
+
 // kinda experimental and maybe overthought
 template<typename Robot>
 void intake_filter_task(Robot& robot){
     while(true){
         robot.get_intake().intake_mutex.lock();  
             if(robot.get_intake().is_red_alliance){
-                    if(intake_get_blue(robot) > intake_get_red(robot)*1.2){
+                    if(intake_get_blue(robot) > intake_get_red(robot)*1.5){
                         robot.get_intake().ring_detected = true;
-                        pros::delay(210);
+                        pros::delay(155);
                         robot.get_intake().intake.move(127);
                         pros::delay(300);
                     }
                     else if(intake_get_red(robot) > intake_get_blue(robot) * 1.5 && robot.get_intake().lift_reverse == true){
                         robot.get_intake().lift_ring_detected = true;
-                        pros::delay(90);
+                        pros::delay(85);
                         robot.get_intake().intake.move(127);
                         pros::delay(300);
                     }
@@ -379,11 +497,18 @@ void intake_filter_task(Robot& robot){
                 if(intake_get_red(robot) > intake_get_blue(robot)*1.5){
                     robot.get_intake().ring_detected = true;
                     pros::delay(170);
-                    robot.get_intake().intake.move(127);
+                    robot.get_intake().intake.move(-127);
                     pros::delay(300);
                 }
+                else if(intake_get_blue(robot) > intake_get_red(robot) * 1.5 && robot.get_intake().lift_reverse == true){
+                        robot.get_intake().lift_ring_detected = true;
+                        pros::delay(85);
+                        robot.get_intake().intake.move(-127);
+                        pros::delay(300);
+                    }
                 else{
                     robot.get_intake().ring_detected = false;
+                    robot.get_intake().lift_ring_detected = false;
                 }
             }
         pros::delay(10);   
@@ -408,14 +533,17 @@ void experimental_intake_task(Robot& robot){
                     }
                     else if(intake_get_blue(robot) > intake_get_red(robot)*1.2){
                         robot.get_intake().current_position = robot.get_intake().intake.get_position();
-                        if(robot.get_intake().current_position - robot.get_intake().initial_position > 125){
+                        if(std::abs(robot.get_intake().current_position) - std::abs(robot.get_intake().initial_position) > 185 && std::abs(robot.get_intake().current_position) - std::abs(robot.get_intake().initial_position) < 225){
+                            robot.get_intake().intake.tare_position();
                             robot.get_intake().intake.move(127);
-                            pros::delay(200);
+                            pros::delay(500);
                             robot.get_intake().ring_flung = true;
+            
                         }
                     }
                     else{
                         robot.get_intake().ring_detected = false;
+                        robot.get_intake().ring_flung = true;
                     }
                 }
             else if(robot.get_intake().is_blue_alliance){
@@ -564,6 +692,44 @@ void lift_move(Robot& robot, int8_t volts){
 template<typename Robot>
 double get_lift_rot(Robot& robot){
     return(robot.get_lift().lift_rot.get_position());
+}
+
+template<typename Robot>
+void lift_update(Robot& robot){
+    while(true){
+        robot.get_lift().lift_mutex.lock();
+        if(robot.get_lift().task_toggle){
+            robot.get_lift().current_pos = robot.get_lift().lift_rot.get_angle();
+            if(robot.get_lift().current_pos > 7000 && robot.get_lift().current_pos < 7600){
+                robot.get_lift().lift.move(0);
+            }
+            else if(robot.get_lift().current_pos > 8500){
+                robot.get_lift().lift.move(127);
+            }
+            else{
+                robot.get_lift().lift.move(30);
+            }
+        }
+        else{
+            robot.get_lift().current_pos = robot.get_lift().lift_rot.get_angle();
+            robot.get_lift().lift.move(-127);
+            if(robot.get_lift().current_pos > 10000){
+                robot.get_lift().lift.move(0);
+            }
+        }
+        robot.get_lift().lift_mutex.unlock();
+
+        //delay to prevent brane damag
+        pros::delay(10);
+    }
+}
+
+template<typename Robot>
+void start_lift_update_loop(Robot& robot){
+    if(!robot.get_lift().lift_task_started) {
+        robot.get_lift().lift_updater = std::make_unique<pros::Task>([&] { lift_update(robot); });
+        robot.get_lift().lift_task_started = true;
+    }
 }
 
 // ------------------------------ //
