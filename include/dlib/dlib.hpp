@@ -142,8 +142,8 @@ double get_motor_inches(Robot& robot) {
         distances.push_back(left_positions[i] * (diameter * M_PI) * (rpm / in));
     }
 
-    auto right_gearsets = robot.get_chassis().left.get_gearing_all();
-    auto right_positions = robot.get_chassis().left.get_position_all();
+    auto right_gearsets = robot.get_chassis().right.get_gearing_all();
+    auto right_positions = robot.get_chassis().right.get_position_all();
 
     for(int i = 0; i < right_positions.size(); i++) {
         double in;
@@ -197,6 +197,8 @@ void move_inches(Robot& robot, double inches, rd::Console& console, const Option
     
     while (true) {
         console.clear();
+
+        console.println(std::to_string(inches));
         
         uint32_t current_time = pros::millis();
 
@@ -209,10 +211,12 @@ void move_inches(Robot& robot, double inches, rd::Console& console, const Option
 
         console.println("inside of move loop !!!!");
 
+        console.println(std::to_string(robot.get_drive_pid().get_error()));
         if (!is_settling && std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
             is_settling = true;
             settle_start = pros::millis();
         }
+
 
         if (is_settling) {
             if (std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
@@ -227,6 +231,9 @@ void move_inches(Robot& robot, double inches, rd::Console& console, const Option
         double current_inches = get_motor_inches(robot);
         double error = target_inches - current_inches;
         double output_voltage = robot.get_drive_pid().update(error);
+
+        console.print("error: ");
+        console.println(std::to_string(error));
 
         output_voltage += std::copysign(error, 900);
 
@@ -248,7 +255,6 @@ void move_inches_pid_feedforward(Robot& robot, double inches, rd::Console& conso
     double starting_inches = get_motor_inches(robot);
     double target_inches = starting_inches + inches;
     robot.get_drive_pid().reset();
-    robot.get_turn_pid().reset();
 
     uint32_t starting_time = pros::millis();
     
@@ -311,7 +317,6 @@ void turn_degrees(Robot& robot, double angle, rd::Console& console, const Option
 
     double target_angle = angle;
     robot.get_turn_pid().reset();
-    robot.get_drive_pid().reset();
 
     uint32_t starting_time = pros::millis();
     

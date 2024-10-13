@@ -144,6 +144,8 @@ void red_awp(){
     // Robot& robot, double x, double y, rd::Console& console, double static_offset, bool reverse, const Options options
     robot.get_intake().is_red_alliance = true;
     console.focus();
+    robot.get_chassis().left.tare_position_all();
+    robot.get_chassis().right.tare_position_all();
     dlib::Options turn_option_standard = dlib::Options({
         .error_threshold = 1,
         .settle_ms = 200,
