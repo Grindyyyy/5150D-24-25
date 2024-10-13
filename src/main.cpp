@@ -42,12 +42,12 @@ struct Robot {
     );
 
     dlib::PID drive_pid = dlib::PID(
-        {12.25, 0, 1},
+        {15, 0, 1},
         10
     );
 
     dlib::PID turn_pid = dlib::PID(
-        {15.5,0,2.3},
+        {6.1,0,.39},
         10
     );
 
@@ -141,33 +141,26 @@ pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 //declaring autons for both sides
 void red_awp(){
+    // Robot& robot, double x, double y, rd::Console& console, double static_offset, bool reverse, const Options options
     robot.get_intake().is_red_alliance = true;
     console.focus();
-    dlib::move_inches(robot, 12, console, dlib::Options{
+    dlib::Options turn_option_standard = dlib::Options({
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 1250
+    });
+    dlib::Options move_option_standard = dlib::Options({
         .error_threshold = 0.3,
         .settle_ms = 200,
-        .max_ms = 99999,
+        .max_ms = 99999
     });
-    dlib::move_inches(robot, 24, console, dlib::Options{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 99999,
-    });
-    dlib::move_inches(robot, 48, console, dlib::Options{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 99999,
-    });
+
+    dlib::move_to(robot, console, 0, 24, false, move_option_standard, turn_option_standard);   
 }
 
 void red_6_ring(){
     console.focus();
     robot.get_intake().is_red_alliance = true;
-    dlib::turn_degrees(robot, 90, console, dlib::Options{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 99999
-    });
 }
 void blue_awp(){
     robot.get_intake().is_blue_alliance = true;
@@ -234,7 +227,7 @@ void opcontrol() {
         // ------------------------------------------------- //
         // Binds
         // ------------------------------------------------- //
-
+        
         // clear console at the start of each while loop
         console.clear();
 

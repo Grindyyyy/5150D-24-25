@@ -43,9 +43,14 @@ class PID {
 // for options
 struct Options {
     // the threshold for the error
-    double error_threshold;
-    uint32_t settle_ms;
-    uint32_t max_ms;
+    double error_threshold = 0;
+    uint32_t settle_ms = 0;
+    uint32_t max_ms = 0;
+
+    /*Options(double error_threshold, uint32_t settle_ms, uint32_t max_ms) : 
+        error_threshold(error_threshold), settle_ms(settle_ms), max_ms(max_ms) {
+
+    }*/
 
     Options with_error_threshold(double threshold) {
         return { threshold, settle_ms, max_ms };
