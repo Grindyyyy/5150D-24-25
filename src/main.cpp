@@ -19,12 +19,7 @@
 TODO:
 
 ** CREATE AUTONS FOR MATCH
-* put bot on tile
-* 
-* particle filter auto pid
 
-(backburner) Find a way to change background colors of the UI (THIS IS DEFINITELY POSSIBLE)
-^ Try looking through robodash/lvgl stuff
 */
 
 // dLib
@@ -47,7 +42,12 @@ struct Robot {
     );
 
     dlib::PID turn_pid = dlib::PID(
-        {6.1,0,.39},
+        {5.75,0,.39},
+        10
+    );
+
+    dlib::PID lift_pid = dlib::PID(
+        {1,0,0},
         10
     );
 
@@ -97,6 +97,10 @@ struct Robot {
         return turn_pid;
     }
 
+    dlib::PID& get_lift_pid() {
+        return lift_pid;
+    }
+
     dlib::FeedForward& get_feedforward() {
         return feed_forward;
     }
@@ -143,21 +147,122 @@ pros::Controller master(pros::E_CONTROLLER_MASTER);
 void red_awp(){
     // Robot& robot, double x, double y, rd::Console& console, double static_offset, bool reverse, const Options options
     robot.get_intake().is_red_alliance = true;
-    console.focus();
-    robot.get_chassis().left.tare_position_all();
-    robot.get_chassis().right.tare_position_all();
-    dlib::Options turn_option_standard = dlib::Options({
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 1250
-    });
-    dlib::Options move_option_standard = dlib::Options({
+    dlib::move_to(robot,console,-15,0,true,{
         .error_threshold = 0.3,
         .settle_ms = 200,
-        .max_ms = 99999
+        .max_ms = 1000,
+        .max_voltage = 10000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 200,
+        .max_voltage = 10000
+    });
+    dlib::move_to(robot,console,-15,-4.5,true,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 600,
+        .max_voltage = 7000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 750,
+        .max_voltage = 7000
+    });
+    dlib::auto_intake(robot, 127, true,false);
+    pros::delay(750);
+    dlib::auto_intake(robot, 0, false,false);
+    dlib::move_to(robot,console,-15,12,false,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 12000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 200,
+        .max_voltage = 7000
     });
 
-    dlib::move_to(robot, console, 0, 24, false, move_option_standard, turn_option_standard);   
+    // move mogo
+    dlib::move_to(robot,console,8,31,true,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 2000,
+        .max_voltage = 6000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 10000
+    });
+
+    dlib::mogo(robot,true);
+
+    dlib::auto_intake(robot, 127, true, false);
+
+    dlib::move_to(robot,console,30,30,false,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 2000,
+        .max_voltage = 9000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 10000
+    });
+
+    dlib::move_to(robot,console,30,45,false,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 750,
+        .max_voltage = 10000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 10000
+    });
+    dlib::move_to(robot,console,30,36,true,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 2000,
+        .max_voltage = 7000
+    },{
+        .error_threshold = 1,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 10000
+    });
+    dlib::move_to(robot,console,35,44,false,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 2000,
+        .max_voltage = 8000
+    },{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 10000
+    });
+    dlib::move_to(robot,console,1,40,false,{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 2000,
+        .max_voltage = 8000
+    },{
+        .error_threshold = 0.3,
+        .settle_ms = 200,
+        .max_ms = 1000,
+        .max_voltage = 10000
+    });
+
+
+    //29.5,35.9
+    // 34.8 43.4
+    // 0.5, 45
+    
 }
 
 void red_6_ring(){
@@ -182,10 +287,15 @@ rd::Selector selector({
     {"Skills", &skills},
 });
 
+
+
 void initialize() {
     // Calibrate chassis + intake
     dlib::calibrate(robot);
     dlib::intake_calibrate(robot);
+
+    robot.get_chassis().left.tare_position_all();
+    robot.get_chassis().right.tare_position_all();
 
     // Start the UI focusing on auto selector for easy access
     selector.focus();
@@ -197,7 +307,8 @@ void initialize() {
     // Begin tasks
     dlib::start_intake_update_loop(robot);
     dlib::start_odom_update_loop(robot);
-    dlib::start_lift_update_loop(robot);
+    
+    
 }
 
 // Run while robot is disabled on the field.
@@ -206,20 +317,30 @@ void disabled() {}
 
 void competition_initialize() {
     // focus on selector screen
+    robot.get_chassis().left.tare_position_all();
+    robot.get_chassis().right.tare_position_all();
     selector.focus();
 }
  
 void autonomous() {
     // run chosen auto
+
     selector.run_auton();
 }
 
-double volts = 0; 
 //Getting RGB values for color sensor
 void opcontrol() {
     // Set drive mode to brake
     // Better than coast for autos in my opinion
     dlib::set_mode_brake(robot);
+    robot.get_intake().driver_intake = true;
+    //robot.get_lift().lift_rot.reset_position();
+    //robot.get_lift().lift_rot.set_reversed(true);
+    dlib::start_lift_update_loop(robot, 70, console, {
+        .error_threshold = 1,
+        .max_voltage = 6000
+    });
+    
     while(true){
         // get a new coordinate position
         position = dlib::get_position(robot, false);
@@ -258,8 +379,14 @@ void opcontrol() {
         console.print("Intake Position: ");
         console.println(std::to_string(dlib::get_intake_position(robot)));
 
+        robot.get_lift().lift_mutex.lock();
         console.print("Rot Theta: ");
-        console.println(std::to_string(robot.get_lift().lift_rot.get_angle()));
+        console.println(std::to_string(dlib::get_lift_rot(robot)));
+        console.print("pid error: ");
+        console.println(std::to_string(robot.get_lift().pid_error));
+        robot.get_lift().lift_mutex.unlock();
+
+    
 
 
         // ------------------------------------------------- //

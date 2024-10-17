@@ -46,6 +46,7 @@ struct Options {
     double error_threshold = 0;
     uint32_t settle_ms = 0;
     uint32_t max_ms = 0;
+    int max_voltage = 0;
 
     /*Options(double error_threshold, uint32_t settle_ms, uint32_t max_ms) : 
         error_threshold(error_threshold), settle_ms(settle_ms), max_ms(max_ms) {

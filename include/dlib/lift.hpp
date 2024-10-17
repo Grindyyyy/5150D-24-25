@@ -10,6 +10,10 @@ struct Lift {
     std::unique_ptr<pros::Task> lift_updater;
     double current_pos;
     bool task_toggle = false;
+
+    
+
+    double pid_error;
     Lift(std::int8_t lift_port,
         std::int8_t lift_rot_port)
      : lift(lift_port), lift_rot(lift_rot_port) {};
