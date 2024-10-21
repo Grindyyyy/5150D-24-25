@@ -34,7 +34,7 @@ void Odom::update(double current_forward, double current_theta) {
     double global_x = position.x + (local_x * std::cos(average_theta) - local_y * std::sin(average_theta));
     double global_y = position.y + (local_y * std::cos(average_theta) + local_x * std::sin(average_theta));
     double global_theta = position.theta + delta_theta;
-
+    
     // update odometry state
     previous_forward = current_forward;
     previous_theta = current_theta;
