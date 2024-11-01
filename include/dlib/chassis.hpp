@@ -9,11 +9,16 @@ struct Chassis {
     pros::MotorGroup right;
     double wheel_diameter;
     double rpm;
+    double maxVelo;
+    double maxAccel;
+
 
     Chassis(std::initializer_list<int8_t> left_ports,
             std::initializer_list<int8_t> right_ports,
             double wheel_diameter,
-            double rpm
-    ) : left(left_ports), right(right_ports), wheel_diameter(wheel_diameter), rpm(rpm) {};
+            double rpm,
+            double maxVelo,
+            double maxAccel
+    ) : left(left_ports), right(right_ports), wheel_diameter(wheel_diameter), rpm(rpm) , maxAccel(maxAccel), maxVelo(maxVelo) {};
 };
 }

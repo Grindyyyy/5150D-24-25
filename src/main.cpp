@@ -29,30 +29,38 @@ struct Robot {
 	    {18,19,17},
         {-14,-16,-11},
     	3.25,
-    	450
+    	450,
+        1.96,
+        8.8
     );
 
     dlib::IMU imu = dlib::IMU(
-        15
+        15,
+        // IMU return scalar
+        1.01322825781
     );
 
     dlib::PID drive_pid = dlib::PID(
-        {15, 0, 1},
-        10
+        {15, 0, 0.75}, // 15
+        5
     );
 
     dlib::PID turn_pid = dlib::PID(
-        {5.75,0,.39},
+        {8,0,.69},
         10
     );
 
     dlib::PID lift_pid = dlib::PID(
-        {1,0,0},
+        {8,0,0},
         10
     );
 
-    dlib::FeedForward feed_forward = dlib::FeedForward(
-        {0,900,0}
+    dlib::FeedForward drive_feed_forward = dlib::FeedForward(
+        {0,0.8449287665,5.70181872}
+    );
+
+    dlib::FeedForward turn_feed_forward = dlib::FeedForward(
+        {0,0,0}
     );
 
     dlib::Odom odom = dlib::Odom();
@@ -63,7 +71,7 @@ struct Robot {
 
     dlib::Mogo mogo = dlib::Mogo(
         'H',
-        false
+        true
     );
 
     dlib::Indexer indexer = dlib::Indexer(
@@ -101,8 +109,12 @@ struct Robot {
         return lift_pid;
     }
 
-    dlib::FeedForward& get_feedforward() {
-        return feed_forward;
+    dlib::FeedForward& get_drive_feed_forward() {
+        return drive_feed_forward;
+    }
+    
+    dlib::FeedForward& get_turn_feed_forward() {
+        return turn_feed_forward;
     }
 
     dlib::Odom& get_odom() {
@@ -131,6 +143,8 @@ struct Robot {
 
 };
 
+pros::adi::DigitalOut doinker('E', false);
+
 // instantiate Robot object
 Robot robot = Robot();
 
@@ -145,145 +159,156 @@ pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 //declaring autons for both sides
 void red_awp(){
-    // Robot& robot, double x, double y, rd::Console& console, double static_offset, bool reverse, const Options options
-  robot.get_chassis().left.tare_position_all();
+    double start_time = pros::millis();
+    robot.get_chassis().left.tare_position_all();
     robot.get_chassis().right.tare_position_all();
-    robot.get_intake().is_red_alliance = true;
-    robot.get_intake().is_blue_alliance = false;
-        // Robot& robot, double x, double y, rd::Console& console, double static_offset, bool reverse, const Options options
-    dlib::move_to(robot,console,-15.75,0,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 8000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 200,
-        .max_voltage = 12000
-        });
+    robot.get_intake().is_red_alliance = false;
+    robot.get_intake().is_blue_alliance = true;
+    dlib::move_to(robot,-15,0,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 200,
+    .max_voltage = 12000
+    });
 
 
-        // go to mogo
-        dlib::move_to(robot,console,-15.75,-5,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 500,
-        .max_voltage = 8000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 500,
-        .max_voltage = 12000
-        });
+    // go to mogo
+    dlib::turn_degrees(robot,90,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 10000
+    });
 
-        dlib::auto_intake(robot, 127, true, false);
-        pros::delay(500);
-        dlib::auto_intake(robot, 0, false, false);
-        // y = 7
-        dlib::move_to(robot,console,-15.75,3,false,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 400,
-        .max_voltage = 12000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 0,
-        .max_voltage = 12000
-        });
+    dlib::move_to_ffwd(robot, -14,-5, true, {
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 500,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 0,
+    .settle_ms = 0,
+    .max_ms = 0,
+    .max_voltage = 0
+    });
 
-        dlib::move_to(robot,console,9,30,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1500,
-        .max_voltage = 5500
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 12000
-        });
-        dlib::mogo(robot, true);
-        pros::delay(250);
+    // alliance stake
+    dlib::auto_intake(robot, 127, true, false);
+    pros::delay(600);
+    dlib::auto_intake(robot, 0, false, false);
+    // y = 7
+    dlib::move_to_ffwd(robot,-17.75,7,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 400,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 0,
+    .max_voltage = 12000
+    });
 
-        dlib::auto_intake(robot, 127, true, false);
+    // clip mogo
+    dlib::move_to_ffwd(robot,9,30,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1500,
+    .max_voltage = 5500
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    });
+    dlib::mogo(robot, true);
+    pros::delay(250);
 
-        dlib::move_to(robot,console,27,30,false,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 10000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 12000
-        });
+    dlib::auto_intake(robot, 127, true, false);
+    // intake safe ring
+    dlib::move_to_ffwd(robot,27,31.5,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    });
     
-        //31,41,false
-        /*dlib::move_to(robot,console,31,41,false,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 10000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 400,
-        .max_ms = 1000,
-        .max_voltage = 12000});
+    //31,41,false
+    dlib::move_to_ffwd(robot,16,31.5,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 400,
+    .max_ms = 0,
+    .max_voltage = 12000});
 
-        //28,34.6,true
-        dlib::move_to(robot,console,28,34.6,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 10000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 750,
-        .max_voltage = 12000});
-        //37,46.5,false
-        dlib::move_to(robot,console,37,46.5,false,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 10000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 750,
-        .max_voltage = 12000});
-        //31,35,true
-        dlib::move_to(robot,console,31,35,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 10000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 750,
-        .max_voltage = 12000});
-        //1,31,false*/
+    
+    dlib::move_to_ffwd(robot,23,45,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 750,
+    .max_voltage = 12000});
+    
+    dlib::move_to_ffwd(robot,34,45,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 750,
+    .max_voltage = 12000});
 
-    //29.5,35.9
-    // 34.8 43.4
-    // 0.5, 45
-    //-48,11,true
-    pros::delay(5000);
-    dlib::move_to(robot,console,-48,11,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 5000,
-        .max_voltage = 12000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 12000});
-    dlib::auto_intake(robot, 0, false,false);
+    // move to ladder
+    dlib::move_to_ffwd(robot,26,34,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 750,
+    .max_voltage = 12000});
+
+    robot.get_lift().task_toggle = true;
+
+    dlib::move_to_ffwd(robot,10,41.5,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000});
+ 
+    robot.get_lift().task_toggle = false;
+
+    
+    double end_time = pros::millis();
+    double elapsed = end_time - start_time;
+    std::cout << elapsed << std::endl;    
 }
 
 void red_6_ring(){
@@ -291,97 +316,160 @@ void red_6_ring(){
     robot.get_intake().is_red_alliance = true;
 }
 void blue_awp(){
+    double start_time = pros::millis();
     robot.get_chassis().left.tare_position_all();
     robot.get_chassis().right.tare_position_all();
     robot.get_intake().is_red_alliance = false;
     robot.get_intake().is_blue_alliance = true;
-        // Robot& robot, double x, double y, rd::Console& console, double static_offset, bool reverse, const Options options
-        
-       dlib::move_to(robot,console,-15.75,0,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 8000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 200,
-        .max_voltage = 12000
-        });
+    dlib::move_to(robot,-15,0,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 200,
+    .max_voltage = 12000
+    });
 
 
-        // go to mogo
-        dlib::move_to(robot,console,-15.75, 5,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 500,
-        .max_voltage = 8000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 500,
-        .max_voltage = 12000
-        });
+    // go to mogo
+    dlib::turn_degrees(robot,-90,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 10000
+    });
 
-        dlib::auto_intake(robot, 127, true, false);
-        pros::delay(500);
-        dlib::auto_intake(robot, 0, false, false);
-        // y = 7
-        dlib::move_to(robot,console,-15.75,-3,false,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 400,
-        .max_voltage = 12000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 0,
-        .max_voltage = 12000
-        });
+    dlib::move_to_ffwd(robot, -14,5, true, {
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 500,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 0,
+    .settle_ms = 0,
+    .max_ms = 0,
+    .max_voltage = 0
+    });
 
-        dlib::move_to(robot,console,12,-30,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1500,
-        .max_voltage = 5500
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 12000
-        });
-        dlib::mogo(robot, true);
-        pros::delay(250);
+    // alliance stake
+    dlib::auto_intake(robot, 127, true, false);
+    pros::delay(600);
+    dlib::auto_intake(robot, 0, false, false);
+    // y = 7
+    dlib::move_to_ffwd(robot,-17.75,-7,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 400,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 0,
+    .max_voltage = 12000
+    });
 
-        dlib::auto_intake(robot, 127, true, false);
+    // clip mogo
+    dlib::move_to_ffwd(robot,9,-30,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1500,
+    .max_voltage = 5500
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    });
+    dlib::mogo(robot, true);
+    pros::delay(250);
 
-        dlib::move_to(robot,console,27,-30,false,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 10000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 1000,
-        .max_voltage = 12000
-        });
+    dlib::auto_intake(robot, 127, true, false);
+    // intake safe ring
+    dlib::move_to_ffwd(robot,27,-31.5,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    });
     
-        
-        dlib::move_to(robot,console,-48,-11,true,{
-        .error_threshold = 0.3,
-        .settle_ms = 200,
-        .max_ms = 5000,
-        .max_voltage = 12000
-        },{
-        .error_threshold = 1,
-        .settle_ms = 200,
-        .max_ms = 750,
-        .max_voltage = 12000});
-    dlib::auto_intake(robot, 0, false,false);
+    //31,41,false
+    dlib::move_to_ffwd(robot,16,-31.5,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 400,
+    .max_ms = 0,
+    .max_voltage = 12000});
 
+    
+    dlib::move_to_ffwd(robot,23,-45,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 750,
+    .max_voltage = 12000});
+    
+    dlib::move_to_ffwd(robot,34,-45,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 750,
+    .max_voltage = 12000});
 
-     
+    // move to ladder
+    dlib::move_to_ffwd(robot,26,-34,true,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 750,
+    .max_voltage = 12000});
+
+    robot.get_lift().task_toggle = true;
+
+    dlib::move_to_ffwd(robot,10,-41.5,false,{
+    .error_threshold = 0.3,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000
+    },{
+    .error_threshold = 1,
+    .settle_ms = 200,
+    .max_ms = 1000,
+    .max_voltage = 12000});
+ 
+    robot.get_lift().task_toggle = false;
+
+    
+    double end_time = pros::millis();
+    double elapsed = end_time - start_time;
+    std::cout << elapsed << std::endl;    
+    //26,34
+    // lift
+    //15,41.5
+    // lift stop
 }
 void blue_6_ring(){
     robot.get_intake().is_blue_alliance = true;
@@ -391,7 +479,7 @@ void skills(){
     pros::delay(750);
     dlib::auto_intake(robot, 0, false, false); 
 
-    dlib::move_to(robot,console,15,0,false,{
+    dlib::move_to(robot,15,0,false,{
         .error_threshold = 0.3,
         .settle_ms = 200,
         .max_ms = 1000,
@@ -403,7 +491,7 @@ void skills(){
         .max_voltage = 12000});
 
         // move to mogo
-    dlib::move_to(robot,console,16,-27,true,{
+    dlib::move_to(robot,16,-27,true,{
         .error_threshold = 0.3,
         .settle_ms = 200,
         .max_ms = 3000,
@@ -415,7 +503,7 @@ void skills(){
         .max_voltage = 9000});
     dlib::mogo(robot,true);
 
-    dlib::move_to(robot,console,4.3,-57.1,true,{
+    dlib::move_to(robot,4.3,-57.1,true,{
         .error_threshold = 0.3,
         .settle_ms = 200,
         .max_ms = 3000,
@@ -481,8 +569,8 @@ void competition_initialize() {
 }
  
 void autonomous() {
-    ///blue_awp();
     selector.run_auton();
+
 }
 
 //Getting RGB values for color sensor
@@ -492,7 +580,6 @@ void opcontrol() {
     dlib::auto_intake(robot, 0, false, false);
     dlib::set_mode_brake(robot);
     robot.get_intake().driver_intake = true;
-    dlib::mogo(robot,true);
     //robot.get_lift().lift_rot.reset_position();
     //robot.get_lift().lift_rot.set_reversed(true);
     
@@ -501,7 +588,7 @@ void opcontrol() {
         position = dlib::get_position(robot, false);
         // get current optical sensor values
         dlib::intake_get_rgb_values(robot);
-
+;
         // ------------------------------------------------- //
         // Logs
         // ------------------------------------------------- //
@@ -532,6 +619,11 @@ void opcontrol() {
         console.println(std::to_string(dlib::get_torque_intake(robot)));
         console.print("Intake Position: ");
         console.println(std::to_string(dlib::get_intake_position(robot)));
+        auto celsius = robot.get_intake().intake.get_temperature();
+        console.print("Intake Temperature: ");
+        console.println(std::to_string((celsius * (9/5)) + 32));
+        console.print("Celsius: ");
+        console.println(std::to_string(celsius));
 
         robot.get_lift().lift_mutex.lock();
         console.print("Rot Theta: ");
@@ -606,10 +698,13 @@ void opcontrol() {
         // arm binds
         // Empty!
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
-            robot.get_lift().task_toggle = true;
+            robot.get_lift().task_toggle = !robot.get_lift().task_toggle;
         }
-        else if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
-            robot.get_lift().task_toggle = false;
+        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)){
+            doinker.set_value(true);
+        }
+        else{
+            doinker.set_value(false);
         }
         
         // delay to prevent brain damage

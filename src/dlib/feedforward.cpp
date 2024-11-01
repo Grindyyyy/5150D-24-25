@@ -17,17 +17,11 @@ FeedForward::FeedForward(
     gains = real_gains;
 }
 
-double FeedForward::calculate(double current_velocity){
-    double current_time = pros::millis();
-    double acceleration = (current_velocity - last_velocity) / (current_time - last_time);
-
-    last_velocity = current_velocity;
-    last_time = current_time;
+double FeedForward::calculate(double target_velocity){
 
     return(
-        std::copysign(gains.ks, current_velocity) + 
-        gains.kv * current_velocity + 
-        gains.ka * acceleration
+        (std::copysign(gains.ks, target_velocity) + 
+        gains.kv * target_velocity)
     );
 }
 

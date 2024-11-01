@@ -7,7 +7,7 @@ namespace dlib {
 struct Mogo {
     pros::adi::DigitalOut piston_1;
     bool init_state;
-    bool toggle_mode = false;
+    bool toggle_mode = true;
     Mogo(char piston_1_port,
         bool init_state
     ) : piston_1(piston_1_port), init_state(init_state) {};

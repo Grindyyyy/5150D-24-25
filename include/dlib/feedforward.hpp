@@ -7,6 +7,7 @@ struct FFGains {
     double ka = 0;
     double ks = 0;
     double kv = 0;
+    
 };
 
 class FeedForward {
@@ -15,6 +16,7 @@ class FeedForward {
 
         double last_velocity;
         double last_time;
+        
 
     public:
         FeedForward(FFGains gains_settings);
@@ -25,6 +27,8 @@ class FeedForward {
         FFGains get_gains();
         void set_gains(FFGains new_gains);
         void reset();
+
+
 
 };
 }

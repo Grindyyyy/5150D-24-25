@@ -6,6 +6,7 @@
 #include "dlib/mogo.hpp"
 #include "dlib/indexer.hpp"
 #include "dlib/imu.hpp"
+#include "dlib/trapMP.hpp"
 #include "feedforward.hpp"
 #include "pros/abstract_motor.hpp"
 #include "pros/motors.h"
@@ -52,6 +53,10 @@ void calibrate(Robot& robot){
 
 
     robot.get_imu().imu.reset(true);
+
+    robot.get_imu().calibrateDrift();
+    robot.get_imu().imu_task = std::make_unique<pros::Task>([&] { robot.get_imu().main(); });
+
 }
 
 
@@ -107,6 +112,12 @@ template<typename Robot>
 double get_imu_heading(Robot& robot) {
 
     double angle = std::fmod(robot.get_imu().imu.get_heading(), 360.0);
+    return angle;
+}
+
+template<typename Robot>
+double get_imu_heading_absolute(Robot& robot) {
+    double angle = robot.get_imu().imu.get_heading();
     return angle;
 }
 
@@ -170,9 +181,18 @@ double get_motor_inches(Robot& robot) {
 
 template<typename Robot>
 void update_odom(Robot& robot){
+    int prevTime = pros::millis();
+    int millsDelay = 10;
     while(true){
-        robot.get_odom().update(get_motor_inches(robot), get_imu_heading(robot) * (M_PI / 180.00)); 
-        pros::delay(10);
+        // gets time when the loop starts
+        prevTime = pros::millis();
+
+        // runs odom function
+        robot.get_odom().update(get_motor_inches(robot), robot.get_imu().getCorrectedAngle() * (M_PI / 180.00)); 
+
+        // Makes sure the delay is exactly 10 ms bc calculations can take some time.
+        millsDelay = (prevTime + 10) - pros::millis();
+        pros::delay(millsDelay);
     }
 }
 
@@ -193,7 +213,6 @@ void start_odom_update_loop(Robot& robot) {
     }
 }
 
-
 template<typename Robot>
 void start_odom_update_loop_alt(Robot& robot) {
     // Capture the current class instance and call update_odom in a seperate task
@@ -204,7 +223,7 @@ void start_odom_update_loop_alt(Robot& robot) {
 }
 
 template<typename Robot>
-void move_inches(Robot& robot, double inches, rd::Console& console, Options options) {
+void move_inches(Robot& robot, double inches, Options options) {
     long interval = robot.get_drive_pid().get_interval();
 
     double starting_inches = get_motor_inches(robot);
@@ -217,9 +236,6 @@ void move_inches(Robot& robot, double inches, rd::Console& console, Options opti
     uint32_t settle_start = 0;
     
     while (true) {
-        console.clear();
-
-        console.println(std::to_string(inches));
         
         uint32_t current_time = pros::millis();
 
@@ -234,18 +250,13 @@ void move_inches(Robot& robot, double inches, rd::Console& console, Options opti
 
         if (is_settling) {
             if (std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
-                console.println("settling...");
                 if(current_time - settle_start > options.settle_ms) {
                     break;
                 }
             } 
             else {
-                console.println("not settling...");
                 is_settling = false;
             }
-        }
-        else {
-            console.println("not settling");
         }
 
         double current_inches = get_motor_inches(robot);
@@ -267,14 +278,83 @@ void move_inches(Robot& robot, double inches, rd::Console& console, Options opti
         pros::delay(interval);
     }
 
-    console.print("max voltage: ");
-    console.println(std::to_string(options.max_voltage));
+    brake_motors(robot);
+}
+
+template<typename Robot>
+void move_inches_ffwd(Robot& robot, double inches, Options options) {
+    TrapMotionProfile move_profile = TrapMotionProfile(robot.get_chassis().maxAccel,robot.get_chassis().maxVelo, inches);
+    long interval = robot.get_drive_pid().get_interval();
+
+    double starting_inches = get_motor_inches(robot);
+    double target_inches = starting_inches + inches;
+    robot.get_drive_pid().reset();
+
+    uint32_t starting_time = pros::millis();
+    
+    bool is_settling = false;
+    uint32_t settle_start = 0;
+    double error;
+    
+    while (true) {
+        
+        uint32_t current_time = pros::millis();
+
+        if (current_time - starting_time > options.max_ms) {
+            break;
+        }
+
+        if (!is_settling && std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
+            is_settling = true;
+            settle_start = pros::millis();
+        }
+
+        if (is_settling) {
+            if (std::abs(robot.get_drive_pid().get_error()) < options.error_threshold) {
+                if(current_time - settle_start > options.settle_ms) {
+                    break;
+                }
+            } 
+            else {
+                is_settling = false;
+            }
+        }
+
+        double current_inches = get_motor_inches(robot);
+        error = target_inches - current_inches;
+        double output_voltage = robot.get_drive_pid().update(error);
+
+
+        //ffwd calc
+        double cur_time = pros::millis();
+        double elapsed_time = (cur_time - starting_time) / 1000;
+
+        Setpoint setpoint = move_profile.calculate(elapsed_time / 1000);
+
+
+        output_voltage += robot.get_drive_feed_forward().calculate(setpoint.velocity); // placeholder number
+        // output voltage stuff
+        if(std::abs(output_voltage) > options.max_voltage){
+            if(output_voltage > 0){
+                output_voltage = options.max_voltage;
+            }
+            else{
+                output_voltage = -options.max_voltage;
+            }
+        }
+
+        move_voltage(robot, output_voltage);
+
+        pros::delay(interval);
+    }
+
+    std::cout << error << std::endl;
     brake_motors(robot);
 }
 
 // Turn to a given absolute angle using PID
 template<typename Robot>
-void turn_degrees(Robot& robot, double angle, rd::Console& console, const Options options) {
+void turn_degrees(Robot& robot, double angle, const Options options) {
    long interval = robot.get_turn_pid().get_interval();
 
     double target_angle = angle;
@@ -284,9 +364,8 @@ void turn_degrees(Robot& robot, double angle, rd::Console& console, const Option
     
     bool is_settling = false;
     uint32_t settle_start = 0;
-    console.focus();
+    double error;
     while (true) {
-        console.clear();
         
         uint32_t current_time = pros::millis();
 
@@ -300,37 +379,31 @@ void turn_degrees(Robot& robot, double angle, rd::Console& console, const Option
             settle_start = pros::millis();
         }
 
-        double current_angle = robot.get_imu().imu.get_heading();
-        double error = std::remainder(target_angle - current_angle,360);
+        double current_angle = robot.get_imu().getCorrectedAngle();
+        error = target_angle - current_angle;
 
         if (is_settling) {
             if (std::abs(robot.get_turn_pid().get_error()) < options.error_threshold) {
-                console.println("settling...");
                 if(current_time - settle_start > options.settle_ms) {
-                    std::cout << "SETTLED AT: pid error: " << error << std::endl;
-                    std::cout << "TARGET: " << target_angle << std::endl;
-                    std::cout << "ACTUAL: " << current_angle << std::endl;
                     break;
                 }
-            } else {
-                console.println("not settling");
+            } 
+            else {
                 is_settling = false;
             }
         } 
-        else {
-            console.println("not settling");
-        }
 
         double output_voltage = robot.get_turn_pid().update(error);
         
-        output_voltage += std::copysign(error, 2100);
-        if(output_voltage > options.max_voltage){
-            output_voltage = options.max_voltage;
+        // output voltage stuff
+        if(std::abs(output_voltage) > options.max_voltage){
+            if(output_voltage > 0){
+                output_voltage = options.max_voltage;
+            }
+            else{
+                output_voltage = -options.max_voltage;
+            }
         }
-
-        console.print("PID error:");
-        console.println(std::to_string(error));
-        
 
         turn_voltage(robot, output_voltage);
 
@@ -339,28 +412,27 @@ void turn_degrees(Robot& robot, double angle, rd::Console& console, const Option
 
     brake_motors(robot);
 
-    double current_angle = robot.get_imu().imu.get_heading();
-    console.print("error after settled:");
-    console.println(std::to_string(std::remainder(target_angle - current_angle,360)));
-}
+    std::cout << error << std::endl;
 
+    double current_angle = robot.get_imu().getCorrectedAngle();
+
+}
 
 // Turn to a given absolute angle using PID
 template<typename Robot>
-void turn_degrees_alt(Robot& robot, double angle, rd::Console& console, const Options options) {
+void turn_degrees_ffwd(Robot& robot, double angle, const Options options) {
+//TrapMotionProfile move_profile = TrapMotionProfile(robot.get_chassis().maxAccel,robot.get_chassis().maxVelo, angle);
    long interval = robot.get_turn_pid().get_interval();
 
-    double start_angle = dlib::get_imu_rotation(robot);
-    double target_angle = start_angle - std::fmod(start_angle, 360) + angle;
+    double target_angle = angle;
     robot.get_turn_pid().reset();
 
     uint32_t starting_time = pros::millis();
     
     bool is_settling = false;
     uint32_t settle_start = 0;
-    console.focus();
+
     while (true) {
-        console.clear();
         
         uint32_t current_time = pros::millis();
 
@@ -374,33 +446,40 @@ void turn_degrees_alt(Robot& robot, double angle, rd::Console& console, const Op
             settle_start = pros::millis();
         }
 
+        double current_angle = robot.get_imu().getCorrectedAngle();
+        double error = target_angle - current_angle;
+
         if (is_settling) {
             if (std::abs(robot.get_turn_pid().get_error()) < options.error_threshold) {
-                console.println("settling...");
                 if(current_time - settle_start > options.settle_ms) {
                     break;
                 }
-            } else {
-                console.println("not settling");
+            } 
+            else {
                 is_settling = false;
             }
         } 
-        else {
-            console.println("not settling");
-        }
-
-        double current_angle = dlib::get_imu_rotation(robot);
-        double error = std::remainder(target_angle - current_angle,360);
 
         double output_voltage = robot.get_turn_pid().update(error);
-        
-        output_voltage += std::copysign(error, 2100);
-        if(output_voltage > options.max_voltage){
-            output_voltage = options.max_voltage;
-        }
 
-        console.print("PID error:");
-        console.println(std::to_string(error));
+        // ffwd calc
+        //ffwd calc
+        double cur_time = pros::millis();
+        double elapsed_time = (cur_time - starting_time) / 1000;
+
+        //Setpoint setpoint = move_profile.calculate(elapsed_time /1000);
+
+        //output_voltage += robot.get_drive_feed_forward().calculate(setpoint.velocity); // placeholder number
+
+        // output voltage stuff
+        if(std::abs(output_voltage) > options.max_voltage){
+            if(output_voltage > 0){
+                output_voltage = options.max_voltage;
+            }
+            else{
+                output_voltage = -options.max_voltage;
+            }
+        }
 
         turn_voltage(robot, output_voltage);
 
@@ -409,10 +488,9 @@ void turn_degrees_alt(Robot& robot, double angle, rd::Console& console, const Op
 
     brake_motors(robot);
 
-    double current_angle = robot.get_imu().imu.get_heading();
-    console.print("error after settled:");
-    console.println(std::to_string(std::remainder(target_angle - current_angle,360)));
+    double current_angle = robot.get_imu().getCorrectedAngle();
 }
+
 
 template<typename Robot>
 // Calculate the angle to turn from the current position to a point
@@ -477,19 +555,35 @@ void set_position(Robot& robot, Position new_position, bool radians) {
 
 template<typename Robot>
 // Turn to a coordinate point using Odometry and PID
-void turn_to(Robot& robot, rd::Console& console, double x, double y, bool reverse, Options options){
+void turn_to(Robot& robot, double x, double y, bool reverse, Options options){
     double target_angle = angle_to(robot, x, y, reverse);
-    turn_degrees(robot, target_angle, console, options);
+    turn_degrees(robot, target_angle,  options);
+}
+
+template<typename Robot>
+// Turn to a coordinate point using Odometry and PID
+void turn_to_ffwd(Robot& robot, double x, double y, bool reverse, Options options){
+    double target_angle = angle_to(robot, x, y, reverse);
+    turn_degrees(robot, target_angle,  options);
 }
 
 template<typename Robot>
 // Move to a coordinate point using Odometry and PID
-void move_to(Robot& robot, rd::Console& console, double x, double y, bool reverse, Options move_options, Options turn_options) {
-    turn_to(robot, console, x, y, reverse, turn_options);
-    console.println("completed turn");
+void move_to(Robot& robot, double x, double y, bool reverse, Options move_options, Options turn_options) {
+    turn_to(robot, x, y, reverse, turn_options);
     double dist = dist_to(robot, x, y, reverse);
-    move_inches(robot, dist, console, move_options);
+    move_inches_ffwd(robot, dist, move_options);
 }
+
+template<typename Robot>
+// Move to a coordinate point using Odometry and PID
+void move_to_ffwd(Robot& robot, double x, double y, bool reverse, Options move_options, Options turn_options) {
+    turn_to_ffwd(robot, x, y, reverse, turn_options);
+    double dist = dist_to(robot, x, y, reverse);
+    move_inches_ffwd(robot, dist, move_options);
+}
+
+
 
 // ------------------------------ //
 // Ring Sensor
@@ -799,7 +893,7 @@ void lift_task(Robot& robot){
         }
     }
     else{
-        if(std::abs(robot.get_lift().lift_rot.get_position() / 100) < 195){
+        if(std::abs(robot.get_lift().lift_rot.get_position() / 100) < 165){
             robot.get_lift().lift.move(-90);
         }
         else{
