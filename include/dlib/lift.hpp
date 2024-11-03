@@ -10,6 +10,7 @@ struct Lift {
     std::unique_ptr<pros::Task> lift_updater;
     double current_pos;
     bool task_toggle = false;
+    double range = 228;
 
     
 

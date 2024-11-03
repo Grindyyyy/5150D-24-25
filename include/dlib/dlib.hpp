@@ -630,7 +630,7 @@ void intake_calibrate(Robot& robot){
 }
 
 // kinda experimental and maybe overthought
-template<typename Robot>
+/*template<typename Robot>
 void intake_filter_task(Robot& robot){
     while(true){
         robot.get_intake().intake_mutex.lock();  
@@ -641,7 +641,7 @@ void intake_filter_task(Robot& robot){
                         robot.get_intake().intake.move(-127);
                         pros::delay(300);
                     }
-                    else if(intake_get_red(robot) > intake_get_blue(robot) * 2 && robot.get_intake().lift_reverse == true){
+                    else if(intake_get_red(robot) > intake_get_blue(robot) * 2 && robot.get_intake().lift_reverse){
                         robot.get_intake().lift_ring_detected = true;
                         robot.get_intake().intake.move(50);
                         pros::delay(50);
@@ -652,7 +652,7 @@ void intake_filter_task(Robot& robot){
                         robot.get_intake().ring_detected = false;
                         robot.get_intake().lift_ring_detected = false;
                         if(robot.get_intake().auto_intake_run){
-                        robot.get_intake().intake.move(127);
+                            robot.get_intake().intake.move_voltage(12000);
                         }
                         else{
                         if(!robot.get_intake().driver_intake){
@@ -679,42 +679,32 @@ void intake_filter_task(Robot& robot){
                         robot.get_intake().ring_detected = false;
                         robot.get_intake().lift_ring_detected = false;
                         if(robot.get_intake().auto_intake_run){
-                        robot.get_intake().intake.move(127);
+                            robot.get_intake().intake.move_voltage(12000);
                         }
                         else{
-                        if(!robot.get_intake().driver_intake){
-                            robot.get_intake().intake.move(0);
+                            if(!robot.get_intake().driver_intake){
+                                robot.get_intake().intake.move(0);
+                            }
                         }
-                }
                  }
             }
         pros::delay(10);   
         robot.get_intake().intake_mutex.unlock();  
     }
-}
+}*/
 
 template<typename Robot>
 double get_intake_position(Robot& robot){
     return(robot.get_intake().intake.get_position());
 }
 
-template<typename Robot>
+/*template<typename Robot>
 void start_intake_update_loop(Robot& robot) {
     if(!robot.get_intake().intake_task_started) {
         robot.get_intake().intake_updater = std::make_unique<pros::Task>([&] { intake_filter_task(robot); });
         robot.get_intake().intake_task_started = true;
     }
-}
-
-template<typename Robot>
-bool get_ring_detected(Robot& robot){
-    return(robot.get_intake().ring_detected);
-}
-
-template<typename Robot>
-double get_torque_intake(Robot& robot){
-    return robot.get_intake().intake.get_torque();
-}
+}*/
 
 template<typename Robot>
 void intake_move(Robot& robot, int volts){
@@ -722,10 +712,8 @@ void intake_move(Robot& robot, int volts){
 }
 
 template<typename Robot>
-void intake_move_torque(Robot& robot, int volts){
-    if(robot.get_intake.intake.get_torque() > 1){
-        robot.get_intake().intake.move(volts);
-    }
+void intake_move_voltage(Robot& robot, int voltage){
+    robot.get_intake().intake.move_voltage(voltage);
 }
 
 template<typename Robot>
@@ -749,11 +737,11 @@ void intake_stop(Robot& robot){
 
 template<typename Robot>
 void auto_intake(Robot& robot, int volts, bool intake_run, bool lift_reverse){
-    if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
-                robot.get_intake().auto_intake_run = intake_run;
-                robot.get_intake().lift_reverse = lift_reverse;
+    //if(!dlib::get_ring_detected(robot) && !robot.get_intake().lift_ring_detected){
+                //robot.get_intake().auto_intake_run = intake_run;
+                //robot.get_intake().lift_reverse = lift_reverse;
                 dlib::intake_move(robot,volts);
-            }
+        
 }
 
 // ------------------------------ //
@@ -901,7 +889,7 @@ void lift_task(Robot& robot){
         }
     }
     robot.get_lift().lift_mutex.unlock();
-    pros::delay(10);
+    pros::delay(30);
     }
 }
 
