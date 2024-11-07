@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dlib_8hpp" kind="file" language="C++">
+    <compoundname>dlib.hpp</compoundname>
+    <includes refid="feedforward_8hpp" local="yes">dlib/controllers/feedforward.hpp</includes>
+    <includes refid="pid_8hpp" local="yes">dlib/controllers/pid.hpp</includes>
+    <includes refid="error__derivative__settler_8hpp" local="yes">dlib/controllers/error_derivative_settler.hpp</includes>
+    <includes refid="time__error__settler_8hpp" local="yes">dlib/controllers/time_error_settler.hpp</includes>
+    <includes refid="chassis_8hpp" local="yes">dlib/hardware/chassis.hpp</includes>
+    <includes refid="imu_8hpp" local="yes">dlib/hardware/imu.hpp</includes>
+    <includes refid="motor__group_8hpp" local="yes">dlib/hardware/motor_group.hpp</includes>
+    <includes refid="motor_8hpp" local="yes">dlib/hardware/motor.hpp</includes>
+    <includes refid="rotation_8hpp" local="yes">dlib/hardware/rotation.hpp</includes>
+    <includes refid="odometry_8hpp" local="yes">dlib/kinematics/odometry.hpp</includes>
+    <includes refid="profile__setpoint_8hpp" local="yes">dlib/trajectories/profile_setpoint.hpp</includes>
+    <includes refid="trapezoid__profile_8hpp" local="yes">dlib/trajectories/trapezoid_profile.hpp</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>dlib/controllers/error_derivative_settler.hpp</label>
+        <link refid="error__derivative__settler_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dlib/controllers/feedforward.hpp</label>
+        <link refid="feedforward_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dlib/controllers/pid.hpp</label>
+        <link refid="pid_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dlib/controllers/time_error_settler.hpp</label>
+        <link refid="time__error__settler_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</label>
+        <link refid="dlib_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dlib/hardware/chassis.hpp</label>
+        <link refid="chassis_8hpp_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dlib/hardware/imu.hpp</label>
+        <link refid="imu_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dlib/hardware/motor.hpp</label>
+        <link refid="motor_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>motor_group.hpp</label>
+        <link refid="motor__group_8hpp_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dlib/hardware/rotation.hpp</label>
+        <link refid="rotation_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dlib/kinematics/odometry.hpp</label>
+        <link refid="odometry_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dlib/trajectories/profile_setpoint.hpp</label>
+        <link refid="profile__setpoint_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dlib/trajectories/trapezoid_profile.hpp</label>
+        <link refid="trapezoid__profile_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>au/au.hpp</label>
+      </node>
+      <node id="22">
+        <label>cmath</label>
+      </node>
+      <node id="12">
+        <label>initializer_list</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="14">
+        <label>pros/imu.hpp</label>
+      </node>
+      <node id="11">
+        <label>pros/motor_group.hpp</label>
+      </node>
+      <node id="16">
+        <label>pros/motors.hpp</label>
+      </node>
+      <node id="18">
+        <label>pros/rotation.hpp</label>
+      </node>
+      <node id="6">
+        <label>pros/rtos.hpp</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/controllers/feedforward.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/controllers/pid.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/controllers/error_derivative_settler.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/controllers/time_error_settler.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/hardware/chassis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/hardware/imu.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/hardware/motor_group.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/hardware/motor.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/hardware/rotation.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/kinematics/odometry.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/trajectories/profile_setpoint.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/trajectories/trapezoid_profile.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,93 @@
+\doxysection{pid.\+hpp}
+\hypertarget{pid_8hpp_source}{}\label{pid_8hpp_source}\index{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp@{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}au/au.hpp"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}pros/rtos.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }dlib\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdlib_1_1_pid_gains}{PidGains}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{double}\ kp\ =\ 0;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{double}\ ki\ =\ 0;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{double}\ kd\ =\ 0;}
+\DoxyCodeLine{00011\ \};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Units>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdlib_1_1_pid}{Pid}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_pid}{Pid}}(\mbox{\hyperlink{structdlib_1_1_pid_gains}{PidGains}}\ gains)\ :\ gains(gains)\ \{\};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdlib_1_1_pid_ab1114acbaef0efe65d5850e43452de29}{target}}(au::Quantity<Units,\ double>\ setpoint)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ this-\/>setpoint\ =\ setpoint;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ this-\/>p\ =\ au::ZERO;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ this-\/>i\ =\ au::ZERO;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ this-\/>d\ =\ au::ZERO;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ this-\/>last\_error\ =\ au::ZERO;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00065\ \ \ \ \ au::Quantity<au::Volts,\ double>\ \mbox{\hyperlink{classdlib_1_1_pid_a54e856a630edf71a39ef1efe086a5bad}{update}}(}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ au::Quantity<Units,\ double>\ reading,\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ au::Quantity<au::Seconds,\ double>\ period}
+\DoxyCodeLine{00068\ \ \ \ \ )\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ error\ =\ setpoint\ -\/\ reading;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ delta\_time\ =\ period;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ delta\_error\ =\ error\ -\/\ last\_error;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Integral\ anti-\/windup}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ PID\ terms}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ this-\/>p\ =\ error;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ this-\/>i\ =\ this-\/>i\ +\ error*\ delta\_time;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ this-\/>d\ =\ (delta\_error\ /\ delta\_time);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Using\ \`{}in`\ this\ way\ means\ that\ PID\ constants\ are\ affected\ by\ the\ choice\ of\ unit}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ eg.\ gains\ in\ PID<Centi<Meters>>\ will\ effectively\ be\ 100x\ the\ gains\ in\ PID<Meters>}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ there\ a\ way\ to\ avoid\ this?}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ output\ =\ std::clamp(}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p.in(Units\{\})\ *\ this-\/>gains.kp}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ +\ this-\/>i.in(au::TimeIntegral<Units>\{\})\ *\ this-\/>gains.ki\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ +\ this-\/>d.in(au::TimeDerivative<Units>\{\})\ *\ this-\/>gains.kd,\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ -\/12.0,\ 12.0}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ update\ PID\ state}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ this-\/>last\_error\ \ \ \ =\ error;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ au::volts(output);}
+\DoxyCodeLine{00096\ \ \ \ \ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{structdlib_1_1_pid_gains}{PidGains}}\ \mbox{\hyperlink{classdlib_1_1_pid_a4d6c49dd7e2c040f16885583b6f24cdf}{get\_gains}}()\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>gains;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdlib_1_1_pid_a98c02d8fba954028835599a1a7f2993e}{set\_gains}}(\mbox{\hyperlink{structdlib_1_1_pid_gains}{PidGains}}\ gains)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ this-\/>gains\ =\ gains;}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00154\ \ \ \ \ au::Quantity<Units,\ double>\ \mbox{\hyperlink{classdlib_1_1_pid_a3d3cd672d39b289bce70c99412af5e78}{get\_error}}()\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>last\_error;}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00174\ \ \ \ \ au::Quantity<au::TimeDerivative<Units>,\ \textcolor{keywordtype}{double}>\ \mbox{\hyperlink{classdlib_1_1_pid_ae37de8a4f230925598fc460a021473e4}{get\_derivative}}()\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>d;}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{structdlib_1_1_pid_gains}{PidGains}}\ gains;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ au::Quantity<Units,\ double>\ p\ =\ au::ZERO;}
+\DoxyCodeLine{00181\ \ \ \ \ au::Quantity<au::TimeIntegral<Units>,\ \textcolor{keywordtype}{double}>\ i\ =\ au::ZERO;}
+\DoxyCodeLine{00182\ \ \ \ \ au::Quantity<au::TimeDerivative<Units>,\ \textcolor{keywordtype}{double}>\ d\ =\ au::ZERO;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ au::Quantity<Units,\ double>\ setpoint;}
+\DoxyCodeLine{00185\ \ \ \ \ au::Quantity<Units,\ double>\ last\_error;}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \}}
+
+\end{DoxyCode}

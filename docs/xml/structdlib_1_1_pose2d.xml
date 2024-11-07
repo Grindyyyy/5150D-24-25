@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_pose2d" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::Pose2d</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_pose2d_1a20b1ca94389849bb5ba2a93edfc7129e" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::Pose2d::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>dlib::Pose2d::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="17" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_pose2d_1ab516fb87072b85d8fbf3ae95549f644b" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::Pose2d::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>dlib::Pose2d::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="18" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_pose2d_1a222a9446f8024e980f1d01ccd3086d1a" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Degrees, double &gt;</type>
+        <definition>au::Quantity&lt;au::Degrees, double&gt; dlib::Pose2d::theta</definition>
+        <argsstring></argsstring>
+        <name>theta</name>
+        <qualifiedname>dlib::Pose2d::theta</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="19" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structdlib_1_1_pose2d_1a93cc298fc4ad46db87a65e7e55078fea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Pose2d::Pose2d</definition>
+        <argsstring>(au::Quantity&lt; au::Meters, double &gt; x, au::Quantity&lt; au::Meters, double &gt; y, au::Quantity&lt; au::Degrees, double &gt; theta)</argsstring>
+        <name>Pose2d</name>
+        <qualifiedname>dlib::Pose2d::Pose2d</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Degrees, double &gt;</type>
+          <declname>theta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="21" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="16" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="16" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_pose2d_1a93cc298fc4ad46db87a65e7e55078fea" prot="public" virt="non-virtual"><scope>dlib::Pose2d</scope><name>Pose2d</name></member>
+      <member refid="structdlib_1_1_pose2d_1a222a9446f8024e980f1d01ccd3086d1a" prot="public" virt="non-virtual"><scope>dlib::Pose2d</scope><name>theta</name></member>
+      <member refid="structdlib_1_1_pose2d_1a20b1ca94389849bb5ba2a93edfc7129e" prot="public" virt="non-virtual"><scope>dlib::Pose2d</scope><name>x</name></member>
+      <member refid="structdlib_1_1_pose2d_1ab516fb87072b85d8fbf3ae95549f644b" prot="public" virt="non-virtual"><scope>dlib::Pose2d</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

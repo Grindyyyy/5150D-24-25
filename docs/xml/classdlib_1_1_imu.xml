@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_imu" kind="class" language="C++" prot="public">
+    <compoundname>dlib::Imu</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_imu_1a1f1f497d3788072147d256ecf3c0b45a" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dlib::Imu::scalar</definition>
+        <argsstring></argsstring>
+        <name>scalar</name>
+        <qualifiedname>dlib::Imu::scalar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="17" column="12" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_imu_1a016639cf1c6f2e9b860571aac6b45c3e" prot="public" static="no" mutable="no">
+        <type>pros::Imu</type>
+        <definition>pros::Imu dlib::Imu::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <qualifiedname>dlib::Imu::raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="75" column="15" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_imu_1a3a53eaee11bc5fe6bc6412c6e6bcb1f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Imu::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <qualifiedname>dlib::Imu::initialize</qualifiedname>
+        <briefdescription>
+<para>Initialize the <ref refid="classdlib_1_1_imu" kindref="compound">Imu</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_imu_config" kindref="compound">dlib::ImuConfig</ref><sp/>imu_config({</highlight></codeline>
+<codeline><highlight class="normal">7,<sp/><sp/></highlight><highlight class="comment">//<sp/>imu<sp/>port</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">1.001<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>optional<sp/>imu<sp/>scaling<sp/>constant</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_imu" kindref="compound">dlib::Imu</ref><sp/>imu(imu_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">imu.initialize();</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="35" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_imu_1afb9cbe67e7361c52103477da2681fa7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Degrees, double &gt;</type>
+        <definition>au::Quantity&lt; au::Degrees, double &gt; dlib::Imu::get_rotation</definition>
+        <argsstring>()</argsstring>
+        <name>get_rotation</name>
+        <qualifiedname>dlib::Imu::get_rotation</qualifiedname>
+        <briefdescription>
+<para>Get <ref refid="classdlib_1_1_imu" kindref="compound">Imu</ref> rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_imu_config" kindref="compound">dlib::ImuConfig</ref><sp/>imu_config({</highlight></codeline>
+<codeline><highlight class="normal">7,<sp/><sp/></highlight><highlight class="comment">//<sp/>imu<sp/>port</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">1.001<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>optional<sp/>imu<sp/>scaling<sp/>constant</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_imu" kindref="compound">dlib::Imu</ref><sp/>imu(imu_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;au::Degrees,<sp/>double&gt;<sp/>degrees<sp/>=<sp/>imu.get_rotation();</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="53" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_imu_1a8757736af39c9d82de947cb6493b2e7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Degrees, double &gt;</type>
+        <definition>au::Quantity&lt; au::Degrees, double &gt; dlib::Imu::get_heading</definition>
+        <argsstring>()</argsstring>
+        <name>get_heading</name>
+        <qualifiedname>dlib::Imu::get_heading</qualifiedname>
+        <briefdescription>
+<para>Get <ref refid="classdlib_1_1_imu" kindref="compound">Imu</ref> heading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_imu_config" kindref="compound">dlib::ImuConfig</ref><sp/>imu_config({</highlight></codeline>
+<codeline><highlight class="normal">7,<sp/><sp/></highlight><highlight class="comment">//<sp/>imu<sp/>port</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">1.001<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>optional<sp/>imu<sp/>scaling<sp/>constant</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_imu" kindref="compound">dlib::Imu</ref><sp/>imu(imu_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;au::Degrees,<sp/>double&gt;<sp/>degrees<sp/>=<sp/>imu.get_heading();</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="71" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_imu_1a18802c5ff259f134741445e04d7f9e35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Imu::Imu</definition>
+        <argsstring>(ImuConfig config)</argsstring>
+        <name>Imu</name>
+        <qualifiedname>dlib::Imu::Imu</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_imu_config" kindref="compound">ImuConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="73" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="15" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" bodystart="15" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_imu_1a8757736af39c9d82de947cb6493b2e7d" prot="public" virt="non-virtual"><scope>dlib::Imu</scope><name>get_heading</name></member>
+      <member refid="classdlib_1_1_imu_1afb9cbe67e7361c52103477da2681fa7a" prot="public" virt="non-virtual"><scope>dlib::Imu</scope><name>get_rotation</name></member>
+      <member refid="classdlib_1_1_imu_1a18802c5ff259f134741445e04d7f9e35" prot="public" virt="non-virtual"><scope>dlib::Imu</scope><name>Imu</name></member>
+      <member refid="classdlib_1_1_imu_1a3a53eaee11bc5fe6bc6412c6e6bcb1f3" prot="public" virt="non-virtual"><scope>dlib::Imu</scope><name>initialize</name></member>
+      <member refid="classdlib_1_1_imu_1a016639cf1c6f2e9b860571aac6b45c3e" prot="public" virt="non-virtual"><scope>dlib::Imu</scope><name>raw</name></member>
+      <member refid="classdlib_1_1_imu_1a1f1f497d3788072147d256ecf3c0b45a" prot="protected" virt="non-virtual"><scope>dlib::Imu</scope><name>scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,179 @@
+\doxysection{dlib\+::Chassis Class Reference}
+\hypertarget{classdlib_1_1_chassis}{}\label{classdlib_1_1_chassis}\index{dlib::Chassis@{dlib::Chassis}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdlib_1_1_chassis_ade24173196b00aa280611064c9e6623f}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the chassis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdlib_1_1_chassis_a3212bf73cad50dba28bf6f6b661e2ed4}{move}} (double power)
+\begin{DoxyCompactList}\small\item\em Move the chassis. \end{DoxyCompactList}\item 
+\Hypertarget{classdlib_1_1_chassis_a90d093c2ea696e48f5a2c446535f5e3c}\label{classdlib_1_1_chassis_a90d093c2ea696e48f5a2c446535f5e3c} 
+void {\bfseries move\+\_\+voltage} (au\+::\+Quantity$<$ au\+::\+Volts, double $>$ voltage)
+\item 
+void \mbox{\hyperlink{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}{turn}} (double power)
+\begin{DoxyCompactList}\small\item\em Turn the chassis. \end{DoxyCompactList}\item 
+\Hypertarget{classdlib_1_1_chassis_a9dcb94f3c0cb6355474fa216548596ac}\label{classdlib_1_1_chassis_a9dcb94f3c0cb6355474fa216548596ac} 
+void {\bfseries turn\+\_\+voltage} (au\+::\+Quantity$<$ au\+::\+Volts, double $>$ voltage)
+\item 
+void \mbox{\hyperlink{classdlib_1_1_chassis_a4a42fddc85322aa8e394b254b189c6e8}{arcade}} (double power, double \mbox{\hyperlink{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}{turn}})
+\begin{DoxyCompactList}\small\item\em Turn the chassis. \end{DoxyCompactList}\item 
+\Hypertarget{classdlib_1_1_chassis_a4a8c116bc793a9d88e835f4d9d1eb1c7}\label{classdlib_1_1_chassis_a4a8c116bc793a9d88e835f4d9d1eb1c7} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries revolutions\+\_\+to\+\_\+displacement} (au\+::\+Quantity$<$ au\+::\+Revolutions, double $>$ revolutions)
+\item 
+\Hypertarget{classdlib_1_1_chassis_a4de8abc1f17d8b02b92b1aa7e18f74c8}\label{classdlib_1_1_chassis_a4de8abc1f17d8b02b92b1aa7e18f74c8} 
+au\+::\+Quantity$<$ au\+::\+Meters\+Per\+Second, double $>$ {\bfseries rpm\+\_\+to\+\_\+velocity} (au\+::\+Quantity$<$ au\+::\+Rpm, double $>$ rpm)
+\item 
+\Hypertarget{classdlib_1_1_chassis_a130a042aee91f7da49d23791329cd177}\label{classdlib_1_1_chassis_a130a042aee91f7da49d23791329cd177} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries left\+\_\+motors\+\_\+displacement} ()
+\item 
+\Hypertarget{classdlib_1_1_chassis_ab84a7e10b82e2b698cc396deef90443b}\label{classdlib_1_1_chassis_ab84a7e10b82e2b698cc396deef90443b} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries right\+\_\+motors\+\_\+displacement} ()
+\item 
+\Hypertarget{classdlib_1_1_chassis_a5a2d1445e0122e1a1b5ee428cfecb856}\label{classdlib_1_1_chassis_a5a2d1445e0122e1a1b5ee428cfecb856} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries average\+\_\+motor\+\_\+displacement} ()
+\item 
+\Hypertarget{classdlib_1_1_chassis_a024d3a210420b707b618eecca7f0878b}\label{classdlib_1_1_chassis_a024d3a210420b707b618eecca7f0878b} 
+{\bfseries Chassis} (\mbox{\hyperlink{structdlib_1_1_chassis_config}{Chassis\+Config}} config)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_chassis_a590a5dffded23db6163b9ac7e9159d09}\label{classdlib_1_1_chassis_a590a5dffded23db6163b9ac7e9159d09} 
+\mbox{\hyperlink{classdlib_1_1_motor_group}{dlib\+::\+Motor\+Group}} {\bfseries left\+\_\+motors}
+\item 
+\Hypertarget{classdlib_1_1_chassis_ad37ed0470ce610371f5a42e3020be36a}\label{classdlib_1_1_chassis_ad37ed0470ce610371f5a42e3020be36a} 
+\mbox{\hyperlink{classdlib_1_1_motor_group}{dlib\+::\+Motor\+Group}} {\bfseries right\+\_\+motors}
+\item 
+\Hypertarget{classdlib_1_1_chassis_a2948bf37242f3d273baafe39d0d4c1a9}\label{classdlib_1_1_chassis_a2948bf37242f3d273baafe39d0d4c1a9} 
+au\+::\+Quantity$<$ au\+::\+Rpm, double $>$ {\bfseries total\+\_\+rpm}
+\item 
+\Hypertarget{classdlib_1_1_chassis_a48a634f45afef31b1404d89820d7527f}\label{classdlib_1_1_chassis_a48a634f45afef31b1404d89820d7527f} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries wheel\+\_\+diameter}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdlib_1_1_chassis_a4a42fddc85322aa8e394b254b189c6e8}\index{dlib::Chassis@{dlib::Chassis}!arcade@{arcade}}
+\index{arcade@{arcade}!dlib::Chassis@{dlib::Chassis}}
+\doxysubsubsection{\texorpdfstring{arcade()}{arcade()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_chassis_a4a42fddc85322aa8e394b254b189c6e8} 
+void dlib\+::\+Chassis\+::arcade (\begin{DoxyParamCaption}\item[{double}]{power}{, }\item[{double}]{turn}{}\end{DoxyParamCaption})}
+
+
+
+Turn the chassis. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis\ config}}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_chassis_config}{dlib::ChassisConfig}}\ chassis\_config(\{}
+\DoxyCodeLine{\ \{1,\ 2,\ 3\},\ \textcolor{comment}{//\ left\ motor\ ports}}
+\DoxyCodeLine{\ \{4,\ 5,\ 6\},\ \textcolor{comment}{//\ right\ motor\ ports}}
+\DoxyCodeLine{\ rpm(450),\ \ \textcolor{comment}{//\ the\ drivebase\ rpm}}
+\DoxyCodeLine{\ inches(3.25)\ \ \ \textcolor{comment}{//\ the\ drivebase\ wheel\ diameter}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_chassis}{dlib::Chassis}}\ chassis(chassis\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Create\ a\ controller}}
+\DoxyCodeLine{pros::Controller\ master\ =\ pros::Controller(pros::E\_CONTROLLER\_MASTER);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Instantiate\ power\ \&\ turn}}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ power\ =\ master.get\_analog(ANALOG\_LEFT\_Y);}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ \mbox{\hyperlink{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}{turn}}\ =\ master.get\_analog(ANALOG\_RIGHT\_X);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Move\ the\ chassis\ given\ power\ \&\ turn}}
+\DoxyCodeLine{chassis.arcade(power,\ \mbox{\hyperlink{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}{turn}});}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_chassis_ade24173196b00aa280611064c9e6623f}\index{dlib::Chassis@{dlib::Chassis}!initialize@{initialize}}
+\index{initialize@{initialize}!dlib::Chassis@{dlib::Chassis}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_chassis_ade24173196b00aa280611064c9e6623f} 
+void dlib\+::\+Chassis\+::initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the chassis. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis\ config}}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_chassis_config}{dlib::ChassisConfig}}\ chassis\_config(\{}
+\DoxyCodeLine{\ \{1,\ 2,\ 3\},\ \textcolor{comment}{//\ left\ motor\ ports}}
+\DoxyCodeLine{\ \{4,\ 5,\ 6\},\ \textcolor{comment}{//\ right\ motor\ ports}}
+\DoxyCodeLine{\ rpm(450),\ \ \textcolor{comment}{//\ the\ drivebase\ rpm}}
+\DoxyCodeLine{\ inches(3.25)\ \ \ \textcolor{comment}{//\ the\ drivebase\ wheel\ diameter}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_chassis}{dlib::Chassis}}\ chassis(chassis\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Initialize\ the\ chassis}}
+\DoxyCodeLine{chassis.initialize();}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_chassis_a3212bf73cad50dba28bf6f6b661e2ed4}\index{dlib::Chassis@{dlib::Chassis}!move@{move}}
+\index{move@{move}!dlib::Chassis@{dlib::Chassis}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_chassis_a3212bf73cad50dba28bf6f6b661e2ed4} 
+void dlib\+::\+Chassis\+::move (\begin{DoxyParamCaption}\item[{double}]{power}{}\end{DoxyParamCaption})}
+
+
+
+Move the chassis. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis\ config}}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_chassis_config}{dlib::ChassisConfig}}\ chassis\_config(\{}
+\DoxyCodeLine{\ \{1,\ 2,\ 3\},\ \textcolor{comment}{//\ left\ motor\ ports}}
+\DoxyCodeLine{\ \{4,\ 5,\ 6\},\ \textcolor{comment}{//\ right\ motor\ ports}}
+\DoxyCodeLine{\ rpm(450),\ \ \textcolor{comment}{//\ the\ drivebase\ rpm}}
+\DoxyCodeLine{\ inches(3.25)\ \ \ \textcolor{comment}{//\ the\ drivebase\ wheel\ diameter}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_chassis}{dlib::Chassis}}\ chassis(chassis\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Move\ the\ chassis\ at\ max\ forward\ (127)}}
+\DoxyCodeLine{chassis.move(127);}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}\index{dlib::Chassis@{dlib::Chassis}!turn@{turn}}
+\index{turn@{turn}!dlib::Chassis@{dlib::Chassis}}
+\doxysubsubsection{\texorpdfstring{turn()}{turn()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b} 
+void dlib\+::\+Chassis\+::turn (\begin{DoxyParamCaption}\item[{double}]{power}{}\end{DoxyParamCaption})}
+
+
+
+Turn the chassis. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis\ config}}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_chassis_config}{dlib::ChassisConfig}}\ chassis\_config(\{}
+\DoxyCodeLine{\ \{1,\ 2,\ 3\},\ \textcolor{comment}{//\ left\ motor\ ports}}
+\DoxyCodeLine{\ \{4,\ 5,\ 6\},\ \textcolor{comment}{//\ right\ motor\ ports}}
+\DoxyCodeLine{\ rpm(450),\ \ \textcolor{comment}{//\ the\ drivebase\ rpm}}
+\DoxyCodeLine{\ inches(3.25)\ \ \ \textcolor{comment}{//\ the\ drivebase\ wheel\ diameter}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ chassis}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_chassis}{dlib::Chassis}}\ chassis(chassis\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Turn\ the\ chassis\ at\ max\ forward\ (127)}}
+\DoxyCodeLine{chassis.turn(127);}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/super/\+Downloads/d\+Lib2/dlib2/dlib2/include/dlib/hardware/chassis.\+hpp\end{DoxyCompactItemize}

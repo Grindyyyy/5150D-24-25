@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_pid" kind="class" language="C++" prot="public">
+    <compoundname>dlib::Pid</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename Units</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_pid_1a3505350d5f6350198a5443292f700f08" prot="protected" static="no" mutable="no">
+        <type><ref refid="structdlib_1_1_pid_gains" kindref="compound">PidGains</ref></type>
+        <definition>PidGains dlib::Pid&lt; Units &gt;::gains</definition>
+        <argsstring></argsstring>
+        <name>gains</name>
+        <qualifiedname>dlib::Pid::gains</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="178" column="14" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_pid_1ac9a6356a12126f6cd157c1e7a5739d1b" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; Units, double &gt;</type>
+        <definition>au::Quantity&lt;Units, double&gt; dlib::Pid&lt; Units &gt;::p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <qualifiedname>dlib::Pid::p</qualifiedname>
+        <initializer>= au::ZERO</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="180" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_pid_1acd467df8c7e00ab24e491a5abfe8c67f" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::TimeIntegral&lt; Units &gt;, double &gt;</type>
+        <definition>au::Quantity&lt;au::TimeIntegral&lt;Units&gt;, double&gt; dlib::Pid&lt; Units &gt;::i</definition>
+        <argsstring></argsstring>
+        <name>i</name>
+        <qualifiedname>dlib::Pid::i</qualifiedname>
+        <initializer>= au::ZERO</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="181" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_pid_1abb9f74c6817452377827669b09885d7a" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt;</type>
+        <definition>au::Quantity&lt;au::TimeDerivative&lt;Units&gt;, double&gt; dlib::Pid&lt; Units &gt;::d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <qualifiedname>dlib::Pid::d</qualifiedname>
+        <initializer>= au::ZERO</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="182" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_pid_1abcc0d99bc074bb928f5e739bfac57ddc" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; Units, double &gt;</type>
+        <definition>au::Quantity&lt;Units, double&gt; dlib::Pid&lt; Units &gt;::setpoint</definition>
+        <argsstring></argsstring>
+        <name>setpoint</name>
+        <qualifiedname>dlib::Pid::setpoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="184" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_pid_1a042b3dd8c80cef63f1b84a768db88b09" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; Units, double &gt;</type>
+        <definition>au::Quantity&lt;Units, double&gt; dlib::Pid&lt; Units &gt;::last_error</definition>
+        <argsstring></argsstring>
+        <name>last_error</name>
+        <qualifiedname>dlib::Pid::last_error</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="185" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="185" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_pid_1a561b0a222d92af361c149a08dac64e6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Pid&lt; Units &gt;::Pid</definition>
+        <argsstring>(PidGains gains)</argsstring>
+        <name>Pid</name>
+        <qualifiedname>dlib::Pid::Pid</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_pid_gains" kindref="compound">PidGains</ref></type>
+          <declname>gains</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="16" column="5" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_pid_1ab1114acbaef0efe65d5850e43452de29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Pid&lt; Units &gt;::target</definition>
+        <argsstring>(au::Quantity&lt; Units, double &gt; setpoint)</argsstring>
+        <name>target</name>
+        <qualifiedname>dlib::Pid::target</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; Units, double &gt;</type>
+          <declname>setpoint</declname>
+        </param>
+        <briefdescription>
+<para>Set PID setpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>setpoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>place the robot should end up</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Pid<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Instantiate<sp/>a<sp/>setpoint</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;Meters,<sp/>double&gt;<sp/>setpoint<sp/>=<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Target<sp/>setpoint</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">move_pid.target(setpoint);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="37" column="10" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="37" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_pid_1a54e856a630edf71a39ef1efe086a5bad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>au::Quantity&lt; au::Volts, double &gt;</type>
+        <definition>au::Quantity&lt; au::Volts, double &gt; dlib::Pid&lt; Units &gt;::update</definition>
+        <argsstring>(au::Quantity&lt; Units, double &gt; reading, au::Quantity&lt; au::Seconds, double &gt; period)</argsstring>
+        <name>update</name>
+        <qualifiedname>dlib::Pid::update</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; Units, double &gt;</type>
+          <declname>reading</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+          <declname>period</declname>
+        </param>
+        <briefdescription>
+<para>Calculate PID voltage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>current reading of sensor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>interval that the update loop iterates </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>au::Quantity&lt;au::Volts, double&gt;</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Pid<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Calculate<sp/>voltage</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;au::Volts,<sp/>double&gt;<sp/>voltage<sp/>=<sp/>pid.<ref refid="classdlib_1_1_pid_1a54e856a630edf71a39ef1efe086a5bad" kindref="member">update</ref>(reading,<sp/>period);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="65" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="65" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_pid_1a4d6c49dd7e2c040f16885583b6f24cdf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structdlib_1_1_pid_gains" kindref="compound">PidGains</ref></type>
+        <definition>PidGains dlib::Pid&lt; Units &gt;::get_gains</definition>
+        <argsstring>()</argsstring>
+        <name>get_gains</name>
+        <qualifiedname>dlib::Pid::get_gains</qualifiedname>
+        <briefdescription>
+<para>Get PID gains. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structdlib_1_1_pid_gains" kindref="compound">PidGains</ref> gains that the PID constructor contains</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Pid<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>Pid<sp/>gains</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_pid_gains" kindref="compound">dlib::PidGains</ref><sp/>gains<sp/>=<sp/>pid.get_gains();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="114" column="14" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="114" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_pid_1a98c02d8fba954028835599a1a7f2993e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Pid&lt; Units &gt;::set_gains</definition>
+        <argsstring>(PidGains gains)</argsstring>
+        <name>set_gains</name>
+        <qualifiedname>dlib::Pid::set_gains</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_pid_gains" kindref="compound">PidGains</ref></type>
+          <declname>gains</declname>
+        </param>
+        <briefdescription>
+<para>Set PID gains. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gains</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>gains to set the PID constructor to</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Pid<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>Pid<sp/>gains</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">pid.<ref refid="classdlib_1_1_pid_1a98c02d8fba954028835599a1a7f2993e" kindref="member">set_gains</ref>({4,5,6});</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="134" column="10" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="134" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_pid_1a3d3cd672d39b289bce70c99412af5e78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>au::Quantity&lt; Units, double &gt;</type>
+        <definition>au::Quantity&lt; Units, double &gt; dlib::Pid&lt; Units &gt;::get_error</definition>
+        <argsstring>()</argsstring>
+        <name>get_error</name>
+        <qualifiedname>dlib::Pid::get_error</qualifiedname>
+        <briefdescription>
+<para>Get PID error. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>au::Quantity&lt;Units, double&gt; last_error</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Pid<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Get<sp/>Pid<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;Meters,<sp/>double&gt;<sp/>error<sp/>=<sp/>pid.<ref refid="classdlib_1_1_pid_1a3d3cd672d39b289bce70c99412af5e78" kindref="member">get_error</ref>();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="154" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="154" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_pid_1ae37de8a4f230925598fc460a021473e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt;</type>
+        <definition>au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt; dlib::Pid&lt; Units &gt;::get_derivative</definition>
+        <argsstring>()</argsstring>
+        <name>get_derivative</name>
+        <qualifiedname>dlib::Pid::get_derivative</qualifiedname>
+        <briefdescription>
+<para>Get PID derivative. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>au::Quantity&lt;au::TimeDerivative&lt;Units&gt;, double&gt; derivative</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Pid<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Get<sp/>Pid<sp/>derivative</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;au::TimeDerivative&lt;Meters&gt;,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;<sp/>error<sp/>=<sp/>pid.<ref refid="classdlib_1_1_pid_1a3d3cd672d39b289bce70c99412af5e78" kindref="member">get_error</ref>();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="174" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="174" bodyend="176"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>dlib::Pid&lt; Units &gt;</label>
+        <link refid="classdlib_1_1_pid"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>gains</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dlib::PidGains</label>
+        <link refid="structdlib_1_1_pid_gains"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" line="14" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/pid.hpp" bodystart="14" bodyend="186"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_pid_1abb9f74c6817452377827669b09885d7a" prot="protected" virt="non-virtual"><scope>dlib::Pid</scope><name>d</name></member>
+      <member refid="classdlib_1_1_pid_1a3505350d5f6350198a5443292f700f08" prot="protected" virt="non-virtual"><scope>dlib::Pid</scope><name>gains</name></member>
+      <member refid="classdlib_1_1_pid_1ae37de8a4f230925598fc460a021473e4" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>get_derivative</name></member>
+      <member refid="classdlib_1_1_pid_1a3d3cd672d39b289bce70c99412af5e78" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>get_error</name></member>
+      <member refid="classdlib_1_1_pid_1a4d6c49dd7e2c040f16885583b6f24cdf" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>get_gains</name></member>
+      <member refid="classdlib_1_1_pid_1acd467df8c7e00ab24e491a5abfe8c67f" prot="protected" virt="non-virtual"><scope>dlib::Pid</scope><name>i</name></member>
+      <member refid="classdlib_1_1_pid_1a042b3dd8c80cef63f1b84a768db88b09" prot="protected" virt="non-virtual"><scope>dlib::Pid</scope><name>last_error</name></member>
+      <member refid="classdlib_1_1_pid_1ac9a6356a12126f6cd157c1e7a5739d1b" prot="protected" virt="non-virtual"><scope>dlib::Pid</scope><name>p</name></member>
+      <member refid="classdlib_1_1_pid_1a561b0a222d92af361c149a08dac64e6d" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>Pid</name></member>
+      <member refid="classdlib_1_1_pid_1a98c02d8fba954028835599a1a7f2993e" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>set_gains</name></member>
+      <member refid="classdlib_1_1_pid_1abcc0d99bc074bb928f5e739bfac57ddc" prot="protected" virt="non-virtual"><scope>dlib::Pid</scope><name>setpoint</name></member>
+      <member refid="classdlib_1_1_pid_1ab1114acbaef0efe65d5850e43452de29" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>target</name></member>
+      <member refid="classdlib_1_1_pid_1a54e856a630edf71a39ef1efe086a5bad" prot="public" virt="non-virtual"><scope>dlib::Pid</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

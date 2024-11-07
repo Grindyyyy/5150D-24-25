@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_feedforward_gains" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::FeedforwardGains</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_feedforward_gains_1a189cb35d422a4de220fe002b98bff755" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dlib::FeedforwardGains::ks</definition>
+        <argsstring></argsstring>
+        <name>ks</name>
+        <qualifiedname>dlib::FeedforwardGains::ks</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="8" column="12" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_feedforward_gains_1a12719c6d3801277080236f8c096df11d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dlib::FeedforwardGains::kv</definition>
+        <argsstring></argsstring>
+        <name>kv</name>
+        <qualifiedname>dlib::FeedforwardGains::kv</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="9" column="12" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_feedforward_gains_1a792d62e19c4af373b312f68f8b0babf4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dlib::FeedforwardGains::ka</definition>
+        <argsstring></argsstring>
+        <name>ka</name>
+        <qualifiedname>dlib::FeedforwardGains::ka</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="10" column="12" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="7" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" bodystart="7" bodyend="11"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_feedforward_gains_1a792d62e19c4af373b312f68f8b0babf4" prot="public" virt="non-virtual"><scope>dlib::FeedforwardGains</scope><name>ka</name></member>
+      <member refid="structdlib_1_1_feedforward_gains_1a189cb35d422a4de220fe002b98bff755" prot="public" virt="non-virtual"><scope>dlib::FeedforwardGains</scope><name>ks</name></member>
+      <member refid="structdlib_1_1_feedforward_gains_1a12719c6d3801277080236f8c096df11d" prot="public" virt="non-virtual"><scope>dlib::FeedforwardGains</scope><name>kv</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

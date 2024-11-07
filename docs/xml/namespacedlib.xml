@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="namespacedlib" kind="namespace" language="C++">
+    <compoundname>dlib</compoundname>
+    <innerclass refid="classdlib_1_1_chassis" prot="public">dlib::Chassis</innerclass>
+    <innerclass refid="structdlib_1_1_chassis_config" prot="public">dlib::ChassisConfig</innerclass>
+    <innerclass refid="classdlib_1_1_error_derivative_settler" prot="public">dlib::ErrorDerivativeSettler</innerclass>
+    <innerclass refid="classdlib_1_1_feedforward" prot="public">dlib::Feedforward</innerclass>
+    <innerclass refid="structdlib_1_1_feedforward_gains" prot="public">dlib::FeedforwardGains</innerclass>
+    <innerclass refid="classdlib_1_1_imu" prot="public">dlib::Imu</innerclass>
+    <innerclass refid="structdlib_1_1_imu_config" prot="public">dlib::ImuConfig</innerclass>
+    <innerclass refid="classdlib_1_1_motor" prot="public">dlib::Motor</innerclass>
+    <innerclass refid="structdlib_1_1_motor_config" prot="public">dlib::MotorConfig</innerclass>
+    <innerclass refid="classdlib_1_1_motor_group" prot="public">dlib::MotorGroup</innerclass>
+    <innerclass refid="structdlib_1_1_motor_group_config" prot="public">dlib::MotorGroupConfig</innerclass>
+    <innerclass refid="classdlib_1_1_odometry" prot="public">dlib::Odometry</innerclass>
+    <innerclass refid="classdlib_1_1_pid" prot="public">dlib::Pid</innerclass>
+    <innerclass refid="structdlib_1_1_pid_gains" prot="public">dlib::PidGains</innerclass>
+    <innerclass refid="structdlib_1_1_pose2d" prot="public">dlib::Pose2d</innerclass>
+    <innerclass refid="structdlib_1_1_profile_setpoint" prot="public">dlib::ProfileSetpoint</innerclass>
+    <innerclass refid="classdlib_1_1_rotation" prot="public">dlib::Rotation</innerclass>
+    <innerclass refid="structdlib_1_1_rotation_config" prot="public">dlib::RotationConfig</innerclass>
+    <innerclass refid="classdlib_1_1_time_error_settler" prot="public">dlib::TimeErrorSettler</innerclass>
+    <innerclass refid="classdlib_1_1_trapezoid_profile" prot="public">dlib::TrapezoidProfile</innerclass>
+    <innerclass refid="structdlib_1_1_vector2d" prot="public">dlib::Vector2d</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="trapezoid__profile_8hpp_1a576fa61ce5659b271554c10063d16dde" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>TrapezoidProfileStage</name>
+        <qualifiedname>dlib::TrapezoidProfileStage</qualifiedname>
+        <enumvalue id="trapezoid__profile_8hpp_1a576fa61ce5659b271554c10063d16ddea7154352563d75bfd6db32192c8e706c5" prot="public">
+          <name>Accelerating</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="trapezoid__profile_8hpp_1a576fa61ce5659b271554c10063d16ddeaf0706947aed8cf56e13e25ef6348ad6a" prot="public">
+          <name>Coasting</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="trapezoid__profile_8hpp_1a576fa61ce5659b271554c10063d16ddea77da5a8a3f64143490ba125dc7704ca7" prot="public">
+          <name>Decelerating</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="trapezoid__profile_8hpp_1a576fa61ce5659b271554c10063d16ddeaf92965e2c8a7afb3c1b9a5c09a263636" prot="public">
+          <name>Done</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="9" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="9" bodyend="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" line="4" column="1"/>
+  </compounddef>
+</doxygen>

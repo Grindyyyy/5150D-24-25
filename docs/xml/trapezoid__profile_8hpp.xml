@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="trapezoid__profile_8hpp" kind="file" language="C++">
+    <compoundname>trapezoid_profile.hpp</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">cmath</includes>
+    <includes local="yes">au/au.hpp</includes>
+    <includes refid="profile__setpoint_8hpp" local="yes">dlib/trajectories/profile_setpoint.hpp</includes>
+    <includedby refid="dlib_8hpp" local="yes">C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>dlib/trajectories/profile_setpoint.hpp</label>
+        <link refid="profile__setpoint_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp</label>
+        <link refid="trapezoid__profile_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>au/au.hpp</label>
+      </node>
+      <node id="3">
+        <label>cmath</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</label>
+        <link refid="dlib_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp</label>
+        <link refid="trapezoid__profile_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classdlib_1_1_trapezoid_profile" prot="public">dlib::TrapezoidProfile</innerclass>
+    <innernamespace refid="namespacedlib">dlib</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;au/au.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dlib/trajectories/profile_setpoint.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">dlib<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>TrapezoidProfileStage<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>Accelerating,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>Coasting,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>Decelerating,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>Done</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="classdlib_1_1_trapezoid_profile" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classdlib_1_1_trapezoid_profile" kindref="compound">TrapezoidProfile</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::MetersPerSecondSquared,<sp/>double&gt;<sp/>max_acceleration;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::MetersPerSecond,<sp/>double&gt;<sp/>max_velocity;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Meters,<sp/>double&gt;<sp/>total_distance;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Seconds,<sp/>double&gt;<sp/>total_time;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Seconds,<sp/>double&gt;<sp/>accel_cutoff;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Seconds,<sp/>double&gt;<sp/>coast_cutoff;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Seconds,<sp/>double&gt;<sp/>decel_cutoff;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classdlib_1_1_trapezoid_profile" kindref="compound">TrapezoidProfile</ref>(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>au::Quantity&lt;au::MetersPerSecondSquared,<sp/>double&gt;<sp/>max_acceleration,<sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>au::Quantity&lt;au::MetersPerSecond,<sp/>double&gt;<sp/>max_velocity,<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Meters,<sp/>double&gt;<sp/>total_distance</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>TrapezoidProfileStage<sp/>stage(au::Quantity&lt;au::Seconds,<sp/>double&gt;<sp/>elapsed_time);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdlib_1_1_profile_setpoint" kindref="compound">ProfileSetpoint</ref><sp/>calculate(au::Quantity&lt;au::Seconds,<sp/>double&gt;<sp/>elapsed_time);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp"/>
+  </compounddef>
+</doxygen>

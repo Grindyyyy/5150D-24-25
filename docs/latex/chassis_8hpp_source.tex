@@ -1,0 +1,55 @@
+\doxysection{chassis.\+hpp}
+\hypertarget{chassis_8hpp_source}{}\label{chassis_8hpp_source}\index{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp@{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}motor\_group.hpp"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <initializer\_list>}}
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }dlib\ \{}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdlib_1_1_chassis_config}{ChassisConfig}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ std::initializer\_list<int8\_t>\ left\_ports;}
+\DoxyCodeLine{00008\ \ \ \ \ std::initializer\_list<int8\_t>\ right\_ports;}
+\DoxyCodeLine{00009\ \ \ \ \ au::Quantity<au::Rpm,\ double>\ total\_rpm;}
+\DoxyCodeLine{00010\ \ \ \ \ au::Quantity<au::Meters,\ double>\ wheel\_diameter;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{structdlib_1_1_chassis_config}{ChassisConfig}}(}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ std::initializer\_list<int8\_t>\ left\_ports,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ std::initializer\_list<int8\_t>\ right\_ports,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ au::Quantity<au::Rpm,\ double>\ total\_rpm,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ au::Quantity<au::Meters,\ double>\ wheel\_diameter}
+\DoxyCodeLine{00017\ \ \ \ \ );}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdlib_1_1_chassis}{Chassis}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdlib_1_1_chassis_ade24173196b00aa280611064c9e6623f}{initialize}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdlib_1_1_chassis_a3212bf73cad50dba28bf6f6b661e2ed4}{move}}(\textcolor{keywordtype}{double}\ power);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ move\_voltage(au::Quantity<au::Volts,\ double>\ voltage);}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}{turn}}(\textcolor{keywordtype}{double}\ power);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ turn\_voltage(au::Quantity<au::Volts,\ double>\ voltage);}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdlib_1_1_chassis_a4a42fddc85322aa8e394b254b189c6e8}{arcade}}(\textcolor{keywordtype}{double}\ power,\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classdlib_1_1_chassis_a2910d1ddb3887cfb7bc10a74b774771b}{turn}});}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ au::Quantity<au::Meters,\ double>\ revolutions\_to\_displacement(au::Quantity<au::Revolutions,\ double>\ revolutions);}
+\DoxyCodeLine{00125\ \ \ \ \ au::Quantity<au::MetersPerSecond,\ double>\ rpm\_to\_velocity(au::Quantity<au::Rpm,\ double>\ rpm);}
+\DoxyCodeLine{00126\ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ au::Quantity<au::Meters,\ double>\ left\_motors\_displacement();}
+\DoxyCodeLine{00128\ \ \ \ \ au::Quantity<au::Meters,\ double>\ right\_motors\_displacement();}
+\DoxyCodeLine{00129\ \ \ \ \ au::Quantity<au::Meters,\ double>\ average\_motor\_displacement();}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_chassis}{Chassis}}(\mbox{\hyperlink{structdlib_1_1_chassis_config}{ChassisConfig}}\ config);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_motor_group}{dlib::MotorGroup}}\ left\_motors;}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_motor_group}{dlib::MotorGroup}}\ right\_motors;}
+\DoxyCodeLine{00135\ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ au::Quantity<au::Rpm,\ double>\ total\_rpm;}
+\DoxyCodeLine{00137\ \ \ \ \ au::Quantity<au::Meters,\ double>\ wheel\_diameter;}
+\DoxyCodeLine{00138\ \};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \}}
+
+\end{DoxyCode}

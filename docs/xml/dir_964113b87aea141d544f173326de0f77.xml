@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_964113b87aea141d544f173326de0f77" kind="dir">
+    <compoundname>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics</compoundname>
+    <innerfile refid="odometry_8hpp">odometry.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/"/>
+  </compounddef>
+</doxygen>

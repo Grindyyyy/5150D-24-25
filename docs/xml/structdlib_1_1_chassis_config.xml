@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_chassis_config" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::ChassisConfig</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_chassis_config_1aa807635e7051525938bc6ae23309b736" prot="public" static="no" mutable="no">
+        <type>std::initializer_list&lt; int8_t &gt;</type>
+        <definition>std::initializer_list&lt;int8_t&gt; dlib::ChassisConfig::left_ports</definition>
+        <argsstring></argsstring>
+        <name>left_ports</name>
+        <qualifiedname>dlib::ChassisConfig::left_ports</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="7" column="27" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_chassis_config_1af0f94c14c8633075dfc34abed7465670" prot="public" static="no" mutable="no">
+        <type>std::initializer_list&lt; int8_t &gt;</type>
+        <definition>std::initializer_list&lt;int8_t&gt; dlib::ChassisConfig::right_ports</definition>
+        <argsstring></argsstring>
+        <name>right_ports</name>
+        <qualifiedname>dlib::ChassisConfig::right_ports</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="8" column="27" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_chassis_config_1a4dbd7fbb08c19a0ee0f20ff979c661e0" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Rpm, double &gt;</type>
+        <definition>au::Quantity&lt;au::Rpm, double&gt; dlib::ChassisConfig::total_rpm</definition>
+        <argsstring></argsstring>
+        <name>total_rpm</name>
+        <qualifiedname>dlib::ChassisConfig::total_rpm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="9" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_chassis_config_1a8ea99c0bde5c35fe66ff8811ac12c4f9" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::ChassisConfig::wheel_diameter</definition>
+        <argsstring></argsstring>
+        <name>wheel_diameter</name>
+        <qualifiedname>dlib::ChassisConfig::wheel_diameter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="10" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structdlib_1_1_chassis_config_1a0ecff8a590b7d77974d49086192fcaa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::ChassisConfig::ChassisConfig</definition>
+        <argsstring>(std::initializer_list&lt; int8_t &gt; left_ports, std::initializer_list&lt; int8_t &gt; right_ports, au::Quantity&lt; au::Rpm, double &gt; total_rpm, au::Quantity&lt; au::Meters, double &gt; wheel_diameter)</argsstring>
+        <name>ChassisConfig</name>
+        <qualifiedname>dlib::ChassisConfig::ChassisConfig</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; int8_t &gt;</type>
+          <declname>left_ports</declname>
+        </param>
+        <param>
+          <type>std::initializer_list&lt; int8_t &gt;</type>
+          <declname>right_ports</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Rpm, double &gt;</type>
+          <declname>total_rpm</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>wheel_diameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="12" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="6" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="6" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_chassis_config_1a0ecff8a590b7d77974d49086192fcaa4" prot="public" virt="non-virtual"><scope>dlib::ChassisConfig</scope><name>ChassisConfig</name></member>
+      <member refid="structdlib_1_1_chassis_config_1aa807635e7051525938bc6ae23309b736" prot="public" virt="non-virtual"><scope>dlib::ChassisConfig</scope><name>left_ports</name></member>
+      <member refid="structdlib_1_1_chassis_config_1af0f94c14c8633075dfc34abed7465670" prot="public" virt="non-virtual"><scope>dlib::ChassisConfig</scope><name>right_ports</name></member>
+      <member refid="structdlib_1_1_chassis_config_1a4dbd7fbb08c19a0ee0f20ff979c661e0" prot="public" virt="non-virtual"><scope>dlib::ChassisConfig</scope><name>total_rpm</name></member>
+      <member refid="structdlib_1_1_chassis_config_1a8ea99c0bde5c35fe66ff8811ac12c4f9" prot="public" virt="non-virtual"><scope>dlib::ChassisConfig</scope><name>wheel_diameter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

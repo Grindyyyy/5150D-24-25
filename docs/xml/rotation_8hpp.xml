@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="rotation_8hpp" kind="file" language="C++">
+    <compoundname>rotation.hpp</compoundname>
+    <includes local="yes">pros/rotation.hpp</includes>
+    <includes local="yes">au/au.hpp</includes>
+    <includedby refid="dlib_8hpp" local="yes">C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp</label>
+        <link refid="rotation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>au/au.hpp</label>
+      </node>
+      <node id="2">
+        <label>pros/rotation.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</label>
+        <link refid="dlib_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp</label>
+        <link refid="rotation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structdlib_1_1_rotation_config" prot="public">dlib::RotationConfig</innerclass>
+    <innerclass refid="classdlib_1_1_rotation" prot="public">dlib::Rotation</innerclass>
+    <innernamespace refid="namespacedlib">dlib</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pros/rotation.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;au/au.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">dlib<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="structdlib_1_1_rotation_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdlib_1_1_rotation_config" kindref="compound">RotationConfig</ref><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>int8_t<sp/>port;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdlib_1_1_rotation_config" kindref="compound">RotationConfig</ref>(int8_t<sp/>port);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classdlib_1_1_rotation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classdlib_1_1_rotation" kindref="compound">Rotation</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Revolutions,<sp/>double&gt;<sp/>get_position();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Rpm,<sp/>double&gt;<sp/>get_velocity();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classdlib_1_1_rotation" kindref="compound">Rotation</ref>(<ref refid="structdlib_1_1_rotation_config" kindref="compound">RotationConfig</ref><sp/>config);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>pros::Rotation<sp/>raw;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp"/>
+  </compounddef>
+</doxygen>

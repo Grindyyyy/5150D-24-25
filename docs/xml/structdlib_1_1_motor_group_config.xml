@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_motor_group_config" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::MotorGroupConfig</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_motor_group_config_1a484f2bd23d2f92b9f5692b8db147f8e7" prot="public" static="no" mutable="no">
+        <type>std::initializer_list&lt; int8_t &gt;</type>
+        <definition>std::initializer_list&lt;int8_t&gt; dlib::MotorGroupConfig::ports</definition>
+        <argsstring></argsstring>
+        <name>ports</name>
+        <qualifiedname>dlib::MotorGroupConfig::ports</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="9" column="27" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structdlib_1_1_motor_group_config_1a3d51bf4bba32718081e1fdcc041ea118" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::MotorGroupConfig::MotorGroupConfig</definition>
+        <argsstring>(std::initializer_list&lt; int8_t &gt; ports)</argsstring>
+        <name>MotorGroupConfig</name>
+        <qualifiedname>dlib::MotorGroupConfig::MotorGroupConfig</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; int8_t &gt;</type>
+          <declname>ports</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="11" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="8" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" bodystart="8" bodyend="12"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_motor_group_config_1a3d51bf4bba32718081e1fdcc041ea118" prot="public" virt="non-virtual"><scope>dlib::MotorGroupConfig</scope><name>MotorGroupConfig</name></member>
+      <member refid="structdlib_1_1_motor_group_config_1a484f2bd23d2f92b9f5692b8db147f8e7" prot="public" virt="non-virtual"><scope>dlib::MotorGroupConfig</scope><name>ports</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

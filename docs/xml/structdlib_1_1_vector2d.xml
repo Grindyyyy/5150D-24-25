@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_vector2d" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::Vector2d</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_vector2d_1a8524d4cbdb52764417672da2debf29cc" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::Vector2d::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>dlib::Vector2d::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="7" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_vector2d_1a7287c4d6b2b95eae5c455c17a3bb1a87" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::Vector2d::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>dlib::Vector2d::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="8" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structdlib_1_1_vector2d_1a269acf8ea5bcfaa84af2e53fc58d1494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Vector2d::Vector2d</definition>
+        <argsstring>(au::Quantity&lt; au::Meters, double &gt; x, au::Quantity&lt; au::Meters, double &gt; y)</argsstring>
+        <name>Vector2d</name>
+        <qualifiedname>dlib::Vector2d::Vector2d</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="10" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" line="6" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/kinematics/odometry.hpp" bodystart="6" bodyend="14"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_vector2d_1a269acf8ea5bcfaa84af2e53fc58d1494" prot="public" virt="non-virtual"><scope>dlib::Vector2d</scope><name>Vector2d</name></member>
+      <member refid="structdlib_1_1_vector2d_1a8524d4cbdb52764417672da2debf29cc" prot="public" virt="non-virtual"><scope>dlib::Vector2d</scope><name>x</name></member>
+      <member refid="structdlib_1_1_vector2d_1a7287c4d6b2b95eae5c455c17a3bb1a87" prot="public" virt="non-virtual"><scope>dlib::Vector2d</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

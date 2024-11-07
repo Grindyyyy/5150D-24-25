@@ -1,0 +1,43 @@
+\doxysection{trapezoid\+\_\+profile.\+hpp}
+\hypertarget{trapezoid__profile_8hpp_source}{}\label{trapezoid__profile_8hpp_source}\index{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid\_profile.hpp@{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid\_profile.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}au/au.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}dlib/trajectories/profile\_setpoint.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }dlib\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{enum\ class}\ TrapezoidProfileStage\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ Accelerating,}
+\DoxyCodeLine{00011\ \ \ \ \ Coasting,}
+\DoxyCodeLine{00012\ \ \ \ \ Decelerating,}
+\DoxyCodeLine{00013\ \ \ \ \ Done}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdlib_1_1_trapezoid_profile}{TrapezoidProfile}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ au::Quantity<au::MetersPerSecondSquared,\ double>\ max\_acceleration;}
+\DoxyCodeLine{00019\ \ \ \ \ au::Quantity<au::MetersPerSecond,\ double>\ max\_velocity;}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ au::Quantity<au::Meters,\ double>\ total\_distance;}
+\DoxyCodeLine{00022\ \ \ \ \ au::Quantity<au::Seconds,\ double>\ total\_time;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ au::Quantity<au::Seconds,\ double>\ accel\_cutoff;}
+\DoxyCodeLine{00025\ \ \ \ \ au::Quantity<au::Seconds,\ double>\ coast\_cutoff;}
+\DoxyCodeLine{00026\ \ \ \ \ au::Quantity<au::Seconds,\ double>\ decel\_cutoff;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_trapezoid_profile}{TrapezoidProfile}}(}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ au::Quantity<au::MetersPerSecondSquared,\ double>\ max\_acceleration,\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ au::Quantity<au::MetersPerSecond,\ double>\ max\_velocity,\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ au::Quantity<au::Meters,\ double>\ total\_distance}
+\DoxyCodeLine{00032\ \ \ \ \ );}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ TrapezoidProfileStage\ stage(au::Quantity<au::Seconds,\ double>\ elapsed\_time);}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{structdlib_1_1_profile_setpoint}{ProfileSetpoint}}\ calculate(au::Quantity<au::Seconds,\ double>\ elapsed\_time);}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ \}}
+
+\end{DoxyCode}

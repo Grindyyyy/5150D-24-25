@@ -1,0 +1,68 @@
+\doxysection{dlib\+::Error\+Derivative\+Settler\texorpdfstring{$<$}{<} Units \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classdlib_1_1_error_derivative_settler}{}\label{classdlib_1_1_error_derivative_settler}\index{dlib::ErrorDerivativeSettler$<$ Units $>$@{dlib::ErrorDerivativeSettler$<$ Units $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_error_derivative_settler_a0caa9b739f4080a7f09514c6023b0d9e}\label{classdlib_1_1_error_derivative_settler_a0caa9b739f4080a7f09514c6023b0d9e} 
+{\bfseries Error\+Derivative\+Settler} (au\+::\+Quantity$<$ Units, double $>$ error\+\_\+threshold, au\+::\+Quantity$<$ au\+::\+Time\+Derivative$<$ Units $>$, double $>$ derivative\+\_\+threshold)
+\item 
+bool \mbox{\hyperlink{classdlib_1_1_error_derivative_settler_a7bc4da4be24d44fa02277e4a2ffeb9f8}{is\+\_\+settled}} (au\+::\+Quantity$<$ Units, double $>$ error, au\+::\+Quantity$<$ au\+::\+Time\+Derivative$<$ Units $>$, double $>$ derivative)
+\begin{DoxyCompactList}\small\item\em Check if controller has settled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_error_derivative_settler_afafc694e739dead20e8d57d303a35bc8}\label{classdlib_1_1_error_derivative_settler_afafc694e739dead20e8d57d303a35bc8} 
+au\+::\+Quantity$<$ Units, double $>$ {\bfseries error\+\_\+threshold}
+\item 
+\Hypertarget{classdlib_1_1_error_derivative_settler_a52515a0e41e7dcb8801ef89ec9037a09}\label{classdlib_1_1_error_derivative_settler_a52515a0e41e7dcb8801ef89ec9037a09} 
+au\+::\+Quantity$<$ au\+::\+Time\+Derivative$<$ Units $>$, double $>$ {\bfseries derivative\+\_\+threshold}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdlib_1_1_error_derivative_settler_a7bc4da4be24d44fa02277e4a2ffeb9f8}\index{dlib::ErrorDerivativeSettler$<$ Units $>$@{dlib::ErrorDerivativeSettler$<$ Units $>$}!is\_settled@{is\_settled}}
+\index{is\_settled@{is\_settled}!dlib::ErrorDerivativeSettler$<$ Units $>$@{dlib::ErrorDerivativeSettler$<$ Units $>$}}
+\doxysubsubsection{\texorpdfstring{is\_settled()}{is\_settled()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_error_derivative_settler_a7bc4da4be24d44fa02277e4a2ffeb9f8} 
+template$<$typename Units $>$ \\
+bool \mbox{\hyperlink{classdlib_1_1_error_derivative_settler}{dlib\+::\+Error\+Derivative\+Settler}}$<$ Units $>$\+::is\+\_\+settled (\begin{DoxyParamCaption}\item[{au\+::\+Quantity$<$ Units, double $>$}]{error}{, }\item[{au\+::\+Quantity$<$ au\+::\+Time\+Derivative$<$ Units $>$, double $>$}]{derivative}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if controller has settled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & distance from setpoint \\
+\hline
+{\em derivative} & velocity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ PID\ controller}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_pid}{dlib::Pid<Meters>}}\ pid(\{1,2,3\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ an\ ErrorDerivativeSettler\ controller}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_error_derivative_settler}{dlib::ErrorDerivativeSettler<Meters>}}\ pid\_settler\ \{}
+\DoxyCodeLine{meters(0.01),\ \ \ \ \ \ \ \textcolor{comment}{//\ error\ threshold,\ the\ maximum\ error\ the\ pid\ can\ settle\ at}}
+\DoxyCodeLine{meters\_per\_second(0.01)\ \textcolor{comment}{//\ derivative\ threshold,\ the\ maximum\ instantaneous\ error\ over\ time\ the\ pid\ can\ settle\ at}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Instantiate\ error\ and\ derivative}}
+\DoxyCodeLine{au::Quantity<Meters,\ double>\ error\ =\ pid.get\_error();}
+\DoxyCodeLine{au::Quantity<au::TimeDerivative<Meters>,\ \textcolor{keywordtype}{double}>\ derivative\ =\ pid.get\_derivative();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ settled\ =\ pid\_settler.\mbox{\hyperlink{classdlib_1_1_error_derivative_settler_a7bc4da4be24d44fa02277e4a2ffeb9f8}{is\_settled}}(error,\ derivative);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/super/\+Downloads/d\+Lib2/dlib2/dlib2/include/dlib/controllers/error\+\_\+derivative\+\_\+settler.\+hpp\end{DoxyCompactItemize}

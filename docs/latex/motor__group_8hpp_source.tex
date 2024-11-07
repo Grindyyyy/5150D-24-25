@@ -1,0 +1,32 @@
+\doxysection{motor\+\_\+group.\+hpp}
+\hypertarget{motor__group_8hpp_source}{}\label{motor__group_8hpp_source}\index{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor\_group.hpp@{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor\_group.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}pros/motor\_group.hpp"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}au/au.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <initializer\_list>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }dlib\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdlib_1_1_motor_group_config}{MotorGroupConfig}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ std::initializer\_list<int8\_t>\ ports;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{structdlib_1_1_motor_group_config}{MotorGroupConfig}}(std::initializer\_list<int8\_t>\ ports);}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdlib_1_1_motor_group}{MotorGroup}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ send(\textcolor{keywordtype}{double}\ power);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ send\_voltage(au::Quantity<au::Volts,\ double>\ voltage);}
+\DoxyCodeLine{00018\ \ \ \ \ au::Quantity<au::Revolutions,\ double>\ get\_position();}
+\DoxyCodeLine{00019\ \ \ \ \ au::Quantity<au::Rpm,\ double>\ get\_velocity();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_motor_group}{MotorGroup}}(\mbox{\hyperlink{structdlib_1_1_motor_group_config}{MotorGroupConfig}}\ config);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ pros::MotorGroup\ raw;}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \}}
+
+\end{DoxyCode}

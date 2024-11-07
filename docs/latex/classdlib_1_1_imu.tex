@@ -1,0 +1,103 @@
+\doxysection{dlib\+::Imu Class Reference}
+\hypertarget{classdlib_1_1_imu}{}\label{classdlib_1_1_imu}\index{dlib::Imu@{dlib::Imu}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdlib_1_1_imu_a3a53eaee11bc5fe6bc6412c6e6bcb1f3}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the \doxylink{classdlib_1_1_imu}{Imu}. \end{DoxyCompactList}\item 
+au\+::\+Quantity$<$ au\+::\+Degrees, double $>$ \mbox{\hyperlink{classdlib_1_1_imu_afb9cbe67e7361c52103477da2681fa7a}{get\+\_\+rotation}} ()
+\begin{DoxyCompactList}\small\item\em Get \doxylink{classdlib_1_1_imu}{Imu} rotation. \end{DoxyCompactList}\item 
+au\+::\+Quantity$<$ au\+::\+Degrees, double $>$ \mbox{\hyperlink{classdlib_1_1_imu_a8757736af39c9d82de947cb6493b2e7d}{get\+\_\+heading}} ()
+\begin{DoxyCompactList}\small\item\em Get \doxylink{classdlib_1_1_imu}{Imu} heading. \end{DoxyCompactList}\item 
+\Hypertarget{classdlib_1_1_imu_a18802c5ff259f134741445e04d7f9e35}\label{classdlib_1_1_imu_a18802c5ff259f134741445e04d7f9e35} 
+{\bfseries Imu} (\mbox{\hyperlink{structdlib_1_1_imu_config}{Imu\+Config}} config)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_imu_a016639cf1c6f2e9b860571aac6b45c3e}\label{classdlib_1_1_imu_a016639cf1c6f2e9b860571aac6b45c3e} 
+pros\+::\+Imu {\bfseries raw}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_imu_a1f1f497d3788072147d256ecf3c0b45a}\label{classdlib_1_1_imu_a1f1f497d3788072147d256ecf3c0b45a} 
+double {\bfseries scalar}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdlib_1_1_imu_a8757736af39c9d82de947cb6493b2e7d}\index{dlib::Imu@{dlib::Imu}!get\_heading@{get\_heading}}
+\index{get\_heading@{get\_heading}!dlib::Imu@{dlib::Imu}}
+\doxysubsubsection{\texorpdfstring{get\_heading()}{get\_heading()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_imu_a8757736af39c9d82de947cb6493b2e7d} 
+au\+::\+Quantity$<$ au\+::\+Degrees, double $>$ dlib\+::\+Imu\+::get\+\_\+heading (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get \doxylink{classdlib_1_1_imu}{Imu} heading. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_imu_config}{dlib::ImuConfig}}\ imu\_config(\{}
+\DoxyCodeLine{7,\ \ \textcolor{comment}{//\ imu\ port}}
+\DoxyCodeLine{1.001\ \ \ \textcolor{comment}{//\ optional\ imu\ scaling\ constant}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_imu}{dlib::Imu}}\ imu(imu\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{au::Quantity<au::Degrees,\ double>\ degrees\ =\ imu.get\_heading();}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_imu_afb9cbe67e7361c52103477da2681fa7a}\index{dlib::Imu@{dlib::Imu}!get\_rotation@{get\_rotation}}
+\index{get\_rotation@{get\_rotation}!dlib::Imu@{dlib::Imu}}
+\doxysubsubsection{\texorpdfstring{get\_rotation()}{get\_rotation()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_imu_afb9cbe67e7361c52103477da2681fa7a} 
+au\+::\+Quantity$<$ au\+::\+Degrees, double $>$ dlib\+::\+Imu\+::get\+\_\+rotation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get \doxylink{classdlib_1_1_imu}{Imu} rotation. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_imu_config}{dlib::ImuConfig}}\ imu\_config(\{}
+\DoxyCodeLine{7,\ \ \textcolor{comment}{//\ imu\ port}}
+\DoxyCodeLine{1.001\ \ \ \textcolor{comment}{//\ optional\ imu\ scaling\ constant}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_imu}{dlib::Imu}}\ imu(imu\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{au::Quantity<au::Degrees,\ double>\ degrees\ =\ imu.get\_rotation();}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_imu_a3a53eaee11bc5fe6bc6412c6e6bcb1f3}\index{dlib::Imu@{dlib::Imu}!initialize@{initialize}}
+\index{initialize@{initialize}!dlib::Imu@{dlib::Imu}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_imu_a3a53eaee11bc5fe6bc6412c6e6bcb1f3} 
+void dlib\+::\+Imu\+::initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the \doxylink{classdlib_1_1_imu}{Imu}. 
+
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_imu_config}{dlib::ImuConfig}}\ imu\_config(\{}
+\DoxyCodeLine{7,\ \ \textcolor{comment}{//\ imu\ port}}
+\DoxyCodeLine{1.001\ \ \ \textcolor{comment}{//\ optional\ imu\ scaling\ constant}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_imu}{dlib::Imu}}\ imu(imu\_config);}
+\DoxyCodeLine{}
+\DoxyCodeLine{imu.initialize();}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/super/\+Downloads/d\+Lib2/dlib2/dlib2/include/dlib/hardware/imu.\+hpp\end{DoxyCompactItemize}

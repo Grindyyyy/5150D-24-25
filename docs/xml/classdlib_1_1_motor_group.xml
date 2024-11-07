@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_motor_group" kind="class" language="C++" prot="public">
+    <compoundname>dlib::MotorGroup</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_motor_group_1aa0348ac675ae662023d7c35656437a55" prot="public" static="no" mutable="no">
+        <type>pros::MotorGroup</type>
+        <definition>pros::MotorGroup dlib::MotorGroup::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <qualifiedname>dlib::MotorGroup::raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="23" column="22" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_motor_group_1aed41201a06a6a6831a6f6baaba45adda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::MotorGroup::send</definition>
+        <argsstring>(double power)</argsstring>
+        <name>send</name>
+        <qualifiedname>dlib::MotorGroup::send</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="16" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_motor_group_1a559954a524bf9ec68b1e7a394ada2f57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::MotorGroup::send_voltage</definition>
+        <argsstring>(au::Quantity&lt; au::Volts, double &gt; voltage)</argsstring>
+        <name>send_voltage</name>
+        <qualifiedname>dlib::MotorGroup::send_voltage</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Volts, double &gt;</type>
+          <declname>voltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="17" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_motor_group_1ac4bfcc515fadba0f5ba262acf5a367b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Revolutions, double &gt;</type>
+        <definition>au::Quantity&lt; au::Revolutions, double &gt; dlib::MotorGroup::get_position</definition>
+        <argsstring>()</argsstring>
+        <name>get_position</name>
+        <qualifiedname>dlib::MotorGroup::get_position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="18" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_motor_group_1abce7cc77262c1605aa29e0cd40704a09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Rpm, double &gt;</type>
+        <definition>au::Quantity&lt; au::Rpm, double &gt; dlib::MotorGroup::get_velocity</definition>
+        <argsstring>()</argsstring>
+        <name>get_velocity</name>
+        <qualifiedname>dlib::MotorGroup::get_velocity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="19" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_motor_group_1a93f95e6ee976aeae3216769b0c183d45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::MotorGroup::MotorGroup</definition>
+        <argsstring>(MotorGroupConfig config)</argsstring>
+        <name>MotorGroup</name>
+        <qualifiedname>dlib::MotorGroup::MotorGroup</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_motor_group_config" kindref="compound">MotorGroupConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="21" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" line="14" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp" bodystart="14" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_motor_group_1ac4bfcc515fadba0f5ba262acf5a367b5" prot="public" virt="non-virtual"><scope>dlib::MotorGroup</scope><name>get_position</name></member>
+      <member refid="classdlib_1_1_motor_group_1abce7cc77262c1605aa29e0cd40704a09" prot="public" virt="non-virtual"><scope>dlib::MotorGroup</scope><name>get_velocity</name></member>
+      <member refid="classdlib_1_1_motor_group_1a93f95e6ee976aeae3216769b0c183d45" prot="public" virt="non-virtual"><scope>dlib::MotorGroup</scope><name>MotorGroup</name></member>
+      <member refid="classdlib_1_1_motor_group_1aa0348ac675ae662023d7c35656437a55" prot="public" virt="non-virtual"><scope>dlib::MotorGroup</scope><name>raw</name></member>
+      <member refid="classdlib_1_1_motor_group_1aed41201a06a6a6831a6f6baaba45adda" prot="public" virt="non-virtual"><scope>dlib::MotorGroup</scope><name>send</name></member>
+      <member refid="classdlib_1_1_motor_group_1a559954a524bf9ec68b1e7a394ada2f57" prot="public" virt="non-virtual"><scope>dlib::MotorGroup</scope><name>send_voltage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

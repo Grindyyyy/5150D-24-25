@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_feedforward" kind="class" language="C++" prot="public">
+    <compoundname>dlib::Feedforward</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_feedforward_1a34a03f4c14ca558dd4ceae250d76910d" prot="protected" static="no" mutable="no">
+        <type><ref refid="structdlib_1_1_feedforward_gains" kindref="compound">FeedforwardGains</ref></type>
+        <definition>FeedforwardGains dlib::Feedforward::gains</definition>
+        <argsstring></argsstring>
+        <name>gains</name>
+        <qualifiedname>dlib::Feedforward::gains</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="78" column="22" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_feedforward_1a5e804115f75b59d1c918d572d02482d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Feedforward::Feedforward</definition>
+        <argsstring>(FeedforwardGains gains_settings)</argsstring>
+        <name>Feedforward</name>
+        <qualifiedname>dlib::Feedforward::Feedforward</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_feedforward_gains" kindref="compound">FeedforwardGains</ref></type>
+          <declname>gains_settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="16" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_feedforward_1aabd57b09f20bbbc9e75d844b079345df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Volts, double &gt;</type>
+        <definition>au::Quantity&lt; au::Volts, double &gt; dlib::Feedforward::calculate</definition>
+        <argsstring>(au::Quantity&lt; au::MetersPerSecond, double &gt; target_velocity, au::Quantity&lt; au::MetersPerSecondSquared, double &gt; target_acceleration=au::ZERO)</argsstring>
+        <name>calculate</name>
+        <qualifiedname>dlib::Feedforward::calculate</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::MetersPerSecond, double &gt;</type>
+          <declname>target_velocity</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::MetersPerSecondSquared, double &gt;</type>
+          <declname>target_acceleration</declname>
+          <defval>au::ZERO</defval>
+        </param>
+        <briefdescription>
+<para>Calculate <ref refid="classdlib_1_1_feedforward" kindref="compound">Feedforward</ref> voltage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>target_velocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>generated velocity from mp </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target_accleration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>generated acceleration from mp </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>au::Quantity&lt;au::Volts, double&gt;</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Feedforward<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_feedforward" kindref="compound">dlib::Feedforward</ref><sp/>ff<sp/>=<sp/><ref refid="classdlib_1_1_feedforward" kindref="compound">dlib::Feedforward</ref>({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Calculate<sp/>voltage<sp/>from<sp/>motion<sp/>profile</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;au::Volts,<sp/>double&gt;<sp/>voltage<sp/>=<sp/>ff.<ref refid="classdlib_1_1_feedforward_1aabd57b09f20bbbc9e75d844b079345df" kindref="member">calculate</ref>(target_velocity,<sp/>target_acceleration);<sp/></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="36" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_feedforward_1a6b75e9d706bea3e482025e1329666402" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdlib_1_1_feedforward_gains" kindref="compound">FeedforwardGains</ref></type>
+        <definition>FeedforwardGains dlib::Feedforward::get_gains</definition>
+        <argsstring>()</argsstring>
+        <name>get_gains</name>
+        <qualifiedname>dlib::Feedforward::get_gains</qualifiedname>
+        <briefdescription>
+<para>Get <ref refid="classdlib_1_1_feedforward" kindref="compound">Feedforward</ref> Gains. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structdlib_1_1_feedforward_gains" kindref="compound">FeedforwardGains</ref> gains</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Feedforward<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_feedforward" kindref="compound">dlib::Feedforward</ref><sp/>ff<sp/>=<sp/><ref refid="classdlib_1_1_feedforward" kindref="compound">dlib::Feedforward</ref>({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>Feedforward<sp/>gains</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_feedforward_gains" kindref="compound">dlib::FeedforwardGains</ref><sp/>gains<sp/>=<sp/>ff.<ref refid="classdlib_1_1_feedforward_1a6b75e9d706bea3e482025e1329666402" kindref="member">get_gains</ref>();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="57" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_feedforward_1a0ff8c1cf5109c5fcd6004710860edd94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Feedforward::set_gains</definition>
+        <argsstring>(FeedforwardGains new_gains)</argsstring>
+        <name>set_gains</name>
+        <qualifiedname>dlib::Feedforward::set_gains</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_feedforward_gains" kindref="compound">FeedforwardGains</ref></type>
+          <declname>new_gains</declname>
+        </param>
+        <briefdescription>
+<para>Set <ref refid="classdlib_1_1_feedforward" kindref="compound">Feedforward</ref> gains. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_gains</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>Feedforward<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_feedforward" kindref="compound">dlib::Feedforward</ref><sp/>ff<sp/>=<sp/><ref refid="classdlib_1_1_feedforward" kindref="compound">dlib::Feedforward</ref>({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>Feedforward<sp/>gains</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">ff.<ref refid="classdlib_1_1_feedforward_1a0ff8c1cf5109c5fcd6004710860edd94" kindref="member">set_gains</ref>({4,5,6});</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="75" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>dlib::Feedforward</label>
+        <link refid="classdlib_1_1_feedforward"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>gains</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dlib::FeedforwardGains</label>
+        <link refid="structdlib_1_1_feedforward_gains"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" line="13" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/feedforward.hpp" bodystart="13" bodyend="80"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_feedforward_1aabd57b09f20bbbc9e75d844b079345df" prot="public" virt="non-virtual"><scope>dlib::Feedforward</scope><name>calculate</name></member>
+      <member refid="classdlib_1_1_feedforward_1a5e804115f75b59d1c918d572d02482d4" prot="public" virt="non-virtual"><scope>dlib::Feedforward</scope><name>Feedforward</name></member>
+      <member refid="classdlib_1_1_feedforward_1a34a03f4c14ca558dd4ceae250d76910d" prot="protected" virt="non-virtual"><scope>dlib::Feedforward</scope><name>gains</name></member>
+      <member refid="classdlib_1_1_feedforward_1a6b75e9d706bea3e482025e1329666402" prot="public" virt="non-virtual"><scope>dlib::Feedforward</scope><name>get_gains</name></member>
+      <member refid="classdlib_1_1_feedforward_1a0ff8c1cf5109c5fcd6004710860edd94" prot="public" virt="non-virtual"><scope>dlib::Feedforward</scope><name>set_gains</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

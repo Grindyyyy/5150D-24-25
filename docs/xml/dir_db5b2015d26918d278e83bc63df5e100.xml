@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_db5b2015d26918d278e83bc63df5e100" kind="dir">
+    <compoundname>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware</compoundname>
+    <innerfile refid="chassis_8hpp">chassis.hpp</innerfile>
+    <innerfile refid="imu_8hpp">imu.hpp</innerfile>
+    <innerfile refid="motor_8hpp">motor.hpp</innerfile>
+    <innerfile refid="motor__group_8hpp">motor_group.hpp</innerfile>
+    <innerfile refid="rotation_8hpp">rotation.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/"/>
+  </compounddef>
+</doxygen>

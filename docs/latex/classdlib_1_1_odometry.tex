@@ -1,0 +1,37 @@
+\doxysection{dlib\+::Odometry Class Reference}
+\hypertarget{classdlib_1_1_odometry}{}\label{classdlib_1_1_odometry}\index{dlib::Odometry@{dlib::Odometry}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_odometry_aa243533628d02ebd8ea4b1356b749f58}\label{classdlib_1_1_odometry_aa243533628d02ebd8ea4b1356b749f58} 
+void {\bfseries update} (au\+::\+Quantity$<$ au\+::\+Meters, double $>$ left\+\_\+displacement, au\+::\+Quantity$<$ au\+::\+Meters, double $>$ right\+\_\+displacement, au\+::\+Quantity$<$ au\+::\+Degrees, double $>$ heading)
+\item 
+\Hypertarget{classdlib_1_1_odometry_aff1bcf403d9f255dbb0a39212779ed0c}\label{classdlib_1_1_odometry_aff1bcf403d9f255dbb0a39212779ed0c} 
+\mbox{\hyperlink{structdlib_1_1_pose2d}{Pose2d}} {\bfseries get\+\_\+position} ()
+\item 
+\Hypertarget{classdlib_1_1_odometry_a5801fa35c62bf3a3840e2948e1a6a8d5}\label{classdlib_1_1_odometry_a5801fa35c62bf3a3840e2948e1a6a8d5} 
+void {\bfseries set\+\_\+position} (\mbox{\hyperlink{structdlib_1_1_pose2d}{Pose2d}} pose)
+\item 
+\Hypertarget{classdlib_1_1_odometry_ab8b38f9263c17be3b2e7772335d573a6}\label{classdlib_1_1_odometry_ab8b38f9263c17be3b2e7772335d573a6} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries displacement\+\_\+to} (\mbox{\hyperlink{structdlib_1_1_vector2d}{Vector2d}} point, bool reverse=false)
+\item 
+\Hypertarget{classdlib_1_1_odometry_a9067660c8b02733adfc49e18007b2238}\label{classdlib_1_1_odometry_a9067660c8b02733adfc49e18007b2238} 
+au\+::\+Quantity$<$ au\+::\+Degrees, double $>$ {\bfseries angle\+\_\+to} (\mbox{\hyperlink{structdlib_1_1_vector2d}{Vector2d}} point, bool reverse=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_odometry_af6feb429804af618d1a62137e9096ba5}\label{classdlib_1_1_odometry_af6feb429804af618d1a62137e9096ba5} 
+\mbox{\hyperlink{structdlib_1_1_pose2d}{Pose2d}} {\bfseries position} = \mbox{\hyperlink{structdlib_1_1_pose2d}{Pose2d}}(au\+::\+ZERO, au\+::\+ZERO, au\+::\+ZERO)
+\item 
+\Hypertarget{classdlib_1_1_odometry_a38e24c50f810fa9c066324b74af6ba3a}\label{classdlib_1_1_odometry_a38e24c50f810fa9c066324b74af6ba3a} 
+au\+::\+Quantity$<$ au\+::\+Meters, double $>$ {\bfseries previous\+\_\+forward}
+\item 
+\Hypertarget{classdlib_1_1_odometry_a411dfb75318be6becef169a2a5534c37}\label{classdlib_1_1_odometry_a411dfb75318be6becef169a2a5534c37} 
+au\+::\+Quantity$<$ au\+::\+Radians, double $>$ {\bfseries previous\+\_\+theta}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/super/\+Downloads/d\+Lib2/dlib2/dlib2/include/dlib/kinematics/odometry.\+hpp\end{DoxyCompactItemize}

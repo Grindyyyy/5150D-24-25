@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="error__derivative__settler_8hpp" kind="file" language="C++">
+    <compoundname>error_derivative_settler.hpp</compoundname>
+    <includes local="yes">au/au.hpp</includes>
+    <includedby refid="dlib_8hpp" local="yes">C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp</label>
+        <link refid="error__derivative__settler_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>au/au.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp</label>
+        <link refid="error__derivative__settler_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</label>
+        <link refid="dlib_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classdlib_1_1_error_derivative_settler" prot="public">dlib::ErrorDerivativeSettler</innerclass>
+    <innernamespace refid="namespacedlib">dlib</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;au/au.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">dlib<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Units<sp/>is<sp/>templated<sp/>so<sp/>that<sp/>the<sp/>user<sp/>can<sp/>config<sp/>what<sp/>units<sp/>they<sp/>want<sp/>at<sp/>object<sp/>creation<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Units&gt;</highlight></codeline>
+<codeline lineno="8" refid="classdlib_1_1_error_derivative_settler" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classdlib_1_1_error_derivative_settler" kindref="compound">ErrorDerivativeSettler</ref><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor<sp/>takes<sp/>in<sp/>error_threshold<sp/>&amp;<sp/>derivative_threshold</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assigns<sp/>it<sp/>to<sp/>error_threshold<sp/>&amp;<sp/>derivative_threshold<sp/>in<sp/>object<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classdlib_1_1_error_derivative_settler" kindref="compound">ErrorDerivativeSettler</ref>(</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>au::Quantity&lt;Units,<sp/>double&gt;<sp/>error_threshold,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>au::Quantity&lt;au::TimeDerivative&lt;Units&gt;,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;<sp/>derivative_threshold</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error_threshold(error_threshold),<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>derivative_threshold(derivative_threshold)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46" refid="classdlib_1_1_error_derivative_settler_1a7bc4da4be24d44fa02277e4a2ffeb9f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classdlib_1_1_error_derivative_settler_1a7bc4da4be24d44fa02277e4a2ffeb9f8" kindref="member">is_settled</ref>(au::Quantity&lt;Units,<sp/>double&gt;<sp/>error,<sp/>au::Quantity&lt;au::TimeDerivative&lt;Units&gt;,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;<sp/>derivative)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>user<sp/>passes<sp/>in<sp/>error<sp/>&amp;<sp/>derivative<sp/>from<sp/>the<sp/>pid<sp/>read<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>it<sp/>falls<sp/>within<sp/>the<sp/>range<sp/>given<sp/>when<sp/>the<sp/>ErrorDerivativeSettler<sp/>object<sp/>is<sp/>created</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>it<sp/>will<sp/>return<sp/>true</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(au::abs(error)<sp/>&lt;<sp/>error_threshold<sp/>&amp;&amp;<sp/>au::abs(derivative)<sp/>&lt;<sp/>derivative_threshold);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;Units,<sp/>double&gt;<sp/>error_threshold;<sp/></highlight><highlight class="comment">//<sp/>The<sp/>error<sp/>range<sp/>that<sp/>is<sp/>acceptable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::TimeDerivative&lt;Units&gt;,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;<sp/>derivative_threshold;<sp/></highlight><highlight class="comment">//<sp/>The<sp/>derivative<sp/>that<sp/>is<sp/>acceptable<sp/>(speed)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp"/>
+  </compounddef>
+</doxygen>

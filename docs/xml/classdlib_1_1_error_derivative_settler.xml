@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_error_derivative_settler" kind="class" language="C++" prot="public">
+    <compoundname>dlib::ErrorDerivativeSettler</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename Units</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_error_derivative_settler_1afafc694e739dead20e8d57d303a35bc8" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; Units, double &gt;</type>
+        <definition>au::Quantity&lt;Units, double&gt; dlib::ErrorDerivativeSettler&lt; Units &gt;::error_threshold</definition>
+        <argsstring></argsstring>
+        <name>error_threshold</name>
+        <qualifiedname>dlib::ErrorDerivativeSettler::error_threshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" line="54" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_error_derivative_settler_1a52515a0e41e7dcb8801ef89ec9037a09" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt;</type>
+        <definition>au::Quantity&lt;au::TimeDerivative&lt;Units&gt;, double&gt; dlib::ErrorDerivativeSettler&lt; Units &gt;::derivative_threshold</definition>
+        <argsstring></argsstring>
+        <name>derivative_threshold</name>
+        <qualifiedname>dlib::ErrorDerivativeSettler::derivative_threshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" line="55" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_error_derivative_settler_1a0caa9b739f4080a7f09514c6023b0d9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>dlib::ErrorDerivativeSettler&lt; Units &gt;::ErrorDerivativeSettler</definition>
+        <argsstring>(au::Quantity&lt; Units, double &gt; error_threshold, au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt; derivative_threshold)</argsstring>
+        <name>ErrorDerivativeSettler</name>
+        <qualifiedname>dlib::ErrorDerivativeSettler::ErrorDerivativeSettler</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; Units, double &gt;</type>
+          <declname>error_threshold</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt;</type>
+          <declname>derivative_threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" line="12" column="5" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" bodystart="12" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_error_derivative_settler_1a7bc4da4be24d44fa02277e4a2ffeb9f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool dlib::ErrorDerivativeSettler&lt; Units &gt;::is_settled</definition>
+        <argsstring>(au::Quantity&lt; Units, double &gt; error, au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt; derivative)</argsstring>
+        <name>is_settled</name>
+        <qualifiedname>dlib::ErrorDerivativeSettler::is_settled</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; Units, double &gt;</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::TimeDerivative&lt; Units &gt;, double &gt;</type>
+          <declname>derivative</declname>
+        </param>
+        <briefdescription>
+<para>Check if controller has settled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance from setpoint </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derivative</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>velocity </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>PID<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_pid" kindref="compound">dlib::Pid&lt;Meters&gt;</ref><sp/>pid({1,2,3});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>an<sp/>ErrorDerivativeSettler<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_error_derivative_settler" kindref="compound">dlib::ErrorDerivativeSettler&lt;Meters&gt;</ref><sp/>pid_settler<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">meters(0.01),<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>threshold,<sp/>the<sp/>maximum<sp/>error<sp/>the<sp/>pid<sp/>can<sp/>settle<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">meters_per_second(0.01)<sp/></highlight><highlight class="comment">//<sp/>derivative<sp/>threshold,<sp/>the<sp/>maximum<sp/>instantaneous<sp/>error<sp/>over<sp/>time<sp/>the<sp/>pid<sp/>can<sp/>settle<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Instantiate<sp/>error<sp/>and<sp/>derivative</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;Meters,<sp/>double&gt;<sp/>error<sp/>=<sp/>pid.get_error();</highlight></codeline>
+<codeline><highlight class="normal">au::Quantity&lt;au::TimeDerivative&lt;Meters&gt;,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;<sp/>derivative<sp/>=<sp/>pid.get_derivative();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>settled<sp/>=<sp/>pid_settler.<ref refid="classdlib_1_1_error_derivative_settler_1a7bc4da4be24d44fa02277e4a2ffeb9f8" kindref="member">is_settled</ref>(error,<sp/>derivative);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" line="46" column="10" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" bodystart="46" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" line="8" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error_derivative_settler.hpp" bodystart="8" bodyend="56"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_error_derivative_settler_1a52515a0e41e7dcb8801ef89ec9037a09" prot="protected" virt="non-virtual"><scope>dlib::ErrorDerivativeSettler</scope><name>derivative_threshold</name></member>
+      <member refid="classdlib_1_1_error_derivative_settler_1afafc694e739dead20e8d57d303a35bc8" prot="protected" virt="non-virtual"><scope>dlib::ErrorDerivativeSettler</scope><name>error_threshold</name></member>
+      <member refid="classdlib_1_1_error_derivative_settler_1a0caa9b739f4080a7f09514c6023b0d9e" prot="public" virt="non-virtual"><scope>dlib::ErrorDerivativeSettler</scope><name>ErrorDerivativeSettler</name></member>
+      <member refid="classdlib_1_1_error_derivative_settler_1a7bc4da4be24d44fa02277e4a2ffeb9f8" prot="public" virt="non-virtual"><scope>dlib::ErrorDerivativeSettler</scope><name>is_settled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

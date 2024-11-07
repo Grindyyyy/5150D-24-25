@@ -1,0 +1,38 @@
+\doxysection{error\+\_\+derivative\+\_\+settler.\+hpp}
+\hypertarget{error__derivative__settler_8hpp_source}{}\label{error__derivative__settler_8hpp_source}\index{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error\_derivative\_settler.hpp@{C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/controllers/error\_derivative\_settler.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}au/au.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }dlib\ \{}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Units\ is\ templated\ so\ that\ the\ user\ can\ config\ what\ units\ they\ want\ at\ object\ creation\ time}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Units>}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdlib_1_1_error_derivative_settler}{ErrorDerivativeSettler}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ Constructor\ takes\ in\ error\_threshold\ \&\ derivative\_threshold}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Assigns\ it\ to\ error\_threshold\ \&\ derivative\_threshold\ in\ object\ variables}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classdlib_1_1_error_derivative_settler}{ErrorDerivativeSettler}}(}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ au::Quantity<Units,\ double>\ error\_threshold,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ au::Quantity<au::TimeDerivative<Units>,\ \textcolor{keywordtype}{double}>\ derivative\_threshold}
+\DoxyCodeLine{00015\ \ \ \ \ )\ :\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ error\_threshold(error\_threshold),\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ derivative\_threshold(derivative\_threshold)\ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classdlib_1_1_error_derivative_settler_a7bc4da4be24d44fa02277e4a2ffeb9f8}{is\_settled}}(au::Quantity<Units,\ double>\ error,\ au::Quantity<au::TimeDerivative<Units>,\ \textcolor{keywordtype}{double}>\ derivative)\ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ user\ passes\ in\ error\ \&\ derivative\ from\ the\ pid\ read\ methods}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ it\ falls\ within\ the\ range\ given\ when\ the\ ErrorDerivativeSettler\ object\ is\ created}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ it\ will\ return\ true}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (au::abs(error)\ <\ error\_threshold\ \&\&\ au::abs(derivative)\ <\ derivative\_threshold);}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00054\ \ \ \ \ au::Quantity<Units,\ double>\ error\_threshold;\ \textcolor{comment}{//\ The\ error\ range\ that\ is\ acceptable}}
+\DoxyCodeLine{00055\ \ \ \ \ au::Quantity<au::TimeDerivative<Units>,\ \textcolor{keywordtype}{double}>\ derivative\_threshold;\ \textcolor{comment}{//\ The\ derivative\ that\ is\ acceptable\ (speed)}}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_trapezoid_profile" kind="class" language="C++" prot="public">
+    <compoundname>dlib::TrapezoidProfile</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1a6b7c4b46be70c3b25d787fcb88f2e439" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::MetersPerSecondSquared, double &gt;</type>
+        <definition>au::Quantity&lt;au::MetersPerSecondSquared, double&gt; dlib::TrapezoidProfile::max_acceleration</definition>
+        <argsstring></argsstring>
+        <name>max_acceleration</name>
+        <qualifiedname>dlib::TrapezoidProfile::max_acceleration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="18" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1a0f3be5c528df26ff62a0d21d7c50fb46" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::MetersPerSecond, double &gt;</type>
+        <definition>au::Quantity&lt;au::MetersPerSecond, double&gt; dlib::TrapezoidProfile::max_velocity</definition>
+        <argsstring></argsstring>
+        <name>max_velocity</name>
+        <qualifiedname>dlib::TrapezoidProfile::max_velocity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="19" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1a780b1ced2d568e573c310dd2bf4877c0" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::TrapezoidProfile::total_distance</definition>
+        <argsstring></argsstring>
+        <name>total_distance</name>
+        <qualifiedname>dlib::TrapezoidProfile::total_distance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="21" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1ace32744437785aeee35d75a07f6ce1b8" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+        <definition>au::Quantity&lt;au::Seconds, double&gt; dlib::TrapezoidProfile::total_time</definition>
+        <argsstring></argsstring>
+        <name>total_time</name>
+        <qualifiedname>dlib::TrapezoidProfile::total_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="22" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1ac42aabf423257e69d0dda187f30a6d05" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+        <definition>au::Quantity&lt;au::Seconds, double&gt; dlib::TrapezoidProfile::accel_cutoff</definition>
+        <argsstring></argsstring>
+        <name>accel_cutoff</name>
+        <qualifiedname>dlib::TrapezoidProfile::accel_cutoff</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="24" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1af8f2ea1f854ed207b80c507f6ee01be1" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+        <definition>au::Quantity&lt;au::Seconds, double&gt; dlib::TrapezoidProfile::coast_cutoff</definition>
+        <argsstring></argsstring>
+        <name>coast_cutoff</name>
+        <qualifiedname>dlib::TrapezoidProfile::coast_cutoff</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="25" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_trapezoid_profile_1a803d09acbec7cf09255939287eba7952" prot="protected" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+        <definition>au::Quantity&lt;au::Seconds, double&gt; dlib::TrapezoidProfile::decel_cutoff</definition>
+        <argsstring></argsstring>
+        <name>decel_cutoff</name>
+        <qualifiedname>dlib::TrapezoidProfile::decel_cutoff</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="26" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_trapezoid_profile_1a9941d542abe5f6eca1ea2debb4712512" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::TrapezoidProfile::TrapezoidProfile</definition>
+        <argsstring>(au::Quantity&lt; au::MetersPerSecondSquared, double &gt; max_acceleration, au::Quantity&lt; au::MetersPerSecond, double &gt; max_velocity, au::Quantity&lt; au::Meters, double &gt; total_distance)</argsstring>
+        <name>TrapezoidProfile</name>
+        <qualifiedname>dlib::TrapezoidProfile::TrapezoidProfile</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::MetersPerSecondSquared, double &gt;</type>
+          <declname>max_acceleration</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::MetersPerSecond, double &gt;</type>
+          <declname>max_velocity</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>total_distance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="28" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_trapezoid_profile_1ace4cef19d7f1c776651259ced850c727" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TrapezoidProfileStage</type>
+        <definition>TrapezoidProfileStage dlib::TrapezoidProfile::stage</definition>
+        <argsstring>(au::Quantity&lt; au::Seconds, double &gt; elapsed_time)</argsstring>
+        <name>stage</name>
+        <qualifiedname>dlib::TrapezoidProfile::stage</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+          <declname>elapsed_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="34" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_trapezoid_profile_1a8dde7269dbafe2667c5ce895d7a2c707" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdlib_1_1_profile_setpoint" kindref="compound">ProfileSetpoint</ref></type>
+        <definition>ProfileSetpoint dlib::TrapezoidProfile::calculate</definition>
+        <argsstring>(au::Quantity&lt; au::Seconds, double &gt; elapsed_time)</argsstring>
+        <name>calculate</name>
+        <qualifiedname>dlib::TrapezoidProfile::calculate</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Seconds, double &gt;</type>
+          <declname>elapsed_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="35" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" line="16" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/trapezoid_profile.hpp" bodystart="16" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_trapezoid_profile_1ac42aabf423257e69d0dda187f30a6d05" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>accel_cutoff</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1a8dde7269dbafe2667c5ce895d7a2c707" prot="public" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>calculate</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1af8f2ea1f854ed207b80c507f6ee01be1" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>coast_cutoff</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1a803d09acbec7cf09255939287eba7952" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>decel_cutoff</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1a6b7c4b46be70c3b25d787fcb88f2e439" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>max_acceleration</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1a0f3be5c528df26ff62a0d21d7c50fb46" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>max_velocity</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1ace4cef19d7f1c776651259ced850c727" prot="public" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>stage</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1a780b1ced2d568e573c310dd2bf4877c0" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>total_distance</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1ace32744437785aeee35d75a07f6ce1b8" prot="protected" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>total_time</name></member>
+      <member refid="classdlib_1_1_trapezoid_profile_1a9941d542abe5f6eca1ea2debb4712512" prot="public" virt="non-virtual"><scope>dlib::TrapezoidProfile</scope><name>TrapezoidProfile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

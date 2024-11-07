@@ -1,0 +1,77 @@
+\doxysection{dlib\+::Time\+Error\+Settler\texorpdfstring{$<$}{<} Units \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classdlib_1_1_time_error_settler}{}\label{classdlib_1_1_time_error_settler}\index{dlib::TimeErrorSettler$<$ Units $>$@{dlib::TimeErrorSettler$<$ Units $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_time_error_settler_a2272218b78305bf9e77a6a64ccb01183}\label{classdlib_1_1_time_error_settler_a2272218b78305bf9e77a6a64ccb01183} 
+{\bfseries Time\+Error\+Settler} (au\+::\+Quantity$<$ Units, double $>$ error\+\_\+threshold, au\+::\+Quantity$<$ au\+::\+Seconds, double $>$ settle\+\_\+time)
+\item 
+bool \mbox{\hyperlink{classdlib_1_1_time_error_settler_a7129b7517ac72ab885a76c4e2651c504}{is\+\_\+settled}} (au\+::\+Quantity$<$ Units, double $>$ error, au\+::\+Quantity$<$ au\+::\+Seconds, double $>$ period)
+\begin{DoxyCompactList}\small\item\em Check if controller has settled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_time_error_settler_a60404c65fc44bd271a9c1359de394567}\label{classdlib_1_1_time_error_settler_a60404c65fc44bd271a9c1359de394567} 
+bool {\bfseries is\+\_\+settling}
+\item 
+\Hypertarget{classdlib_1_1_time_error_settler_a16d786374cbbae95c3902ddaac53a4c0}\label{classdlib_1_1_time_error_settler_a16d786374cbbae95c3902ddaac53a4c0} 
+au\+::\+Quantity$<$ Units, double $>$ {\bfseries error\+\_\+threshold}
+\item 
+\Hypertarget{classdlib_1_1_time_error_settler_a95b8b8bafac1759366a93bf738595912}\label{classdlib_1_1_time_error_settler_a95b8b8bafac1759366a93bf738595912} 
+au\+::\+Quantity$<$ au\+::\+Seconds, double $>$ {\bfseries settle\+\_\+time}
+\item 
+\Hypertarget{classdlib_1_1_time_error_settler_aae74cbcefd3762e198c57270aa849354}\label{classdlib_1_1_time_error_settler_aae74cbcefd3762e198c57270aa849354} 
+au\+::\+Quantity$<$ au\+::\+Seconds, double $>$ {\bfseries time\+\_\+below\+\_\+threshold}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdlib_1_1_time_error_settler_a7129b7517ac72ab885a76c4e2651c504}\index{dlib::TimeErrorSettler$<$ Units $>$@{dlib::TimeErrorSettler$<$ Units $>$}!is\_settled@{is\_settled}}
+\index{is\_settled@{is\_settled}!dlib::TimeErrorSettler$<$ Units $>$@{dlib::TimeErrorSettler$<$ Units $>$}}
+\doxysubsubsection{\texorpdfstring{is\_settled()}{is\_settled()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_time_error_settler_a7129b7517ac72ab885a76c4e2651c504} 
+template$<$typename Units $>$ \\
+bool \mbox{\hyperlink{classdlib_1_1_time_error_settler}{dlib\+::\+Time\+Error\+Settler}}$<$ Units $>$\+::is\+\_\+settled (\begin{DoxyParamCaption}\item[{au\+::\+Quantity$<$ Units, double $>$}]{error}{, }\item[{au\+::\+Quantity$<$ au\+::\+Seconds, double $>$}]{period}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if controller has settled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & distance from setpoint \\
+\hline
+{\em period} & time since last settle iteration -\/ current time -\/ last time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_pid}{dlib::Pid<Meters>}}\ pid(\{1,2,3\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ last\_period\ period}}
+\DoxyCodeLine{au::Quantity<au::Seconds,\ double>\ last\_period;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ an\ TimeErrorSettler\ controller}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_time_error_settler}{dlib::TimeErrorSettler<Meters>}}\ pid\_settler\ \{}
+\DoxyCodeLine{meters(0.01),\ \ \ \ \ \ \ \textcolor{comment}{//\ error\ threshold,\ the\ maximum\ error\ the\ pid\ can\ settle\ at}}
+\DoxyCodeLine{milli(seconds)(.2)\ \textcolor{comment}{//\ derivative\ threshold,\ the\ maximum\ instantaneous\ error\ over\ time\ the\ pid\ can\ settle\ at}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Instantiate\ error\ and\ derivative}}
+\DoxyCodeLine{au::Quantity<Meters,\ double>\ error\ =\ pid.get\_error();}
+\DoxyCodeLine{au::Quantity<au::Seconds,\ double>\ period\ =\ milli(seconds)(pros::millis())\ -\/\ last\_period;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ settled\ =\ pid\_settler.\mbox{\hyperlink{classdlib_1_1_time_error_settler_a7129b7517ac72ab885a76c4e2651c504}{is\_settled}}(error,\ period);}
+\DoxyCodeLine{last\_period\ =\ milli(seconds)(pros::millis());}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/super/\+Downloads/d\+Lib2/dlib2/dlib2/include/dlib/controllers/time\+\_\+error\+\_\+settler.\+hpp\end{DoxyCompactItemize}

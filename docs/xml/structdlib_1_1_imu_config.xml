@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_imu_config" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::ImuConfig</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_imu_config_1a7dfe54117580fc75ded99439bdb4f80c" prot="public" static="no" mutable="no">
+        <type>int8_t</type>
+        <definition>int8_t dlib::ImuConfig::port</definition>
+        <argsstring></argsstring>
+        <name>port</name>
+        <qualifiedname>dlib::ImuConfig::port</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="9" column="12" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_imu_config_1a8ece208114656fa8d6be98b20a267511" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dlib::ImuConfig::scalar</definition>
+        <argsstring></argsstring>
+        <name>scalar</name>
+        <qualifiedname>dlib::ImuConfig::scalar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="10" column="12" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structdlib_1_1_imu_config_1ace2e0793174201f7e8d027a50e681bd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::ImuConfig::ImuConfig</definition>
+        <argsstring>(int8_t port, double scalar=1)</argsstring>
+        <name>ImuConfig</name>
+        <qualifiedname>dlib::ImuConfig::ImuConfig</qualifiedname>
+        <param>
+          <type>int8_t</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="12" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" line="8" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/imu.hpp" bodystart="8" bodyend="13"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_imu_config_1ace2e0793174201f7e8d027a50e681bd8" prot="public" virt="non-virtual"><scope>dlib::ImuConfig</scope><name>ImuConfig</name></member>
+      <member refid="structdlib_1_1_imu_config_1a7dfe54117580fc75ded99439bdb4f80c" prot="public" virt="non-virtual"><scope>dlib::ImuConfig</scope><name>port</name></member>
+      <member refid="structdlib_1_1_imu_config_1a8ece208114656fa8d6be98b20a267511" prot="public" virt="non-virtual"><scope>dlib::ImuConfig</scope><name>scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

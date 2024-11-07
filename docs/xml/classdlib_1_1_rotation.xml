@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_rotation" kind="class" language="C++" prot="public">
+    <compoundname>dlib::Rotation</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_rotation_1abe4b6f62c125e07da979cd9f27a6a71d" prot="public" static="no" mutable="no">
+        <type>pros::Rotation</type>
+        <definition>pros::Rotation dlib::Rotation::raw</definition>
+        <argsstring></argsstring>
+        <name>raw</name>
+        <qualifiedname>dlib::Rotation::raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" line="23" column="20" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_rotation_1a6d454d4be43fb1e97c7fa6dff6f4b8f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Rotation::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <qualifiedname>dlib::Rotation::initialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" line="16" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_rotation_1ad6102faaf125a5190272d337edfb0c0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Revolutions, double &gt;</type>
+        <definition>au::Quantity&lt; au::Revolutions, double &gt; dlib::Rotation::get_position</definition>
+        <argsstring>()</argsstring>
+        <name>get_position</name>
+        <qualifiedname>dlib::Rotation::get_position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" line="18" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_rotation_1a5662f95336f9bfea36c4eef61b69820d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Rpm, double &gt;</type>
+        <definition>au::Quantity&lt; au::Rpm, double &gt; dlib::Rotation::get_velocity</definition>
+        <argsstring>()</argsstring>
+        <name>get_velocity</name>
+        <qualifiedname>dlib::Rotation::get_velocity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" line="19" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_rotation_1acb99a7fadeb90517f44dde30e5286e84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Rotation::Rotation</definition>
+        <argsstring>(RotationConfig config)</argsstring>
+        <name>Rotation</name>
+        <qualifiedname>dlib::Rotation::Rotation</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_rotation_config" kindref="compound">RotationConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" line="21" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" line="14" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/rotation.hpp" bodystart="14" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_rotation_1ad6102faaf125a5190272d337edfb0c0d" prot="public" virt="non-virtual"><scope>dlib::Rotation</scope><name>get_position</name></member>
+      <member refid="classdlib_1_1_rotation_1a5662f95336f9bfea36c4eef61b69820d" prot="public" virt="non-virtual"><scope>dlib::Rotation</scope><name>get_velocity</name></member>
+      <member refid="classdlib_1_1_rotation_1a6d454d4be43fb1e97c7fa6dff6f4b8f0" prot="public" virt="non-virtual"><scope>dlib::Rotation</scope><name>initialize</name></member>
+      <member refid="classdlib_1_1_rotation_1abe4b6f62c125e07da979cd9f27a6a71d" prot="public" virt="non-virtual"><scope>dlib::Rotation</scope><name>raw</name></member>
+      <member refid="classdlib_1_1_rotation_1acb99a7fadeb90517f44dde30e5286e84" prot="public" virt="non-virtual"><scope>dlib::Rotation</scope><name>Rotation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

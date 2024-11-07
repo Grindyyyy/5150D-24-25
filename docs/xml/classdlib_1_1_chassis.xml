@@ -1,0 +1,378 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classdlib_1_1_chassis" kind="class" language="C++" prot="public">
+    <compoundname>dlib::Chassis</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classdlib_1_1_chassis_1a590a5dffded23db6163b9ac7e9159d09" prot="public" static="no" mutable="no">
+        <type><ref refid="classdlib_1_1_motor_group" kindref="compound">dlib::MotorGroup</ref></type>
+        <definition>dlib::MotorGroup dlib::Chassis::left_motors</definition>
+        <argsstring></argsstring>
+        <name>left_motors</name>
+        <qualifiedname>dlib::Chassis::left_motors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="133" column="22" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_chassis_1ad37ed0470ce610371f5a42e3020be36a" prot="public" static="no" mutable="no">
+        <type><ref refid="classdlib_1_1_motor_group" kindref="compound">dlib::MotorGroup</ref></type>
+        <definition>dlib::MotorGroup dlib::Chassis::right_motors</definition>
+        <argsstring></argsstring>
+        <name>right_motors</name>
+        <qualifiedname>dlib::Chassis::right_motors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="134" column="22" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_chassis_1a2948bf37242f3d273baafe39d0d4c1a9" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Rpm, double &gt;</type>
+        <definition>au::Quantity&lt;au::Rpm, double&gt; dlib::Chassis::total_rpm</definition>
+        <argsstring></argsstring>
+        <name>total_rpm</name>
+        <qualifiedname>dlib::Chassis::total_rpm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="136" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdlib_1_1_chassis_1a48a634f45afef31b1404d89820d7527f" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::Chassis::wheel_diameter</definition>
+        <argsstring></argsstring>
+        <name>wheel_diameter</name>
+        <qualifiedname>dlib::Chassis::wheel_diameter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="137" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdlib_1_1_chassis_1ade24173196b00aa280611064c9e6623f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Chassis::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <qualifiedname>dlib::Chassis::initialize</qualifiedname>
+        <briefdescription>
+<para>Initialize the chassis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_chassis_config" kindref="compound">dlib::ChassisConfig</ref><sp/>chassis_config({</highlight></codeline>
+<codeline><highlight class="normal"><sp/>{1,<sp/>2,<sp/>3},<sp/></highlight><highlight class="comment">//<sp/>left<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>{4,<sp/>5,<sp/>6},<sp/></highlight><highlight class="comment">//<sp/>right<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>rpm(450),<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>rpm</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>inches(3.25)<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>wheel<sp/>diameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_chassis" kindref="compound">dlib::Chassis</ref><sp/>chassis(chassis_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>chassis</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis.initialize();</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="43" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a3212bf73cad50dba28bf6f6b661e2ed4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Chassis::move</definition>
+        <argsstring>(double power)</argsstring>
+        <name>move</name>
+        <qualifiedname>dlib::Chassis::move</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>Move the chassis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_chassis_config" kindref="compound">dlib::ChassisConfig</ref><sp/>chassis_config({</highlight></codeline>
+<codeline><highlight class="normal"><sp/>{1,<sp/>2,<sp/>3},<sp/></highlight><highlight class="comment">//<sp/>left<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>{4,<sp/>5,<sp/>6},<sp/></highlight><highlight class="comment">//<sp/>right<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>rpm(450),<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>rpm</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>inches(3.25)<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>wheel<sp/>diameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_chassis" kindref="compound">dlib::Chassis</ref><sp/>chassis(chassis_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Move<sp/>the<sp/>chassis<sp/>at<sp/>max<sp/>forward<sp/>(127)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis.move(127);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="66" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a90d093c2ea696e48f5a2c446535f5e3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Chassis::move_voltage</definition>
+        <argsstring>(au::Quantity&lt; au::Volts, double &gt; voltage)</argsstring>
+        <name>move_voltage</name>
+        <qualifiedname>dlib::Chassis::move_voltage</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Volts, double &gt;</type>
+          <declname>voltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="68" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a2910d1ddb3887cfb7bc10a74b774771b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Chassis::turn</definition>
+        <argsstring>(double power)</argsstring>
+        <name>turn</name>
+        <qualifiedname>dlib::Chassis::turn</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>Turn the chassis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_chassis_config" kindref="compound">dlib::ChassisConfig</ref><sp/>chassis_config({</highlight></codeline>
+<codeline><highlight class="normal"><sp/>{1,<sp/>2,<sp/>3},<sp/></highlight><highlight class="comment">//<sp/>left<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>{4,<sp/>5,<sp/>6},<sp/></highlight><highlight class="comment">//<sp/>right<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>rpm(450),<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>rpm</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>inches(3.25)<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>wheel<sp/>diameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_chassis" kindref="compound">dlib::Chassis</ref><sp/>chassis(chassis_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Turn<sp/>the<sp/>chassis<sp/>at<sp/>max<sp/>forward<sp/>(127)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis.turn(127);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="91" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a9dcb94f3c0cb6355474fa216548596ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Chassis::turn_voltage</definition>
+        <argsstring>(au::Quantity&lt; au::Volts, double &gt; voltage)</argsstring>
+        <name>turn_voltage</name>
+        <qualifiedname>dlib::Chassis::turn_voltage</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Volts, double &gt;</type>
+          <declname>voltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="93" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a4a42fddc85322aa8e394b254b189c6e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dlib::Chassis::arcade</definition>
+        <argsstring>(double power, double turn)</argsstring>
+        <name>arcade</name>
+        <qualifiedname>dlib::Chassis::arcade</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>power</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>turn</declname>
+        </param>
+        <briefdescription>
+<para>Turn the chassis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Example</bold> <programlisting filename=".cpp"><codeline><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>opcontrol(){</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structdlib_1_1_chassis_config" kindref="compound">dlib::ChassisConfig</ref><sp/>chassis_config({</highlight></codeline>
+<codeline><highlight class="normal"><sp/>{1,<sp/>2,<sp/>3},<sp/></highlight><highlight class="comment">//<sp/>left<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>{4,<sp/>5,<sp/>6},<sp/></highlight><highlight class="comment">//<sp/>right<sp/>motor<sp/>ports</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>rpm(450),<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>rpm</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>inches(3.25)<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>drivebase<sp/>wheel<sp/>diameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Construct<sp/>a<sp/>chassis</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classdlib_1_1_chassis" kindref="compound">dlib::Chassis</ref><sp/>chassis(chassis_config);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">pros::Controller<sp/>master<sp/>=<sp/>pros::Controller(pros::E_CONTROLLER_MASTER);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Instantiate<sp/>power<sp/>&amp;<sp/>turn</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>power<sp/>=<sp/>master.get_analog(ANALOG_LEFT_Y);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classdlib_1_1_chassis_1a2910d1ddb3887cfb7bc10a74b774771b" kindref="member">turn</ref><sp/>=<sp/>master.get_analog(ANALOG_RIGHT_X);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Move<sp/>the<sp/>chassis<sp/>given<sp/>power<sp/>&amp;<sp/>turn</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis.arcade(power,<sp/><ref refid="classdlib_1_1_chassis_1a2910d1ddb3887cfb7bc10a74b774771b" kindref="member">turn</ref>);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a4a8c116bc793a9d88e835f4d9d1eb1c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt; au::Meters, double &gt; dlib::Chassis::revolutions_to_displacement</definition>
+        <argsstring>(au::Quantity&lt; au::Revolutions, double &gt; revolutions)</argsstring>
+        <name>revolutions_to_displacement</name>
+        <qualifiedname>dlib::Chassis::revolutions_to_displacement</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Revolutions, double &gt;</type>
+          <declname>revolutions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="124" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a4de8abc1f17d8b02b92b1aa7e18f74c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::MetersPerSecond, double &gt;</type>
+        <definition>au::Quantity&lt; au::MetersPerSecond, double &gt; dlib::Chassis::rpm_to_velocity</definition>
+        <argsstring>(au::Quantity&lt; au::Rpm, double &gt; rpm)</argsstring>
+        <name>rpm_to_velocity</name>
+        <qualifiedname>dlib::Chassis::rpm_to_velocity</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Rpm, double &gt;</type>
+          <declname>rpm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="125" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a130a042aee91f7da49d23791329cd177" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt; au::Meters, double &gt; dlib::Chassis::left_motors_displacement</definition>
+        <argsstring>()</argsstring>
+        <name>left_motors_displacement</name>
+        <qualifiedname>dlib::Chassis::left_motors_displacement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="127" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1ab84a7e10b82e2b698cc396deef90443b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt; au::Meters, double &gt; dlib::Chassis::right_motors_displacement</definition>
+        <argsstring>()</argsstring>
+        <name>right_motors_displacement</name>
+        <qualifiedname>dlib::Chassis::right_motors_displacement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="128" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a5a2d1445e0122e1a1b5ee428cfecb856" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt; au::Meters, double &gt; dlib::Chassis::average_motor_displacement</definition>
+        <argsstring>()</argsstring>
+        <name>average_motor_displacement</name>
+        <qualifiedname>dlib::Chassis::average_motor_displacement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="129" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classdlib_1_1_chassis_1a024d3a210420b707b618eecca7f0878b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::Chassis::Chassis</definition>
+        <argsstring>(ChassisConfig config)</argsstring>
+        <name>Chassis</name>
+        <qualifiedname>dlib::Chassis::Chassis</qualifiedname>
+        <param>
+          <type><ref refid="structdlib_1_1_chassis_config" kindref="compound">ChassisConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="131" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>dlib::Chassis</label>
+        <link refid="classdlib_1_1_chassis"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>left_motors</edgelabel>
+          <edgelabel>right_motors</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dlib::MotorGroup</label>
+        <link refid="classdlib_1_1_motor_group"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" line="20" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp" bodystart="20" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classdlib_1_1_chassis_1a4a42fddc85322aa8e394b254b189c6e8" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>arcade</name></member>
+      <member refid="classdlib_1_1_chassis_1a5a2d1445e0122e1a1b5ee428cfecb856" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>average_motor_displacement</name></member>
+      <member refid="classdlib_1_1_chassis_1a024d3a210420b707b618eecca7f0878b" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>Chassis</name></member>
+      <member refid="classdlib_1_1_chassis_1ade24173196b00aa280611064c9e6623f" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>initialize</name></member>
+      <member refid="classdlib_1_1_chassis_1a590a5dffded23db6163b9ac7e9159d09" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>left_motors</name></member>
+      <member refid="classdlib_1_1_chassis_1a130a042aee91f7da49d23791329cd177" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>left_motors_displacement</name></member>
+      <member refid="classdlib_1_1_chassis_1a3212bf73cad50dba28bf6f6b661e2ed4" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>move</name></member>
+      <member refid="classdlib_1_1_chassis_1a90d093c2ea696e48f5a2c446535f5e3c" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>move_voltage</name></member>
+      <member refid="classdlib_1_1_chassis_1a4a8c116bc793a9d88e835f4d9d1eb1c7" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>revolutions_to_displacement</name></member>
+      <member refid="classdlib_1_1_chassis_1ad37ed0470ce610371f5a42e3020be36a" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>right_motors</name></member>
+      <member refid="classdlib_1_1_chassis_1ab84a7e10b82e2b698cc396deef90443b" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>right_motors_displacement</name></member>
+      <member refid="classdlib_1_1_chassis_1a4de8abc1f17d8b02b92b1aa7e18f74c8" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>rpm_to_velocity</name></member>
+      <member refid="classdlib_1_1_chassis_1a2948bf37242f3d273baafe39d0d4c1a9" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>total_rpm</name></member>
+      <member refid="classdlib_1_1_chassis_1a2910d1ddb3887cfb7bc10a74b774771b" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>turn</name></member>
+      <member refid="classdlib_1_1_chassis_1a9dcb94f3c0cb6355474fa216548596ac" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>turn_voltage</name></member>
+      <member refid="classdlib_1_1_chassis_1a48a634f45afef31b1404d89820d7527f" prot="public" virt="non-virtual"><scope>dlib::Chassis</scope><name>wheel_diameter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,109 @@
+\doxysection{dlib\+::Feedforward Class Reference}
+\hypertarget{classdlib_1_1_feedforward}{}\label{classdlib_1_1_feedforward}\index{dlib::Feedforward@{dlib::Feedforward}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_feedforward_a5e804115f75b59d1c918d572d02482d4}\label{classdlib_1_1_feedforward_a5e804115f75b59d1c918d572d02482d4} 
+{\bfseries Feedforward} (\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains}} gains\+\_\+settings)
+\item 
+au\+::\+Quantity$<$ au\+::\+Volts, double $>$ \mbox{\hyperlink{classdlib_1_1_feedforward_aabd57b09f20bbbc9e75d844b079345df}{calculate}} (au\+::\+Quantity$<$ au\+::\+Meters\+Per\+Second, double $>$ target\+\_\+velocity, au\+::\+Quantity$<$ au\+::\+Meters\+Per\+Second\+Squared, double $>$ target\+\_\+acceleration=au\+::\+ZERO)
+\begin{DoxyCompactList}\small\item\em Calculate \doxylink{classdlib_1_1_feedforward}{Feedforward} voltage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains}} \mbox{\hyperlink{classdlib_1_1_feedforward_a6b75e9d706bea3e482025e1329666402}{get\+\_\+gains}} ()
+\begin{DoxyCompactList}\small\item\em Get \doxylink{classdlib_1_1_feedforward}{Feedforward} Gains. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdlib_1_1_feedforward_a0ff8c1cf5109c5fcd6004710860edd94}{set\+\_\+gains}} (\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains}} new\+\_\+gains)
+\begin{DoxyCompactList}\small\item\em Set \doxylink{classdlib_1_1_feedforward}{Feedforward} gains. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdlib_1_1_feedforward_a34a03f4c14ca558dd4ceae250d76910d}\label{classdlib_1_1_feedforward_a34a03f4c14ca558dd4ceae250d76910d} 
+\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains}} {\bfseries gains}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdlib_1_1_feedforward_aabd57b09f20bbbc9e75d844b079345df}\index{dlib::Feedforward@{dlib::Feedforward}!calculate@{calculate}}
+\index{calculate@{calculate}!dlib::Feedforward@{dlib::Feedforward}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_feedforward_aabd57b09f20bbbc9e75d844b079345df} 
+au\+::\+Quantity$<$ au\+::\+Volts, double $>$ dlib\+::\+Feedforward\+::calculate (\begin{DoxyParamCaption}\item[{au\+::\+Quantity$<$ au\+::\+Meters\+Per\+Second, double $>$}]{target\+\_\+velocity}{, }\item[{au\+::\+Quantity$<$ au\+::\+Meters\+Per\+Second\+Squared, double $>$}]{target\+\_\+acceleration}{ = {\ttfamily au\+:\+:ZERO}}\end{DoxyParamCaption})}
+
+
+
+Calculate \doxylink{classdlib_1_1_feedforward}{Feedforward} voltage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+velocity} & generated velocity from mp \\
+\hline
+{\em target\+\_\+accleration} & generated acceleration from mp \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+au\+::\+Quantity$<$au\+::\+Volts, double$>$
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ Feedforward\ controller}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_feedforward}{dlib::Feedforward}}\ ff\ =\ \mbox{\hyperlink{classdlib_1_1_feedforward}{dlib::Feedforward}}(\{1,2,3\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Calculate\ voltage\ from\ motion\ profile}}
+\DoxyCodeLine{au::Quantity<au::Volts,\ double>\ voltage\ =\ ff.\mbox{\hyperlink{classdlib_1_1_feedforward_aabd57b09f20bbbc9e75d844b079345df}{calculate}}(target\_velocity,\ target\_acceleration);\ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_feedforward_a6b75e9d706bea3e482025e1329666402}\index{dlib::Feedforward@{dlib::Feedforward}!get\_gains@{get\_gains}}
+\index{get\_gains@{get\_gains}!dlib::Feedforward@{dlib::Feedforward}}
+\doxysubsubsection{\texorpdfstring{get\_gains()}{get\_gains()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_feedforward_a6b75e9d706bea3e482025e1329666402} 
+\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains}} dlib\+::\+Feedforward\+::get\+\_\+gains (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get \doxylink{classdlib_1_1_feedforward}{Feedforward} Gains. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains} gains
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ Feedforward\ controller}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_feedforward}{dlib::Feedforward}}\ ff\ =\ \mbox{\hyperlink{classdlib_1_1_feedforward}{dlib::Feedforward}}(\{1,2,3\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Get\ the\ Feedforward\ gains}}
+\DoxyCodeLine{\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{dlib::FeedforwardGains}}\ gains\ =\ ff.\mbox{\hyperlink{classdlib_1_1_feedforward_a6b75e9d706bea3e482025e1329666402}{get\_gains}}();}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{classdlib_1_1_feedforward_a0ff8c1cf5109c5fcd6004710860edd94}\index{dlib::Feedforward@{dlib::Feedforward}!set\_gains@{set\_gains}}
+\index{set\_gains@{set\_gains}!dlib::Feedforward@{dlib::Feedforward}}
+\doxysubsubsection{\texorpdfstring{set\_gains()}{set\_gains()}}
+{\footnotesize\ttfamily \label{classdlib_1_1_feedforward_a0ff8c1cf5109c5fcd6004710860edd94} 
+void dlib\+::\+Feedforward\+::set\+\_\+gains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdlib_1_1_feedforward_gains}{Feedforward\+Gains}}}]{new\+\_\+gains}{}\end{DoxyParamCaption})}
+
+
+
+Set \doxylink{classdlib_1_1_feedforward}{Feedforward} gains. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+gains} & \\
+\hline
+\end{DoxyParams}
+{\bfseries{Example}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ opcontrol()\{}
+\DoxyCodeLine{\textcolor{comment}{//\ Construct\ a\ Feedforward\ controller}}
+\DoxyCodeLine{\mbox{\hyperlink{classdlib_1_1_feedforward}{dlib::Feedforward}}\ ff\ =\ \mbox{\hyperlink{classdlib_1_1_feedforward}{dlib::Feedforward}}(\{1,2,3\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Set\ the\ Feedforward\ gains}}
+\DoxyCodeLine{ff.\mbox{\hyperlink{classdlib_1_1_feedforward_a0ff8c1cf5109c5fcd6004710860edd94}{set\_gains}}(\{4,5,6\});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/super/\+Downloads/d\+Lib2/dlib2/dlib2/include/dlib/controllers/feedforward.\+hpp\end{DoxyCompactItemize}

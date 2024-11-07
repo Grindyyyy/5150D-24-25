@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="motor__group_8hpp" kind="file" language="C++">
+    <compoundname>motor_group.hpp</compoundname>
+    <includes local="yes">pros/motor_group.hpp</includes>
+    <includes local="yes">au/au.hpp</includes>
+    <includes local="no">initializer_list</includes>
+    <includedby refid="dlib_8hpp" local="yes">C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</includedby>
+    <includedby refid="chassis_8hpp" local="yes">C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp</label>
+        <link refid="motor__group_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>au/au.hpp</label>
+      </node>
+      <node id="4">
+        <label>initializer_list</label>
+      </node>
+      <node id="2">
+        <label>pros/motor_group.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/dlib.hpp</label>
+        <link refid="dlib_8hpp_source"/>
+      </node>
+      <node id="3">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/chassis.hpp</label>
+        <link refid="chassis_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp</label>
+        <link refid="motor__group_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structdlib_1_1_motor_group_config" prot="public">dlib::MotorGroupConfig</innerclass>
+    <innerclass refid="classdlib_1_1_motor_group" prot="public">dlib::MotorGroup</innerclass>
+    <innernamespace refid="namespacedlib">dlib</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pros/motor_group.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;au/au.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;initializer_list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">dlib<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="structdlib_1_1_motor_group_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdlib_1_1_motor_group_config" kindref="compound">MotorGroupConfig</ref><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>std::initializer_list&lt;int8_t&gt;<sp/>ports;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdlib_1_1_motor_group_config" kindref="compound">MotorGroupConfig</ref>(std::initializer_list&lt;int8_t&gt;<sp/>ports);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classdlib_1_1_motor_group" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classdlib_1_1_motor_group" kindref="compound">MotorGroup</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>send(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>power);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>send_voltage(au::Quantity&lt;au::Volts,<sp/>double&gt;<sp/>voltage);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Revolutions,<sp/>double&gt;<sp/>get_position();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>au::Quantity&lt;au::Rpm,<sp/>double&gt;<sp/>get_velocity();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classdlib_1_1_motor_group" kindref="compound">MotorGroup</ref>(<ref refid="structdlib_1_1_motor_group_config" kindref="compound">MotorGroupConfig</ref><sp/>config);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>pros::MotorGroup<sp/>raw;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/hardware/motor_group.hpp"/>
+  </compounddef>
+</doxygen>

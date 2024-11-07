@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structdlib_1_1_profile_setpoint" kind="struct" language="C++" prot="public">
+    <compoundname>dlib::ProfileSetpoint</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdlib_1_1_profile_setpoint_1a29449a0978c36a2bc5f70aee8343b5e6" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::Meters, double &gt;</type>
+        <definition>au::Quantity&lt;au::Meters, double&gt; dlib::ProfileSetpoint::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>dlib::ProfileSetpoint::position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" line="7" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdlib_1_1_profile_setpoint_1a3ce65fafe8ddeacbb8b37f9780beef78" prot="public" static="no" mutable="no">
+        <type>au::Quantity&lt; au::MetersPerSecond, double &gt;</type>
+        <definition>au::Quantity&lt;au::MetersPerSecond, double&gt; dlib::ProfileSetpoint::velocity</definition>
+        <argsstring></argsstring>
+        <name>velocity</name>
+        <qualifiedname>dlib::ProfileSetpoint::velocity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" line="8" column="18" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structdlib_1_1_profile_setpoint_1ae99cd811088a6f076d0f8ed4b82db079" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>dlib::ProfileSetpoint::ProfileSetpoint</definition>
+        <argsstring>(au::Quantity&lt; au::Meters, double &gt; position, au::Quantity&lt; au::MetersPerSecond, double &gt; velocity)</argsstring>
+        <name>ProfileSetpoint</name>
+        <qualifiedname>dlib::ProfileSetpoint::ProfileSetpoint</qualifiedname>
+        <param>
+          <type>au::Quantity&lt; au::Meters, double &gt;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>au::Quantity&lt; au::MetersPerSecond, double &gt;</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" line="10" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" line="6" column="1" bodyfile="C:/Users/super/Downloads/dLib2/dlib2/dlib2/include/dlib/trajectories/profile_setpoint.hpp" bodystart="6" bodyend="14"/>
+    <listofallmembers>
+      <member refid="structdlib_1_1_profile_setpoint_1a29449a0978c36a2bc5f70aee8343b5e6" prot="public" virt="non-virtual"><scope>dlib::ProfileSetpoint</scope><name>position</name></member>
+      <member refid="structdlib_1_1_profile_setpoint_1ae99cd811088a6f076d0f8ed4b82db079" prot="public" virt="non-virtual"><scope>dlib::ProfileSetpoint</scope><name>ProfileSetpoint</name></member>
+      <member refid="structdlib_1_1_profile_setpoint_1a3ce65fafe8ddeacbb8b37f9780beef78" prot="public" virt="non-virtual"><scope>dlib::ProfileSetpoint</scope><name>velocity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
